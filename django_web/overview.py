@@ -101,7 +101,6 @@ class OverView:
 
 case_info = OverView().get_case_info()
 CASE = OverView().get_case_detail()
-print(case_info['map_data'])
 
 
 

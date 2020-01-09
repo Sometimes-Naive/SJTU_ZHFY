@@ -30,7 +30,7 @@ def chart1(request):
         'CASE_CATE': '民事'
     }
 
-    return render(request,'home/chart1.html',context)
+    return render(request, 'home/chart1.html', context)
 def chart2(request):
     context = {
         'CASE_INFO': xscase_info,
