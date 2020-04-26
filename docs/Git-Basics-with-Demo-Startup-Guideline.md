@@ -27,7 +27,7 @@ Git工具的核心是解决了本地项目文件与远程仓库文件之间的�
 
 &emsp;&emsp;在这里我们使用第一种方案进行演示。
 
-&emsp;&emsp;访问https://desktop.github.com/并下载合适的版本进行安装，即可完成配置。
+&emsp;&emsp;访问https://desktop.github.com/ ，并下载合适的版本进行安装，即可完成配置。
 
 ### 克隆项目到本地
 &emsp;&emsp;打开GitHub Desktop，登录账号，进入程序主界面；
