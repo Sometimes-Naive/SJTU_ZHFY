@@ -63,19 +63,19 @@
         <div class="ui divider" style="width: 100%"></div>
 
         <div class="ui container column" style="background-color: #ffffff;height: 80%;width: 50%;padding-left: 6em;line-height: 400%;font-size: 16px;" id="chart11">
-            <div href="javascript:void(0);" onclick="jump('../detail/{{ MSCASE.mscase_id.0 }}&&{{ CASE_CATE }}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ MSCASE.mscase_title.0 }}</div>
-            <div href="javascript:void(0);" onclick="jump('../detail/{{ MSCASE.mscase_id.1 }}&&{{ CASE_CATE }}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ MSCASE.mscase_title.1 }}</div>
-            <div href="javascript:void(0);" onclick="jump('../detail/{{ MSCASE.mscase_id.2 }}&&{{ CASE_CATE }}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ MSCASE.mscase_title.2 }}</div>
-            <div href="javascript:void(0);" onclick="jump('../detail/{{ MSCASE.mscase_id.3 }}&&{{ CASE_CATE }}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ MSCASE.mscase_title.3 }}</div>
-            <div href="javascript:void(0);" onclick="jump('../detail/{{ MSCASE.mscase_id.4 }}&&{{ CASE_CATE }}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ MSCASE.mscase_title.4 }}</div>
+            <div href="javascript:void(0);" onclick="jump('../detail/{{ MSCASE.case_id.0 }}&&{{ CASE_CATE }}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ MSCASE.case_title.0 }}</div>
+            <div href="javascript:void(0);" onclick="jump('../detail/{{ MSCASE.case_id.1 }}&&{{ CASE_CATE }}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ MSCASE.case_title.1 }}</div>
+            <div href="javascript:void(0);" onclick="jump('../detail/{{ MSCASE.case_id.2 }}&&{{ CASE_CATE }}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ MSCASE.case_title.2 }}</div>
+            <div href="javascript:void(0);" onclick="jump('../detail/{{ MSCASE.case_id.3 }}&&{{ CASE_CATE }}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ MSCASE.case_title.3 }}</div>
+            <div href="javascript:void(0);" onclick="jump('../detail/{{ MSCASE.case_id.4 }}&&{{ CASE_CATE }}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ MSCASE.case_title.4 }}</div>
 
         </div>
         <div class="ui container column" style="background-color: #ffffff;height: 80%;width: 50%;padding-left: 4em;line-height: 400%;font-size: 16px;" id="chart11">
-            <div href="javascript:void(0);" onclick="jump('../detail/{{ MSCASE.mscase_id.5 }}&&{{ CASE_CATE }}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ MSCASE.mscase_title.5 }}</div>
-            <div href="javascript:void(0);" onclick="jump('../detail/{{ MSCASE.mscase_id.6 }}&&{{ CASE_CATE }}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ MSCASE.mscase_title.6 }}</div>
-            <div href="javascript:void(0);" onclick="jump('../detail/{{ MSCASE.mscase_id.7 }}&&{{ CASE_CATE }}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ MSCASE.mscase_title.7 }}</div>
-            <div href="javascript:void(0);" onclick="jump('../detail/{{ MSCASE.mscase_id.8 }}&&{{ CASE_CATE }}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ MSCASE.mscase_title.8 }}</div>
-            <div href="javascript:void(0);" onclick="jump('../detail/{{ MSCASE.mscase_id.9 }}&&{{ CASE_CATE }}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ MSCASE.mscase_title.9 }}</div>
+            <div href="javascript:void(0);" onclick="jump('../detail/{{ MSCASE.case_id.5 }}&&{{ CASE_CATE }}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ MSCASE.case_title.5 }}</div>
+            <div href="javascript:void(0);" onclick="jump('../detail/{{ MSCASE.case_id.6 }}&&{{ CASE_CATE }}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ MSCASE.case_title.6 }}</div>
+            <div href="javascript:void(0);" onclick="jump('../detail/{{ MSCASE.case_id.7 }}&&{{ CASE_CATE }}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ MSCASE.case_title.7 }}</div>
+            <div href="javascript:void(0);" onclick="jump('../detail/{{ MSCASE.case_id.8 }}&&{{ CASE_CATE }}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ MSCASE.case_title.8 }}</div>
+            <div href="javascript:void(0);" onclick="jump('../detail/{{ MSCASE.case_id.9 }}&&{{ CASE_CATE }}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ MSCASE.case_title.9 }}</div>
         </div>
 
 </div>
@@ -91,9 +91,13 @@
         </div>
 <div class="ui divider" style="width: 100%"></div>
 
-        <div class="ui container column" style="background-color: #ffffff;height: 80%;width: 50%" id="chart11"></div>
+        <div class="ui container column" style="background-color: #ffffff;height: 80%;width: 50%" id="chart11">
+            按案由中重点案件数量展示
+        </div>
 
-        <div class="ui container column" style="background-color: #ffffff;height: 80%;width:50%" id="chart12"></div>
+        <div class="ui container column" style="background-color: #ffffff;height: 80%;width:50%" id="chart12">
+            按案由中重点案件比例展示
+        </div>
 
 </div>
 
@@ -130,8 +134,8 @@ enabled:false,
 },
 colorAxis: {
 min: 0,
-minColor: '#fff',
-maxColor: '#006cee',
+minColor: '#ffffff',
+maxColor: '#006aee',
 labels:{
     style:{
         "color":"red","fontWeight":"bold"
@@ -266,7 +270,7 @@ name: '重庆市地图'
                 minSize: '30%',
                 maxSize: '120%',
                 zMin: 0,
-                zMax: 20000,
+                zMax: chart_data[0]['data'][0]['value'],
                 layoutAlgorithm: {
                     splitSeries: false,
                     gravitationalConstant: 0.02

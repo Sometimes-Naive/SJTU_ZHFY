@@ -6,10 +6,13 @@ from django_web.ms_lhjf_data import *
 from django_web.sjayc_data import *
 from django_web.tsyp_data import *
 from django_web.overview import *
-from django_web.ms_data import *
-from django_web.xs_data import *
 from django_web.xz_data import *
+from django_web.case_detail import detail_get, get_case_title
+from django_web.case_info_process import json_data_r
 # Create your views here.
+data_path = '/Users/wsk/SJTU_ZHFY/data/case_info/'
+
+
 def index(request):
     return render(request,'index.html')
 
@@ -24,26 +27,26 @@ def overview(request):
     return render(request,'home/overview.html',context)
 def chart1(request):
     context = {
-        'CASE_INFO': mscase_info,
-        'AY_INFO': msay_info,
-        'MSCASE': mscase,
+        'CASE_INFO': json_data_r(data_path + 'mscase_info_data'),
+        'AY_INFO': json_data_r(data_path + 'msay_info_data'),
+        'MSCASE': get_case_title('民事案件'),
         'CASE_CATE': '民事'
     }
 
     return render(request, 'home/chart1.html', context)
 def chart2(request):
     context = {
-        'CASE_INFO': xscase_info,
-        'AY_INFO': xsay_info,
-        'XSCASE': xscase,
+        'CASE_INFO': json_data_r(data_path + 'xscase_info_data'),
+        'AY_INFO': json_data_r(data_path + 'xsay_info_data'),
+        'XSCASE': get_case_title('刑事案件'),
         'CASE_CATE': '刑事'
     }
     return render(request,'home/chart2.html',context)
 def chart3(request):
     context = {
-        'CASE_INFO': xzcase_info,
+        'CASE_INFO': json_data_r(data_path + 'xzcase_info_data'),
         'AY_INFO': xzay_info,
-        'XZCASE': xzcase,
+        'XZCASE': get_case_title('行政案件'),
         'CASE_CATE': '行政'
     }
     return render(request,'home/chart3.html',context)
@@ -136,78 +139,13 @@ def tsyp(request):
 def get_detail_page(request,case_id_cate):
     case_cate = case_id_cate.split('&&')[1]
     case_id = case_id_cate.split('&&')[0]
-    if case_cate == '总体':
-        for case in MSAJ.objects:
-            # print(case_id)
-            case_defendant = ''
-            if case_id == str(case.id):
-                if case.庭审过程 == '':
-                    case_detail = '无庭审信息'
-                else:
-                    case_detail = case.庭审过程
-                case_title = case.标题
-                for case_defendant_list in case.当事人.split('、'):
-                    if case_defendant == '':
-                        case_defendant = case_defendant_list
-                    else:
-                        case_defendant = case_defendant + '\n' + case_defendant_list
-                break
-    elif case_cate == '民事':
-        for case in MSAJ.objects:
-            # print(case_id)
-            case_defendant = ''
-            if case_id == str(case.id):
-                if case.庭审过程 == '':
-                    case_detail = '无庭审信息'
-                else:
-                    case_detail = case.庭审过程
-                case_title = case.标题
-                for case_defendant_list in case.当事人.split('、'):
-                    if case_defendant == '':
-                        case_defendant = case_defendant_list
-                    else:
-                        case_defendant = case_defendant + '\n' + case_defendant_list
-                break
-    elif case_cate == '刑事':
-        for case in XSAJ.objects:
-            # print(case_id)
-            case_defendant = ''
-            if case_id == str(case.id):
-                if case.庭审过程 == '':
-                    case_detail = '无庭审信息'
-                else:
-                    case_detail = case.庭审过程
-                case_title = case.标题
-                for case_defendant_list in case.当事人.split('、'):
-                    if case_defendant == '':
-                        case_defendant = case_defendant_list
-                    else:
-                        case_defendant = case_defendant + '\n' + case_defendant_list
-                break
-    elif case_cate == '行政':
-        for case in XZAJ.objects:
-            # print(case_id)
-            case_defendant = ''
-            if case_id == str(case.id):
-                if case.庭审过程 == '':
-                    case_detail = '无庭审信息'
-                else:
-                    case_detail = case.庭审过程
-                case_title = case.标题
-                for case_defendant_list in case.当事人.split('、'):
-                    if case_defendant == '':
-                        case_defendant = case_defendant_list
-                    else:
-                        case_defendant = case_defendant + '\n' + case_defendant_list
-                break
+    CASE_DETAIL = detail_get(case_id)
     return render(request, 'home/detail.html',
                   {
-                      'case_detail': case_detail,
-                      'case_title': case_title,
-                      'case_defendant': case_defendant,
-                      'case_category': case_cate,
-
+                      'CASE': CASE_DETAIL
                   }
                   )
 
 
+if __name__ == '__main__':
+    a = get_detail_page()

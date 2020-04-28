@@ -1,17 +1,9 @@
 #coding: utf-8
 import re
 from mongoengine import *
-disconnect()
-connect('TOPIC_data', host='127.0.0.1', port=27017)
+from django_web.models import LHJF
 
-class LHJF(Document):
-    头部信息=StringField()
-    当事人信息 = StringField()
-    庭审过程 = StringField()
-    尾部信息 = StringField()
-    meta = {
-        'collection': 'LHJF_data'
-    }
+
 
 
 class MsLhjfData:
@@ -507,21 +499,10 @@ class ChartData:
 
 person_info = ChartData().get_person_info()
 
+if __name__ =='__main__':
+    map_key = []
 
-
-
-# female_num1 = []
-# male_num1 = []
-# for i,j in PLAAGE_FEMALE.items():
-#     female_num1.append(j)
-# for i,j in PLAAGE_MALE.items():
-#     male_num1.append(-j)
-# female_num2 = []
-# male_num2 = []
-# for i,j in DEFAGE_FEMALE.items():
-#     female_num2.append(j)
-# for i,j in DEFAGE_MALE.items():
-#     male_num2.append(-j)
-# print(female_num2)
-
+    for i in map1:
+        map_key.append(i['name'])
+    print(map_key)
 

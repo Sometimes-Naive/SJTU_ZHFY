@@ -1,11 +1,38 @@
 #coding: utf-8
+
 from django.db import models
 from mongoengine import *
-# Create your models here.
-from mongoengine import connect
 
-connect('MS_data', host='127.0.0.1', port=27017)
+disconnect()
+connect('MS_data', host='202.121.180.66', port=7101, alias='default')
+connect('TOPIC_data', host='202.121.180.66', port=7101, alias='topic_db')
+connect('court', host='202.121.180.66', port=7101, alias='all_data_db')
 
+class LHJF(Document):
+    头部信息 = StringField()
+    当事人信息 = StringField()
+    庭审过程 = StringField()
+    尾部信息 = StringField()
+    meta = {
+        'db_alias':'topic_db',
+        'collection': 'LHJF_data'
+    }
+
+class AllData(Document):
+    年份 = StringField()
+    日期 = StringField()
+    省份 = StringField()
+    法院名称 = StringField()
+    案件类别 = StringField()
+    案件数据 = ListField()
+    头部信息 = ListField()
+    人员信息 = ListField()
+    案件过程 = ListField()
+    判决信息 = ListField()
+    meta = {
+        'db_alias': 'all_data_db',
+        'collection': 'database'
+    }
 
 class XSAJ(Document):
     标题 = StringField()
@@ -134,3 +161,6 @@ class MSAJ(Document):
     }
 
 
+if __name__ == "__main__":
+    docs = AllData.objects(省份='重庆').count()
+    print(docs)

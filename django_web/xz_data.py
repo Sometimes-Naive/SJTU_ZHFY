@@ -1,5 +1,6 @@
 from django_web.models import XZAJ
-
+from django_web.models import AllData
+from django_web.case_detail import get_case_title
 
 
 class XzData:
@@ -30,7 +31,7 @@ class XzData:
 
     def get_case_info(self):
         case_info = {}
-        case_number = XZAJ.objects.count()
+        case_number = AllData.objects(省份='重庆',案件类别='行政案件').count()
         people_number = 2 * case_number
         map = [{'name': '万州区', 'value': 511}, {'name': '北碚区', 'value': 331}, {'name': '涪陵区', 'value': 989}, {'name': '渝中区', 'value': 816}, {'name': '渝北区', 'value': 2913}]
         date = ['2005年', '2006年', '2007年', '2008年', '2010年', '2011年', '2012年', '2013年', '2014年', '2015年', '2016年', '2017年', '2018年', '2019年']
@@ -50,19 +51,6 @@ class XzData:
         case_info['region_case_number'] = [region, region_number]
         case_info['date_case_number'] = [date, date_case_number]
         return case_info
-
-    def get_detail_info(self):
-        XZCASE = {
-            'xzcase_id': [],
-            'xzcase_title': [],
-            'xzcase_detail': [],
-        }
-        for i in XZAJ.objects.limit(10):
-            # print(type(str(i.id)))
-            XZCASE['xzcase_id'].append(str(i.id))
-            XZCASE['xzcase_title'].append(i.标题)
-            XZCASE['xzcase_detail'].append(i.庭审过程)
-        return XZCASE
 
     def get_ay_info(self):
         xzcase_info = {
@@ -101,7 +89,7 @@ class XzData:
 
 
 xzcase_info = XzData().get_case_info()
-xzcase = XzData().get_detail_info()
+xzcase = get_case_title('行政案件')
 xzay_info = XzData().get_ay_info()
 
 

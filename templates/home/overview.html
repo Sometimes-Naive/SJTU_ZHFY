@@ -19,12 +19,12 @@
 
     <div class="column" style="width:38%;height: 100%;">
 
-            <div class="ui segment container row" style="height:50%" id="chart4">
+            <div class="ui segment container row" style="height:102%" id="chart4">
 
             </div>
 
 
-        <div class="ui segment container" style="height:50%; " id="chart5"></div>
+
     </div>
 </div>
 <div class="row" style="height: 30%;">
@@ -203,58 +203,7 @@
                 });
             });
 
-    function line_chart(chart_name, chart_data){
-    Highcharts.chart(chart_name, {
-        title: {
-        text: '案件时间趋势'
-        },
-        subtitle: {
-        text: ''
-        },
-        xAxis: {
-          categories: chart_data[0]
-        },
-        yAxis: {
-        title: {
-        text: '案件数量'
-        }
-        },
-        credits:{
-        enabled:false,
-        },
-        exporting:{
-        enabled:false,
-        },
-        legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'middle'
-        },
-        plotOptions: {
-        series: {
-        label: {
-            connectorAllowed: false
-        },
-        }
-        },
-        series: chart_data[1],
-        responsive: {
-        rules: [{
-        condition: {
-            maxWidth: 500
-        },
-        chartOptions: {
-            legend: {
-                layout: 'horizontal',
-                align: 'center',
-                verticalAlign: 'bottom'
-            }
-        }
-        }]
-        }
-    })
-    }
-    line_chart('chart5', {{ case_info.line_data | safe }});
+
     function line1_chart(chart_name, chart_data){
     var chart = Highcharts.chart(chart_name, {
             chart: {

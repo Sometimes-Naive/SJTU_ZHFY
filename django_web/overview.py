@@ -1,12 +1,18 @@
-from django_web.ms_data import *
-from django_web.xs_data import *
-from django_web.xz_data import *
+#coding:utf-8
+from django_web.models import AllData
+from django_web.xz_data import xzay_info
+from django_web.case_detail import get_case_title
+from django_web.case_info_process import *
 import copy
 
+
+data_path = '/Users/wsk/SJTU_ZHFY/data/case_info/'
+
+
 allcase_info = {
-    '民事案件': copy.deepcopy(mscase_info),
-    '刑事案件': copy.deepcopy(xscase_info),
-    '行政案件': copy.deepcopy(xzcase_info),
+    '民事案件': json_data_r(data_path + 'mscase_info_data'),
+    '刑事案件': json_data_r(data_path + 'xscase_info_data'),
+    '行政案件': json_data_r(data_path + 'xzcase_info_data'),
 }
 cate = ['民事案件', '刑事案件', '行政案件']
 
@@ -14,10 +20,30 @@ class OverView:
     def __init__(self):
         pass
 
+    def list2dict(self, data):
+        dict = {}
+        for i in data:
+            dict[i['name']] = i['value']
+        return dict
+
+
+    def dict2list(self, data):
+        region_key = list(data.keys())
+        number = list(data.values())
+        region_list = []
+        for i in range(len(region_key)):
+            # print(region_key[i])
+            data_meta = {}
+            data_meta['name'] = region_key[i]
+            data_meta['value'] = number[i]
+            # print(data)
+            region_list.append(data_meta)
+        return region_list
+
     def get_ay_info(self):
         ay_info = []
-        ay_info.append(msay_info[0])
-        ay_info.append(xsay_info[0])
+        ay_info.append(json_data_r(data_path + 'msay_info_data')[0])
+        ay_info.append(json_data_r(data_path + 'xsay_info_data')[0])
         ay_info.append(xzay_info[0])
         return ay_info
 
@@ -46,19 +72,25 @@ class OverView:
         # print(data['民事案件']['region_case_number'])
         # print(case_info is data['民事案件']['region_case_number'])
         for i in range(len(case_info[0])):
-            for j in range(len(data['刑事案件']['region_case_number'][0])):
-                if case_info[0][i] == data['刑事案件']['region_case_number'][0][j]:
-                    case_info[1][i] = case_info[1][i] + data['刑事案件']['region_case_number'][1][j] + \
-                                      data['行政案件']['region_case_number'][1][j]
+            if case_info[0][i] in data['刑事案件']['region_case_number'][0]:
+                index = data['刑事案件']['region_case_number'][0].index(case_info[0][i])
+                case_info[1][i] = case_info[1][i] + data['刑事案件']['region_case_number'][1][index]
+            if case_info[0][i] in data['行政案件']['region_case_number'][0]:
+                index = data['行政案件']['region_case_number'][0].index(case_info[0][i])
+                case_info[1][i] = case_info[1][i] + data['行政案件']['region_case_number'][1][index]
+        # print(case_info)
         return case_info
 
     def get_map_data(self, data):
-        map_data = []
-        for i in range(len(data[0])):
-            map_meta_data = {}
-            map_meta_data['name'] = data[0][i]
-            map_meta_data['value'] = data[1][i]
-            map_data.append(map_meta_data)
+        map_data_dict = {}
+        msmap = OverView().list2dict(data['民事案件']['map'])
+        xsmap = OverView().list2dict(data['刑事案件']['map'])
+        xzmap = OverView().list2dict(data['行政案件']['map'])
+        for i in list(msmap.keys()):
+            map_data_dict[i] = msmap[i] + xsmap[i] + xzmap[i]
+            # map_data_dict['value'] = msmap[i] + xsmap[i] + xzmap[i]
+        map_data = OverView().dict2list(map_data_dict)
+       # print(map_data)
         return map_data
 
     def get_line_data(self):
@@ -69,18 +101,7 @@ class OverView:
         date_case_data[1] = line_data
         return date_case_data
 
-    def get_case_detail(self):
-        CASE = {
-            'case_id': [],
-            'case_title': [],
-            'case_detail': [],
-        }
-        for i in MSAJ.objects.limit(10):
-            # print(type(str(i.id)))
-            CASE['case_id'].append(str(i.id))
-            CASE['case_title'].append(i.标题)
-            CASE['case_detail'].append(i.庭审过程)
-        return CASE
+
 
     def get_case_info(self):
         case_info = {}
@@ -88,7 +109,7 @@ class OverView:
         pie_people_number = OverView().get_pie_people_number(cate, allcase_info)
         ay_info = OverView().get_ay_info()
         region_case_number = OverView().get_region_case_number(allcase_info)
-        map_data = OverView().get_map_data(region_case_number)
+        map_data = OverView().get_map_data(allcase_info)
         line_data = OverView().get_line_data()
         case_info['pie_case_number'] = pie_case_number
         case_info['pie_people_number'] = pie_people_number
@@ -100,14 +121,6 @@ class OverView:
 
 
 case_info = OverView().get_case_info()
-CASE = OverView().get_case_detail()
-
-
-
-
-
-
-
-
-
+CASE = get_case_title()
+# print(case_info)
 

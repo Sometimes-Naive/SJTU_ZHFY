@@ -1,6 +1,7 @@
 # coding:utf-8
 from django_web.models import XSAJ
-
+from django_web.models import AllData
+from django_web.case_detail import get_case_title
 
 class XsData:
     def __init__(self):
@@ -30,7 +31,7 @@ class XsData:
 
     def get_case_info(self):
         case_info = {}
-        case_number = XSAJ.objects.count()
+        case_number = AllData.objects(省份='重庆',案件类别='刑事案件').count()
         people_number = 2 * case_number
         map = [{'name': '万州区', 'value': 3064}, {'name': '北碚区', 'value': 1456}, {'name': '涪陵区', 'value': 2238},
                 {'name': '渝中区', 'value': 2558}, {'name': '渝北区', 'value': 2704}]
@@ -51,19 +52,6 @@ class XsData:
         case_info['region_case_number'] = [region, region_number]
         case_info['date_case_number'] = [date, date_case_number]
         return case_info
-
-    def get_detail_info(self):
-        XSCASE = {
-            'xscase_id': [],
-            'xscase_title': [],
-            'xscase_detail': [],
-        }
-        for i in XSAJ.objects.limit(10):
-            # print(type(str(i.id)))
-            XSCASE['xscase_id'].append(str(i.id))
-            XSCASE['xscase_title'].append(i.标题)
-            XSCASE['xscase_detail'].append(i.庭审过程)
-        return XSCASE
 
     def get_ay_info(self):
         xscase_info = {
@@ -103,7 +91,7 @@ class XsData:
 
 
 xscase_info = XsData().get_case_info()
-xscase = XsData().get_detail_info()
+xscase = get_case_title('刑事案件')
 xsay_info = XsData().get_ay_info()
 
 
