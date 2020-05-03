@@ -8,12 +8,12 @@
 可以直接定义数据处理函数，再遇到复杂逻辑时建议定义Manager类统筹管理。
 定义类时需要注意访问控制，同时为保证每一个函数的易读性，每个函数长度不超过30行。
 """
-
+from core.drivers import connect_mongo
 from .models import *
 from .temp_data import *
 from .utils import *
 
-
+@connect_mongo('MS_data')
 def compose_case_details():
     details = {
         'case_id': [],
@@ -68,7 +68,7 @@ class DataManager():
         print(statistics)
         return statistics
 
-
+    @connect_mongo('MS_data')
     def _load_case_info(self, category):
 
         case_info = {}

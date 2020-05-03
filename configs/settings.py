@@ -83,22 +83,17 @@ WSGI_APPLICATION = 'configs.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'MS_data',
-        'LOGGING': {
-                'version': 1,
-                'loggers': {
-                    'djongo': {
-                        'level': 'DEBUG',
-                        'propogate': False,                        
-                    }
-                },
-             },
-        'CLIENT': {
-           'host': '127.0.0.1',
-           'port': 27017,
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+}
+
+MONGODB = {
+    'mode': 'single',
+    # 'host': '127.0.0.1',
+    # 'port': 27017,
+    'host': '202.121.180.66',
+    'port': 7101,
 }
 
 
@@ -141,8 +136,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # 此处目录需要按实际情况修改
-STATIC_ROOT = '/var/www/CourtDataVisualization/static'
+# STATIC_ROOT = '/var/www/CourtDataVisualization/static'
 
-# STATICFILES_DIRS = (
-#     os.path.join(BASE_DIR, 'static'),
-# )
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
