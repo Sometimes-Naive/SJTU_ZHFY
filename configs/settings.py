@@ -95,10 +95,18 @@ DATABASES = {
                 },
              },
         'CLIENT': {
-           'host': '127.0.0.1',
-           'port': 27017,
+           # 'host': '127.0.0.1',
+           # 'port': 27017,
+           'host': '202.121.180.66',
+           'port': 7101,
         }
     }
+}
+
+MONGODB = {
+    'mode': 'single',
+    'host': '202.121.180.66',
+    'port': 7101,
 }
 
 
@@ -140,9 +148,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# 此处目录需要按实际情况修改
-STATIC_ROOT = '/var/www/CourtDataVisualization/static'
+# 此处目录需要按实际情况修改 for production
+# STATIC_ROOT = '/var/www/CourtDataVisualization/static'
 
-# STATICFILES_DIRS = (
-#     os.path.join(BASE_DIR, 'static'),
-# )
+# for development
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)

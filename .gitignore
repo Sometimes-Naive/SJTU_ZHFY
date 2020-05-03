@@ -34,3 +34,8 @@ out/
 ###Pycharm###
 venv/
 __pycache__/
+
+
+### Result Data Directory ###
+apps/overview/data/*.json
+apps/overview/data/preprocess/*.json

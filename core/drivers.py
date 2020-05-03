@@ -4,30 +4,28 @@
 在此文件中包含了全局项目中使用的数据输入处理接口。
 
 """
-# from mongoengine import connect
-# from django.conf import settings
-# import wrapt
+from django.conf import settings
+import wrapt
 
 # mongoengine 废弃不再使用
-# class connect_mongo(object):
+class connect_mongo(object):
 
-#     def __init__(self, database, **kwargs):
-#         self.database = database
-#         if 'keep_alive' in kwargs:
-#             self.keep_alive = kwargs['keep_alive']
-#         else:
-#             self.keep_alive = False
+    def __init__(self, database, **kwargs):
+        self.database = database
+        if 'keep_alive' in kwargs:
+            self.keep_alive = kwargs['keep_alive']
+        else:
+            self.keep_alive = False
 
-#     @wrapt.decorator
-#     def __call__(self, wrapped, instance, args, kwargs):
-#         from mongoengine.connection import connect, disconnect
-#         if settings.MONGODB['MODE'] == 'single':
-#             conn = connect(db = self.database, host = settings.MONGODB['HOST'], port = settings.MONGODB['PORT'])
-#             print(conn)
-#             result = wrapped(*args, **kwargs)
-#             if not self.keep_alive:
-#                 disconnect()
-#             return result
+    @wrapt.decorator
+    def __call__(self, wrapped, instance, args, kwargs):
+        from mongoengine.connection import connect, disconnect
+        if settings.MONGODB['mode'] == 'single':
+            conn = connect(db = self.database, host = settings.MONGODB['host'], port = settings.MONGODB['port'])
+            result = wrapped(*args, **kwargs)
+            if not self.keep_alive:
+                disconnect()
+            return result
 
 # class BaseMongoDBDriver():
 # 	@staticmethod

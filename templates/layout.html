@@ -34,14 +34,14 @@
 {#                  <i class="dropdown icon"></i>#}
                   <div class="menu">
                     <div class="item">
-                      <a class="text" href="../overview" style="color: #000000;">案件总览</a>
+                      <a class="text" href="{% url 'overall' %}" style="color: #000000;">案件总览</a>
                     </div>
                       <div class="item">
-                      <a class="text" href="../mschart" style="color: #000000">民事案件</a>
+                      <a class="text" href="{% url 'civil' %}" style="color: #000000">民事案件</a>
                     </div><div class="item">
-                      <a class="text" href="../xschart" style="color: #000000">刑事案件</a>
+                      <a class="text" href="{% url 'criminal' %}" style="color: #000000">刑事案件</a>
                     </div><div class="item">
-                      <a class="text" href="../xzchart" style="color: #000000">行政案件</a>
+                      <a class="text" href="{% url 'administrative' %}" style="color: #000000">行政案件</a>
                     </div>
 
                     </div>
