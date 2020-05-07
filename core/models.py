@@ -10,6 +10,6 @@ class BaseModel(object):
 	pass
 		
 
-class BaseMongoModel(Document):
-	"""docstring for BaseMongoModel"""
-	pass	
+# class BaseMongoModel(Document):
+# 	"""docstring for BaseMongoModel"""
+# 	pass	
