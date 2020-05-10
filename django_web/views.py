@@ -79,10 +79,18 @@ def lhjf(request):
 
     return render(request, 'MS_topic/LHJF.html',context)
 
+#收结案态势预测模块函数
 def sjayc(request):
     context = {
-        'date_data': date_data,
-        'region_data': region_data,
+        #'date_data': date_data,
+        #'region_data': region_data,
+        'map_data' : map_data,
+        'line_data' : line_data,
+        'his_data1' : his_data1,
+        'his_data2' : his_data2,
+        'pie_data' : pie_data,
+        'sa_predictions' : sa_predictions,
+        'advice' : advice,
     }
     return render(request, 'sjayc/sjayc1.html', context)
 
