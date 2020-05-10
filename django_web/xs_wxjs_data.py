@@ -22,7 +22,8 @@ class XSAJ(Document):
     案由= StringField()
 
     meta = {
-        'collection':'QY2','strict': False
+        'collection':'QY2',
+        'strict': False
     }
 class XsWxjsData:
     def __init__(self):
@@ -54,7 +55,7 @@ class XsWxjsData:
             a = i.当事人信息.split('、')
             # print(a)
             for j in a:
-                if ('被告人' in j or '罪犯' in j or '被告' in j)and('男，' in j or '女，' in j):
+                if ('被告人' in j or '罪犯' in j or '被告' in j) and ('男，' in j or '女，' in j):
                     c = {
                         'name':'未知','sex':'未知','birthdate':'未知','addr':'未知','age':'未知','nation':'未知','edu':'未知'
                     }

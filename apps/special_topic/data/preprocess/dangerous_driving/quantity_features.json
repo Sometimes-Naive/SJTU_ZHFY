@@ -1,0 +1,43 @@
+{
+    "case_number": 20,
+    "case_map": [
+        {
+            "name": "梁平区",
+            "value": 5
+        },
+        {
+            "name": "万州区",
+            "value": 5
+        },
+        {
+            "name": "渝北区",
+            "value": 3
+        },
+        {
+            "name": "巴南区",
+            "value": 2
+        },
+        {
+            "name": "渝中区",
+            "value": 2
+        },
+        {
+            "name": "秀山",
+            "value": 2
+        },
+        {
+            "name": "綦江区",
+            "value": 1
+        }
+    ],
+    "case_date_data": [
+        [
+            "",
+            "2019年"
+        ],
+        [
+            5,
+            15
+        ]
+    ]
+}
