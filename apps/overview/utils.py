@@ -81,4 +81,4 @@ def info2str(info):
             str1 = j
         else:
             str1 = str1 + '\n' + j
-    return str1     
+    return str1

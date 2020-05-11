@@ -25,3 +25,8 @@ class ResultLoader(object):
     def load_case_evaluation_title(self, category):
         return json_data_r(DATA_PATH + FILENAME_LIST[CATEGORIES[category]] +
             '_title' + JSON_TYPE_SUFFIX)
+
+
+if __name__ == '__main__':
+    a = ResultLoader().load_case_basic_result('civil')
+    print(a)

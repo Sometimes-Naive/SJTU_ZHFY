@@ -7,7 +7,7 @@
 
 """
 # from core.models import *
-# from djongo import models
+# from django import models
 from mongoengine import *
 
 # class CivilCaseDoc(models.Model):

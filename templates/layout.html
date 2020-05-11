@@ -3,8 +3,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>an awesome web!</title>
+    <title>智慧法院项目数据展示平台</title>
     <link rel="stylesheet" href="{% static 'css/semantic.css' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="../static/images/favicon.ico" />
 
 
 </head>
@@ -13,15 +14,20 @@
     <script src="{% static 'js/semantic.js' %}"></script>
     <script src="{% static 'js/highcharts.js' %}"></script>
     <script src="{% static 'js/exporting.js' %}"></script>
-{#    <script src="{% static 'js/jquery-1.8.3.min.js' %}"></script>#}
-{#    <script src="{% static 'js/highmaps.js' %}"></script>#}
+    <script src="{% static 'js/echarts.js' %}"></script>
+    <script src="{% static 'js/oldie.js' %}"></script>
+    <script src="{% static 'js/networkgraph.js' %}"></script>
     <script src="{% static 'js/drilldown.js' %}"></script>
     <script src="{% static 'js/highcharts-more.js' %}"></script>
     <script src="{% static 'js/map.js' %}"></script>
     <script src = "{% static 'js/grid-light.js' %}"> </script>
 
 		<div class="ui menu" style="height: 8%;" >
-            <div class="header item center " style="margin: 0 auto;font-size: 4vh">智慧法院项目数据展示平台
+            <div class="header item center " style="margin: 0 auto;font-size: 4vh; padding: 0 0">
+                    <div class="container center" style="padding: 0 0; margin: 0 0; line-height: 12px">
+                        <img src="../static/images/FY.jpg" alt="法院" height="100%" width="100%"/>
+                    </div>
+                智慧法院项目数据展示平台
 
             </div>
         {% block head %}{% endblock %}
