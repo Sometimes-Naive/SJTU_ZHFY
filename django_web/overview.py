@@ -4,9 +4,10 @@ from django_web.xz_data import xzay_info
 from django_web.case_detail import get_case_title
 from django_web.case_info_process import *
 import copy
+from django.conf import settings 
 
 
-data_path = '/Users/wsk/SJTU_ZHFY/data/case_info/'
+data_path = settings.BASE_DIR + '/data/case_info/'
 
 
 allcase_info = {

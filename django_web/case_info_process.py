@@ -6,7 +6,10 @@ import json
 from fuzzywuzzy import process
 import copy
 import pandas as pd
-data_path = '/Users/wsk/SJTU_ZHFY/data/case_info/'
+from django.conf import settings 
+
+
+data_path = settings.BASE_DIR + '/data/case_info/'
 
 
 def json_data_w(data, file_name):
