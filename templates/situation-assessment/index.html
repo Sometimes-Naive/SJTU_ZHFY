@@ -732,14 +732,14 @@
                 series: chart_data['data']
             });
     }
-    // drawTree('chart0');
-    chart_paint_his('chart1', {{ range_data.0 | safe}});
-    chart_paint('chart5', {{ range_data.1 | safe}});
-    // pie_paint1('chart3',{{ pie_data.0 | safe }});
-    pie_paint('chart9',{{ pie_data.1 | safe }});
-    pie_paint('chart11',{{ pie_data.2 | safe }});
-    histogram_paint('chart10', {{ histogram_data.0 | safe }});
-    histogram_paint('chart12', {{ histogram_data.1 | safe }});
+drawTree('chart0');
+chart_paint_his('chart1', {{ range_data.0 | safe}});
+chart_paint('chart5', {{ range_data.1 | safe}});
+// pie_paint1('chart3',{{ pie_data.0 | safe }});
+pie_paint('chart9',{{ pie_data.1 | safe }});
+pie_paint('chart11',{{ pie_data.2 | safe }});
+histogram_paint('chart10', {{ histogram_data.0 | safe }});
+histogram_paint('chart12', {{ histogram_data.1 | safe }});
     //折线图函数
 //////////////////////////////////////营商环境\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
 

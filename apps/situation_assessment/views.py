@@ -8,7 +8,7 @@
 
 案后监督那一块数据没有 对应managers里面  XXgl_region, XXgl_score = [0,0]
 """
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from . import managers
 from . import loaders
@@ -132,7 +132,7 @@ def show_index(request):
     return render(request, 'situation-assessment/index.html', context)
 
 def get_index_system_tree(request):
-    return json_data_r(DATA_PATH + 'tree.json')
+    return JsonResponse(json_data_r(DATA_PATH + 'tree.json'))
 
 
 from django.template.defaulttags import register
