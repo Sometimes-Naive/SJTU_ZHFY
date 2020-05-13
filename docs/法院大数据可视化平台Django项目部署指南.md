@@ -164,6 +164,19 @@ Python(v3.8)执行文件目录：/usr/bin/python
 			```
 			
 
-* 
+## 报错处理
+出现以下错误：
 
-的
+```
+  File "C:\Anaconda3\lib\sqlite3\dbapi2.py", line 27, in <module>
+    from _sqlite3 import *
+ImportError: DLL load failed: 找不到指定的模块。
+```
+
+原因：系统缺少相应DLL文件。
+解决方案：
+1. 打开https://www.sqlite.org/download.html 网页；
+
+2. 下载最新的Precompiled Binaries for Windows(选择自己对应的系统)版本： sqlite-dll-win64-x64-\*.zip 版本;
+
+3. 将压缩包中的两个文件解压到Python程序所在目录即可。
