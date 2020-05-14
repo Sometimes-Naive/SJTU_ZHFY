@@ -122,7 +122,7 @@ def show_index(request):
         'histogram_data': [ysxg_hdata, jazx_hdata],
         'rank_data': overall_rank,
         'line_data': overall_trend,
-        'map_data': heatmap_data,
+        'heatmap_data': heatmap_data,
         'hist_data': indicator_trend,
         'pccl_data': pccl_score,
         'htzx_data': htzx_score,
@@ -132,7 +132,7 @@ def show_index(request):
     return render(request, 'situation-assessment/index.html', context)
 
 def get_index_system_tree(request):
-    return JsonResponse(json_data_r(DATA_PATH + 'tree.json'))
+    return JsonResponse(json_data_r(DATA_PATH.replace("/", "\\") + 'tree.json'))
 
 
 from django.template.defaulttags import register

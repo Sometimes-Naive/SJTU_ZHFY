@@ -403,6 +403,7 @@
 
 {% block jschart %}
 <script src="{% static 'js/echarts.min.js' %}"></script>
+<script src="{% static 'js/solid-gauge.js' %}"></script>
 <script>
     //指标体系树状图
     function drawTree(chart_name){
@@ -860,7 +861,7 @@ function line_chart(chart_name, chart_data) {
 function heat_chart(chart_name, chart_data){
     $.getJSON('https://data.jianshukeji.com/jsonp?filename=geochina/chongqing.json&callback=?', function (mapdata) {
         var data = chart_data;
-        map1 = new Highcharts.Map('chart2', {
+        map1 = new Highcharts.Map(chart_name, {
             title: {
                 text: '2019重庆营商环境司法建设得分'
             },
@@ -1397,10 +1398,10 @@ function spider_map(chart_name, chart_data){
 bar_chart('chart21', {{ rank_data | safe}});
 bar_chart('chart33', {{ diff_data | safe }});
 line_chart('chart23', {{ line_data | safe }});
-heat_chart('chart22', {{ map_data | safe }});
+heat_chart('chart22', {{ heatmap_data | safe }});
 hist_chart('chart24', {{ hist_data | safe }});
-// gauge_chart_pccl('chart27', 'chart28');
-// gauge_chart_htzx('chart29', 'chart30', 'chart31');
+gauge_chart_pccl('chart27', 'chart28');
+gauge_chart_htzx('chart29', 'chart30', 'chart31');
 spider_map('chart32', {{ spider_data | safe }});
 
 </script>
