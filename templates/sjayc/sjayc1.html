@@ -76,22 +76,14 @@
                       </div>
                     </div>
                 </div>
-                <div class="ui container column" style="background-color: #ffffff;height: 40%;width:100%" id="chart12">
-                    <div class="ui horizontal small statistic" style="margin: 18% 26%">
-                        <div class="label" style="font-size: 20px;width:200%;margin-right: 2em">
-                        未来结案数
-                      </div>
-                        <p></p>
-                    <div class="value" id="ja" >
-
-                      </div>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="column" style="width:68%;background-color: #ffffff">
             <div class="ui segment container row" style="height: 50%;width: 100%;background-color: #ffffff" id="chart7"></div>
             <div class="ui segment container row" style="height: 50%;width: 100%;background-color: #ffffff" id="chart8"></div>
+            <div class="ui segment container row" style="height: 50%;width: 100%;background-color: #ffffff" id="chart12"></div>
+            <div class="ui segment container row" style="height: 50%;width: 100%;background-color: #ffffff" id="chart13"></div>
+            <div class="ui segment container row" style="height: 50%;width: 100%;background-color: #ffffff" id="chart14"></div>
         </div>
        </div>
     {% endblock %}
@@ -101,18 +93,334 @@
 
 {% block jschart %}
     <script>
-    //收结案预测柱状图函数
-    function function1(date_data){
-        {#console.log(date_data['chart_region']);#}
+    //get sa_number of every region at last month
+    function function1(his_data1){
+        {#console.log(his_data1['name']);#}
         var chart = Highcharts.chart('chart2',{
                 chart: {
                     type: 'column'
                 },
                 title: {
-                    text: date_data['date']+'年重庆各地区收案数'
+                    text: '最新一个月重庆各地区收案数'
                 },
                 xAxis: {
-                    categories: date_data['chart_region'],
+                    categories: his_data1['name'],
+                    crosshair: true
+                },
+                exporting:{
+                    enabled:false,
+                },
+                credits:{
+                    enabled:false
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: '收案数量'
+                    }
+                },
+                tooltip: {
+                    // head + 每个 point + footer 拼接成完整的 table
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: '数量',
+                    data: his_data1['value'][0]
+                }]
+            });
+    }
+
+    //get sa_number and ja_number of every region at last month
+    function function2(his_data1) {
+         var chart = Highcharts.chart('chart3',{
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: '最新一个月重庆各地区收结案数'
+                },
+                xAxis: {
+                    categories: his_data1['value'],
+                    crosshair: true
+                },
+                exporting:{
+                    enabled:false,
+                },
+                credits:{
+                    enabled:false
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'region'
+                    }
+                },
+                tooltip: {
+                    // head + 每个 point + footer 拼接成完整的 table
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: '数量',
+                    data: his_data1['value']
+                }]
+            });
+    }
+    
+    //40 months sa_number grouped by 28 regions, draw the line chart 
+    function function3(line_data){
+        var chart = Highcharts.chart('chart7', {
+                title: {
+                    text: '2016.1~2019.4月'+line_data['region']+'收案数趋势图'
+                },
+                subtitle: {
+                    text: ''
+                },
+                xAxis:{
+                  categories:line_data['chart_date'],
+                },
+                yAxis: {
+                    title: {
+                        text: '收案数量'
+                    }
+                },
+                      credits:{
+                    enabled:false,
+                },
+                exporting:{
+                    enabled:false,
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle'
+                },
+                plotOptions: {
+                    series: {
+                        label: {
+                            connectorAllowed: false
+                        },
+                    }
+                },
+                series: [{
+                    name: '收案数量',
+                    data: line_data['chart_sa_number']
+                }, ],
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 500
+                        },
+                        chartOptions: {
+                            legend: {
+                                layout: 'horizontal',
+                                align: 'center',
+                                verticalAlign: 'bottom'
+                            }
+                        }
+                    }]
+                }
+            });
+    }
+
+    //40 months ja_number grouped by 28 regions, draw the line chart 
+    function function4(line_data){
+        var chart = Highcharts.chart('chart8', {
+                title: {
+                    text: '2016.1~2019.4月'+line_data['region']+'结案数趋势图'
+                },
+                subtitle: {
+                    text: ''
+                },
+                xAxis:{
+                  categories:line_data['chart_date']  ,
+                },
+                yAxis: {
+                    title: {
+                        text: '结案数量'
+                    }
+                },
+                      credits:{
+                    enabled:false,
+                },
+                exporting:{
+                    enabled:false,
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle'
+                },
+                plotOptions: {
+                    series: {
+                        label: {
+                            connectorAllowed: false
+                        },
+
+                    }
+                },
+                series: [{
+                    name: '结案数量',
+                    data: line_data['chart_ja_number']
+                }, ],
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 500
+                        },
+                        chartOptions: {
+                            legend: {
+                                layout: 'horizontal',
+                                align: 'center',
+                                verticalAlign: 'bottom'
+                            }
+                        }
+                    }]
+                }
+            });
+    }
+
+    //预测模块，sa_predictions是各区县收案数量变化，最后一个是预测值，advice是对应的决策意见
+    function function5(sa_predictions, advice){
+
+            var chart = Highcharts.chart('chart12', {
+                title: {
+                    text: '2016.1~2019.5月'+sa_predictions['region']+'收案数趋势图'
+                },
+                subtitle: {
+                    text: ''
+                },
+                xAxis:{
+                  categories:sa_predictions['chart_date'],
+                },
+                yAxis: {
+                    title: {
+                        text: '收案数量'
+                    }
+                },
+                      credits:{
+                    enabled:false,
+                },
+                exporting:{
+                    enabled:false,
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle'
+                },
+                plotOptions: {
+                    series: {
+                        label: {
+                            connectorAllowed: false
+                        },
+                    }
+                },
+                series: [{
+                    name: '收案数量',
+                    data: sa_predictions['chart_sa_number']
+                }, ],
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 500
+                        },
+                        chartOptions: {
+                            legend: {
+                                layout: 'horizontal',
+                                align: 'center',
+                                verticalAlign: 'bottom'
+                            }
+                        }
+                    }]
+                }
+            });
+
+            var chart = Highcharts.chart('chart11', {
+                title: {
+                    text: '2019.5月'+sa_predictions['region']+'收案数'
+                },
+                subtitle: {
+                    text: ''
+                },
+                series: [{
+                    name: '收案数量',
+                    data: sa_predictions['chart_sa_number'][40]
+                }, ],
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 500
+                        },
+                        chartOptions: {
+                            legend: {
+                                layout: 'horizontal',
+                                align: 'center',
+                                verticalAlign: 'bottom'
+                            }
+                        }
+                    }]
+                }
+            });
+
+            var chart = Highcharts.chart('chart6', {
+                title: {
+                    text: sa_predictions['region']+'资源分配决策建议'
+                },
+                subtitle: {
+                    text: ''
+                },
+                series: [{
+                    name: '决策建议',
+                    data: advice['value']
+                }, ],
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 500
+                        },
+                        chartOptions: {
+                            legend: {
+                                layout: 'horizontal',
+                                align: 'center',
+                                verticalAlign: 'bottom'
+                            }
+                        }
+                    }]
+                }
+            });
+        }
+    
+    //get three judicial features of every region at last month
+    function function6(his_data2){
+         var chart = Highcharts.chart('chart13',{
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: '最新一个月重庆各地区司法特征数据'
+                },
+                xAxis: {
+                    categories: his_data2['name'],
                     crosshair: true
                 },
                 exporting:{
@@ -143,20 +451,22 @@
                 },
                 series: [{
                     name: '数量',
-                    data: date_data['chart_sa_number']
+                    data: his_data2['value']
                 }]
             });
     }
-    function function2(date_data) {
-         var chart = Highcharts.chart('chart3',{
+
+    //judge_number and its percentage of every region at last month
+    function function7(pie_data){
+         var chart = Highcharts.chart('chart14',{
                 chart: {
                     type: 'column'
                 },
                 title: {
-                    text: date_data['date']+'年重庆地区结案数'
+                    text: '最新一个月重庆各地区司法资源分配'
                 },
                 xAxis: {
-                    categories: date_data['chart_region'],
+                    categories: pie_data['name'],
                     crosshair: true
                 },
                 exporting:{
@@ -168,7 +478,7 @@
                 yAxis: {
                     min: 0,
                     title: {
-                        text: '指数'
+                        text: '数量'
                     }
                 },
                 tooltip: {
@@ -187,140 +497,20 @@
                 },
                 series: [{
                     name: '数量',
-                    data: date_data['chart_ja_number']
+                    data: pie_data['value']
                 }]
             });
-            }
-    //地区折线图函数
-    function function3(region_data){
-        var chart = Highcharts.chart('chart7', {
-                title: {
-                    text: '2016.1~2019.4月'+region_data['region']+'收案数趋势图'
-                },
-                subtitle: {
-                    text: ''
-                },
-                xAxis:{
-                  categories:region_data['chart_date'],
-                },
-                yAxis: {
-                    title: {
-                        text: '案件数量'
-                    }
-                },
-                      credits:{
-                    enabled:false,
-                },
-                exporting:{
-                    enabled:false,
-                },
-                legend: {
-                    layout: 'vertical',
-                    align: 'right',
-                    verticalAlign: 'middle'
-                },
-                plotOptions: {
-                    series: {
-                        label: {
-                            connectorAllowed: false
-                        },
-                    }
-                },
-                series: [{
-                    name: '案件数量',
-                    data: region_data['chart_sa_number']
-                }, ],
-                responsive: {
-                    rules: [{
-                        condition: {
-                            maxWidth: 500
-                        },
-                        chartOptions: {
-                            legend: {
-                                layout: 'horizontal',
-                                align: 'center',
-                                verticalAlign: 'bottom'
-                            }
-                        }
-                    }]
-                }
-            });
     }
-    function function4(region_data){
-        var chart = Highcharts.chart('chart8', {
-                title: {
-                    text: '2016.1~2019.4月'+region_data['region']+'结案数趋势图'
-                },
-                subtitle: {
-                    text: ''
-                },
-                xAxis:{
-                  categories:region_data['chart_date']  ,
-                },
-                yAxis: {
-                    title: {
-                        text: '案件数量'
-                    }
-                },
-                      credits:{
-                    enabled:false,
-                },
-                exporting:{
-                    enabled:false,
-                },
-                legend: {
-                    layout: 'vertical',
-                    align: 'right',
-                    verticalAlign: 'middle'
-                },
-                plotOptions: {
-                    series: {
-                        label: {
-                            connectorAllowed: false
-                        },
 
-                    }
-                },
-                series: [{
-                    name: '案件数量',
-                    data: region_data['chart_ja_number']
-                }, ],
-                responsive: {
-                    rules: [{
-                        condition: {
-                            maxWidth: 500
-                        },
-                        chartOptions: {
-                            legend: {
-                                layout: 'horizontal',
-                                align: 'center',
-                                verticalAlign: 'bottom'
-                            }
-                        }
-                    }]
-                }
-            });
-    }
-    //预测数后续需要导入真实数据
-    function function5(region_data){
-
-            var x = 10000;
-            var y = 3000;
-            var rand1 = region_data['chart_sa_number'];
-            var rand2 = region_data['chart_ja_number'];
-            {#console.log(region_data['chart_sa_number']);#}
-            $('#sa').html(rand1[rand1.length-1]);
-            $('#ja').html(rand2[rand2.length-1]);
-        }
-    //热力图函数
-    function functiondate(date_data){
-            function1(date_data);
-            function2(date_data);
-            $.getJSON('https://data.jianshukeji.com/jsonp?filename=geochina/chongqing.json&callback=?', date_data, function(mapdata) {
-                    var data = date_data['map'];
+    //热力图函数,得到地图数据,show sa_number and ja_number of every region at last month
+    function functiondate(map_data){
+            //function1(date_data);
+            //function2(date_data);
+            $.getJSON('https://data.jianshukeji.com/jsonp?filename=geochina/chongqing.json&callback=?', map_data, function(mapdata) {
+                    var data = map_data;
                     map1 = new Highcharts.Map('chart4', {
                         title: {
-                            text: date_data['date']+'重庆地区案件数量'
+                            text: '最新一个月重庆各地区收结案数量'
                         },
                         mapNavigation: {
                             enabled: true,

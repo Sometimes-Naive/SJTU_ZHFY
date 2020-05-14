@@ -198,3 +198,4 @@ his_data2 = real_chart.get_his_feature_data()
 pie_data = real_chart.get_pie_data()
 sa_predictions, advice = real_chart.prediction()
 
+print(his_data1['value'])
