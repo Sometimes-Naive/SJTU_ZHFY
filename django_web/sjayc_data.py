@@ -1,8 +1,11 @@
+#coding:utf-8
 import pandas as pd
 import numpy as np
 import xlrd
 import statsmodels.api as sm
-
+from django_web.case_info_process import json_data_r
+from fuzzywuzzy import process
+import time
 
 class ChartData:
     
@@ -17,7 +20,7 @@ class ChartData:
     def __init__(self): 
         
         for i in range(1, 10):
-            url = '/Users/Tracy/SJTU_ZHFY/data/sjayc/df0' + str(i) + '.xlsx'
+            url = '/Users/wsk/PycharmProjects/master_project/SJTU_ZHFY/data/sjayc/df0' + str(i) + '.xlsx'
             excel = xlrd.open_workbook(url)
             sheet = excel.sheet_by_name('Sheet1')
             sa_data = sheet.col_values(3, 1)
@@ -26,7 +29,7 @@ class ChartData:
             self.ja_number.append(ja_data) 
             
         for i in range(10, 41):
-            url = '/Users/Tracy/SJTU_ZHFY/data/sjayc/df' + str(i) + '.xlsx'
+            url = '/Users/wsk/PycharmProjects/master_project/SJTU_ZHFY/data/sjayc/df' + str(i) + '.xlsx'
             excel = xlrd.open_workbook(url)
             sheet = excel.sheet_by_name('Sheet1')
             sa_data = sheet.col_values(3, 1)
@@ -43,14 +46,18 @@ class ChartData:
     
     #得到地图数据,show sa_number and ja_number of every region at last month
     def get_map_data(self):
-        
+
+        map_key = json_data_r('/Users/wsk/PycharmProjects/master_project/SJTU_ZHFY/data/case_info/map_key')
+
         map_data = []
         for i in range(len(self.region)):
             map_meta_data = {}
-            map_meta_data['name'] = self.region[i]
-            map_meta_data['value'] = []
-            map_meta_data['value'].append(self.sa_number[39][i])
-            map_meta_data['value'].append(self.ja_number[39][i])
+            key = process.extractOne(self.region[i].split('区')[0], map_key)
+            key_ok = key[0]
+            map_meta_data['name'] = key_ok
+            # map_meta_data['value'] = []
+            map_meta_data['value'] = (self.sa_number[39][i])
+            # map_meta_data['value'].append(self.ja_number[39][i])
             map_data.append(map_meta_data)
 
         return map_data
@@ -118,7 +125,29 @@ class ChartData:
             line_data.append(line_meta_data)
             
         return line_data
-    
+
+    def line_data_new(self, line_data):
+        date_key_list = line_data[0]['chart_date']
+        case_sa_number_dict = []
+        case_ja_number_dict = []
+        sa_data = []
+        ja_data = []
+        for i in range(7):
+            data = line_data[i]
+            case_sa_number_meta_dict = {}
+            case_sa_number_meta_dict['name'] = data['region']
+            case_sa_number_meta_dict['data'] = data['chart_sa_number']
+            case_ja_number_meta_dict = {}
+            case_ja_number_meta_dict['name'] = data['region']
+            case_ja_number_meta_dict['data'] = data['chart_ja_number']
+            case_sa_number_dict.append(case_sa_number_meta_dict)
+            case_ja_number_dict.append(case_ja_number_meta_dict)
+
+        sa_data.append(date_key_list)
+        sa_data.append(case_sa_number_dict)
+        ja_data.append(date_key_list)
+        ja_data.append(case_ja_number_dict)
+        return [sa_data, ja_data]
     
     #judge_number and its percentage of every region at last month
     def get_pie_data(self):
@@ -132,9 +161,9 @@ class ChartData:
         for i in range(len(self.region)):
             pie_meta_data = {}
             pie_meta_data['name'] = self.region[i]
-            pie_meta_data['value'] = []
-            pie_meta_data['value'].append(self.judge_number[i])
-            pie_meta_data['value'].append(self.judge_number[i]/judge_sum)            
+            # pie_meta_data['value'] = []
+            pie_meta_data['y'] = self.judge_number[i]
+            pie_meta_data['z'] = self.judge_number[i]/judge_sum
             pie_data.append(pie_meta_data)
         
         return pie_data
@@ -188,14 +217,46 @@ class ChartData:
         
         return line_data, advice
 
+    def test(self):
+        data = {
+            'region':[],
+            'line_data':[]
+        }
+        for i in sa_predictions:
+            data['region'].append(i['region'])
+            data_list = []
+            for j in range(len(i['chart_date'])):
+                data_meta = []
+                time1 = int(time.mktime(time.strptime(i['chart_date'][j],"%Y-%m")))*1000
+                data_meta.append(time1)
+                data_meta.append(i['chart_sa_number'][j])
+                data_list.append(data_meta)
+            data['line_data'].append(data_list)
+            # print(data)
+
+        return data
 
 #test all the modules
 real_chart = ChartData()
-map_data = real_chart.get_map_data()
-line_data = real_chart.get_line_data()
+sjayc_map_data = real_chart.get_map_data()
+line_data_pre = real_chart.get_line_data()
+line_data = real_chart.line_data_new(line_data_pre)
 his_data1 = real_chart.get_his_case_data()
 his_data2 = real_chart.get_his_feature_data()
 pie_data = real_chart.get_pie_data()
 sa_predictions, advice = real_chart.prediction()
+test = real_chart.test()
 
-print(his_data1['value'])
+if __name__ == '__main__':
+    # map_key_pre = []
+    # for i in sjayc_map_data:
+    #     map_key_pre.append(i['name'].split('区')[0])
+    # map_key = json_data_r('/Users/wsk/PycharmProjects/master_project/SJTU_ZHFY/data/case_info/map_key')
+    # for i in map_key_pre:
+    #     key = process.extractOne(i, map_key)
+    #     key_ok = key[0]
+    print(advice[0])
+    # t = '2016-01'
+    # a = (time.strptime(t,"%Y-%m"))
+    # print(a.tm_mon)
+

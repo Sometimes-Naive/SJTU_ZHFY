@@ -84,13 +84,14 @@ def sjayc(request):
     context = {
         #'date_data': date_data,
         #'region_data': region_data,
-        'map_data' : map_data,
+        'map_data' : sjayc_map_data,
         'line_data' : line_data,
         'his_data1' : his_data1,
         'his_data2' : his_data2,
         'pie_data' : pie_data,
         'sa_predictions' : sa_predictions,
         'advice' : advice,
+        'test':test
     }
     return render(request, 'sjayc/sjayc1.html', context)
 
