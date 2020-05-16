@@ -50,55 +50,60 @@
     </div>
 </div>
 </div>
-<div class="ui segment container row" style="height:35%;background-color: #ffffff">
-        <div class="ui  container row" style="height: 10%;width: 100%">
-           <span class="ui header " style="height:8%;">热点案件
-
-            </span>
-            <p></p>
-                <div class="text" style="font-size: 16px"></div>
-            <p></p>
-
-        </div>
-<div class="ui divider" style="width: 100%"></div>
-        <div class="ui container column" style="background-color: #ffffff;height: 80%;width: 50%;padding-left: 6em;line-height: 400%;font-size: 16px;" id="chart11">
-            <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.0 %}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ case_evaluation.case_title.0 }}</div>
-            <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.1 %}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ case_evaluation.case_title.1 }}</div>
-            <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.2 %}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ case_evaluation.case_title.2 }}</div>
-            <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.3 %}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ case_evaluation.case_title.3 }}</div>
-            <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.4 %}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ case_evaluation.case_title.4 }}</div>
-
-        </div>
-        <div class="ui container column" style="background-color: #ffffff;height: 80%;width: 50%;padding-left: 4em;line-height: 400%;font-size: 16px;" id="chart11">
-            <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.5 %}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ case_evaluation.case_title.5 }}</div>
-            <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.6 %}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ case_evaluation.case_title.6 }}</div>
-            <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.7 %}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ case_evaluation.case_title.7 }}</div>
-            <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.8 %}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ case_evaluation.case_title.8 }}</div>
-            <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.9 %}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ case_evaluation.case_title.9 }}</div>
-        </div>
-
+<div class="ui segment container row" style="height:50%;background-color: #ffffff">
+    <div class="ui  container row">
+        <span class="ui header ">热点案件
+        </span>
+        <p></p>
+    </div>
+    <div class="ui divider" style="width: 100%"></div>
+    <div class="ui container column" style="background-color: #ffffff;height: 80%;width: 50%;padding-left: 6em;line-height: 400%;font-size: 16px;" id="chart11">
+        <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.0 %}')">
+            <span><i class="file text icon"></i>案件难度</span>
+            <p style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis">{{ case_evaluation.case_title.0 }}</p></div>
+        <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.1 %}')">
+            <span><i class="file text icon"></i>案件难度</span>
+            <p style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis">{{ case_evaluation.case_title.1 }}</p></div>
+        <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.2 %}')">
+            <span><i class="file text icon"></i>案件难度</span>
+            <p style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis">{{ case_evaluation.case_title.2 }}</p></div>
+        <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.3 %}')">
+            <span><i class="file text icon"></i>案件难度</span>
+            <p style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis">{{ case_evaluation.case_title.3 }}</p></div>
+        <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.4 %}')">
+            <span><i class="file text icon"></i>案件难度</span>
+            <p style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis">{{ case_evaluation.case_title.4 }}</p></div>
+    </div>
+    <div class="ui container column" style="background-color: #ffffff;height: 80%;width: 50%;padding-left: 4em;line-height: 400%;font-size: 16px;" id="chart11">
+        <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.5 %}')">
+            <span><i class="file text icon"></i>案件难度</span>
+            <p style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis">{{ case_evaluation.case_title.5 }}</p></div>
+        <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.6 %}')">
+            <span><i class="file text icon"></i>案件难度</span>
+            <p style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis">{{ case_evaluation.case_title.6 }}</p></div>
+        <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.7 %}')">
+            <span><i class="file text icon"></i>案件难度</span>
+            <p style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis">{{ case_evaluation.case_title.7 }}</p></div>
+        <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.8 %}')">
+            <span><i class="file text icon"></i>案件难度</span>
+            <p style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis">{{ case_evaluation.case_title.8 }}</p></div>
+        <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.9 %}')">
+            <span><i class="file text icon"></i>案件难度</span>
+            <p style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis">{{ case_evaluation.case_title.9 }}</p></div>
+    </div>
 </div>
-<div class="ui segment container row" style="height:35%;background-color: #ffffff">
-        <div class="ui  container row" style="height: 10%;width: 100%">
-           <span class="ui header " style="height:8%;">重点案由
-
-            </span>
-            <p></p>
-                <div class="text" style="font-size: 16px"></div>
-            <p></p>
-
-        </div>
-<div class="ui divider" style="width: 100%"></div>
-
+<!-- <div class="ui segment container row" style="height:35%;background-color: #ffffff">
+    <div class="ui  container row" style="height: 10%;width: 100%">
+        <span class="ui header " style="height:8%;">重点案由</span>
+        <p></p>
+            <div class="text" style="font-size: 16px"></div>
+        <p></p>
+    </div>
+    <div class="ui divider" style="width: 100%"></div>
         <div class="ui container column" style="background-color: #ffffff;height: 80%;width: 50%" id="chart11"></div>
-
         <div class="ui container column" style="background-color: #ffffff;height: 80%;width:50%" id="chart12"></div>
-
-</div>
-
-</div>
-
-
+    </div>
+</div> -->
 {% endblock %}
 
 {% block jschart %}

@@ -4,11 +4,11 @@
 在此文件中定义模块中所有展示页面的视图，并将视图中所需要的
 数据（context）打包进相应的模板文件（template）。
 """
+import json
 from django.http import HttpResponse
 from django.shortcuts import render
 from . import managers
 from . import loaders
-import json
 
 def show_overall_scope(request):
 
@@ -26,8 +26,10 @@ def show_civil_scope(request):
     context = {
         'case_outline': [
             loader.load_case_basic_result('civil'),
+            # loader.load_case_cause_result('civil'),
             loader.load_case_cause_result('civil')[0],
-            loader.load_case_cause_result('civil')[1]
+            loader.load_case_cause_result('civil')[1]  
+
         ],
         'case_evaluation': loader.load_case_evaluation_title('civil'),
         'case_cause': loader.load_case_evaluation_title('civil')['key_list'],
@@ -40,8 +42,9 @@ def show_criminal_scope(request):
     context = {
         'case_outline': [
             loader.load_case_basic_result('criminal'),
+            # loader.load_case_cause_result('criminal')
             loader.load_case_cause_result('criminal')[0],
-            loader.load_case_cause_result('criminal')[1]
+            loader.load_case_cause_result('criminal')[1],
         ],
         'case_evaluation': loader.load_case_evaluation_title('criminal'),
         'case_cause': loader.load_case_evaluation_title('criminal')['key_list'],
@@ -82,7 +85,6 @@ def ajax_add(request):
     test_data = json.dumps(loader.load_case_evaluation_title(cate_ok)[tag_ok])
     # print(test_data)
     return HttpResponse(test_data)
-
 
 
 from django.template.defaulttags import register

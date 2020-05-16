@@ -67,29 +67,31 @@
     </div>
 </div>
 </div>
-<div class="ui segment container row" style="height:35%;background-color: #ffffff">
+<div class="ui segment container row" style="height:55%;background-color: #ffffff">
         <div class="ui  container row" style="height: 10%;width: 100%">
-           <span class="ui header " style="height:8%;">热点案件
-
-            </span>
-            <p></p>
+            <span class="ui header " style="height:8%;">热点案件</span>
+            <div class="ui divider" style="width: 100%"></div>
+            
+        </div>
+        <p></p>
             {% csrf_token %}
-            <div class="ui selection dropdown"  id="dropdown" style="margin-right: 70%;width: auto;text-align: center">民事案由
-          <input type="hidden" name="案由">
-          <i class="dropdown icon"></i>
-          <div class="default text" style="width: 30em"><i class="world icon"></i>整体数据</div>
-          <div class="menu" >
-            <a class="item" href="javascript:void(0);"><i class="world icon"></i>{{ case_cause.0 }}</a>
-            <a class="item" href="javascript:void(0);"><i class="world icon"></i>{{ case_cause.1 }}</a>
-            <a class="item" href="javascript:void(0);"><i class="world icon"></i>{{ case_cause.2 }}</a>
-            <a class="item" href="javascript:void(0);"><i class="world icon"></i>{{ case_cause.3 }}</a>
-            <a class="item" href="javascript:void(0);"><i class="world icon"></i>{{ case_cause.4 }}</a>
-          </div>
+            <div class="ui container row" style="margin-left:2em !important">
+                <div class="ui selection dropdown"  id="dropdown" style="margin-right: 70%;width: auto;text-align: center;border: 0">民事案由
+                <input type="hidden" name="案由">
+                <i class="dropdown icon"></i>
+                <div class="text" style="margin-top: 0.5em;width: 30em"><i class="world icon"></i>请选择</div>
+                <div class="menu" >
+                <a class="item" href="javascript:void(0);"><i class="world icon"></i>{{ case_cause.0 }}</a>
+                <a class="item" href="javascript:void(0);"><i class="world icon"></i>{{ case_cause.1 }}</a>
+                <a class="item" href="javascript:void(0);"><i class="world icon"></i>{{ case_cause.2 }}</a>
+                <a class="item" href="javascript:void(0);"><i class="world icon"></i>{{ case_cause.3 }}</a>
+                <a class="item" href="javascript:void(0);"><i class="world icon"></i>{{ case_cause.4 }}</a>
+            </div>
         </div>
 
 
         </div>
-        <div class="ui divider" style="width: 100%"></div>
+        
 
         <div class="ui container column" style="background-color: #ffffff;height: 80%;width: 50%;padding-left: 6em;line-height: 400%;font-size: 16px;" id="chart11">
 {#            <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.5.case_id.0 %}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ case_evaluation.5.case_title.0 }}</div>#}
@@ -120,11 +122,11 @@
         </div>
 <div class="ui divider" style="width: 100%"></div>
 
-        <div class="ui container column" style="background-color: #ffffff;height: 80%;width: 50%" id="chart13">
+        <div class="ui container column" style="background-color: #ffffff;height: 120%;width: 50%" id="chart13">
             按案由中重点案件数量展示
         </div>
 
-        <div class="ui container column" style="background-color: #ffffff;height: 80%;width:50%" id="chart14">
+        <div class="ui container column" style="background-color: #ffffff;height: 120%;width:50%" id="chart14">
             按案由中重点案件比例展示
         </div>
 
@@ -142,44 +144,42 @@
 
         window.open(url);
     }
-    $("#dropdown").on("click", function () {
-        var csrfToken = $("[name='csrfmiddlewaretoken']").val();
-        $.ajax({
-            url: "ajax_add/",
-            type: "POST",
-            data: {"dropdown": $("#dropdown").text(), "csrfmiddlewaretoken": csrfToken},
+$("#dropdown").on("click", function () {
+    var csrfToken = $("[name='csrfmiddlewaretoken']").val();
+    $.ajax({
+        url: "ajax_add/",
+        type: "POST",
+        data: {"dropdown": $("#dropdown").text(), "csrfmiddlewaretoken": csrfToken},
+        success: function(result){
+            append_case_difficulty_titles(result) 
+        }
+    })
+});
+function append_case_difficulty_titles(obj){
+    {#alert(obj)#}
+    $('#chart11').empty();   //清空resText里面的所有内容
+    $('#chart12').empty();
+    var html11 = '';
+    var html12 = '';
+    var test;
+    {#alert(obj);#}
+    test = eval("("+obj+")");
+    {#alert(test);#}
+    for (var i=0 ;i<5;i++){
+        {#alert(obj["case_id"]);#}
+        html11 += '<div href="javascript:void(0);" onclick="jump(\'detail/' + test['case_id'][i] + '\')"><i class="file text icon" style="width: 20%;text-align: left;"> 案件难度 '+ test['case_degree'][i] +'</i><p style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis">'+test['case_title'][i] +'</p></div>';
+        {#alert(html11)#}
+    }
 
-            success: function (obj) {
-                {#alert(obj)#}
-                $('#chart11').empty();   //清空resText里面的所有内容
-                $('#chart12').empty();
-                var html11 = '';
-                var html12 = '';
-                var test;
-                {#alert(obj);#}
-                test = eval("("+obj+")");
-                {#alert(test);#}
-                for (var i=0 ;i<5;i++){
-                  {#alert(obj["case_id"]);#}
-                  html11 += '<div href="javascript:void(0);" onclick="jump(\'detail/' + test['case_id'][i] + '\')"><i class="file text icon" style="width: 20%;text-align: left;"> 案件难度 '+ test['case_degree'][i] +'</i>'+test['case_title'][i] +'</div>';
-                  {#alert(html11)#}
-                }
-
-                for (var i=5 ;i<10;i++){
-                  {#alert(obj["case_id"]);#}
-                  {#var key = test['key_list'][i];#}
-                  html12 += '<div href="javascript:void(0);" onclick="jump(\'detail/' + test['case_id'][i] + '\')"><i class="file text icon" style="width: 20%;text-align: left;"> 案件难度 '+ test['case_degree'][i] +'</i>'+test['case_title'][i] +'</div>';
-                  {#alert(html)#}
+    for (var i=5 ;i<10;i++){
+        {#alert(obj["case_id"]);#}
+        {#var key = test['key_list'][i];#}
+        html12 += '<div href="javascript:void(0);" onclick="jump(\'detail/' + test['case_id'][i] + '\')"><i class="file text icon" style="width: 20%;text-align: left;"> 案件难度 '+ test['case_degree'][i] +'</i><p style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis">'+test['case_title'][i] +'</p></div>';
+        {#alert(html)#}
+    }
+    $('#chart11').html(html11);
+    $('#chart12').html(html12);
 }
-                $('#chart11').html(html11);
-                $('#chart12').html(html12);
-                      }
-
-        },
-        )
-
-    });
-
     function map_chart(chart_name, chart_data){
     $.getJSON('https://data.jianshukeji.com/jsonp?filename=geochina/chongqing.json&callback=?', function(mapdata) {
 var data = chart_data;
