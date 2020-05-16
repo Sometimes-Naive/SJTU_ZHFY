@@ -132,7 +132,7 @@ def show_index(request):
     return render(request, 'situation-assessment/index.html', context)
 
 def get_index_system_tree(request):
-    return JsonResponse(json_data_r(DATA_PATH.replace("/", "\\") + 'tree.json'))
+    return JsonResponse(json_data_r(DATA_PATH + 'tree.json.active'))
 
 
 from django.template.defaulttags import register
