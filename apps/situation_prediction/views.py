@@ -82,11 +82,14 @@ def show_receive_and_close_case_prediction(request):
         'map_data' : sjayc_map_data,
         'line_data' : line_data,
         'his_data1' : his_data1,
+        'his_sa' : his_sa, 
+        'his_ja' : his_ja,
         'his_data2' : his_data2,
         'pie_data' : pie_data,
         'sa_predictions' : sa_predictions,
         'advice' : advice,
-        'test':test
+        'test': test,
+        'region' : region
     }
     return render(request, 'situation_prediction/receive_close_case.html', context)
 

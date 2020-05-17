@@ -127,19 +127,21 @@ class DataProcessManager(object):
         return map_data
  
     
-    #get sa_number and ja_number of every region at last month
+#get sa_number and ja_number of every region at last month
     def get_his_case_data(self):       
 
-        his_data = []
+        his_sa_data = []
         for i in range(len(self.region)):
-            his_meta_data = {}
-            his_meta_data['name'] = self.region[i]
-            his_meta_data['value'] = []
-            his_meta_data['value'].append(self.sa_number[39][i])
-            his_meta_data['value'].append(self.ja_number[39][i])
-            his_data.append(his_meta_data)
+#            his_meta_data = {}
+#            his_meta_data['name'] = self.region[i]
+#            his_meta_data['data'] = self.sa_number[39][i]
+            his_meta_data = []
+            his_meta_data.append(self.region[i])
+            his_meta_data.append(self.sa_number[39][i])
+            his_sa_data.append(his_meta_data)
+            inverse_sa_number = [-l for l in self.sa_number[39]]
 
-        return his_data
+        return his_sa_data, inverse_sa_number[0: 10], self.ja_number[39][0: 10]
 
 
     #get three judicial features of every region at last month
@@ -147,15 +149,16 @@ class DataProcessManager(object):
         
         feature_name = ['撤诉结案数', '调节结案数', '法定期限内结案数']
         his_data = []
-        for i in range(len(self.region)):
+        
+        for i in range(len(feature_name)):
             his_meta_data = {}
-            his_meta_data['name'] = self.region[i]
-            his_meta_data['value'] = []
-            for j in range(3):
-                his_meta_data['value'].append(self.feature[j][i])
+            his_meta_data['name'] = feature_name[i]
+            #his_meta_data['value'] = []
+            #for j in range(len(self.region)):
+            his_meta_data['data'] = self.feature[i]
             his_data.append(his_meta_data)
         
-        return his_data 
+        return his_data
 
     
     #40 months sa_number and ja_number grouped by 28 regions, draw the line chart 
@@ -302,11 +305,13 @@ class DataProcessManager(object):
 
 #test all the modules
 real_chart = DataProcessManager()
+region = real_chart.region
 sjayc_map_data = real_chart.get_map_data()
 line_data_pre = real_chart.get_line_data()
 line_data = real_chart.line_data_new(line_data_pre)
-his_data1 = real_chart.get_his_case_data()
+his_data1, his_sa, his_ja = real_chart.get_his_case_data()
 his_data2 = real_chart.get_his_feature_data()
+region_part = region[0: 10]
 pie_data = real_chart.get_pie_data()
 sa_predictions, advice = real_chart.prediction()
 test = real_chart.test()
