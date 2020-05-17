@@ -10,7 +10,7 @@ from django_web.xz_data import *
 from django_web.case_detail import detail_get, get_case_title
 from django_web.case_info_process import json_data_r
 # Create your views here.
-data_path = '/Users/wsk/SJTU_ZHFY/data/case_info/'
+data_path = '/Users/Tracy/SJTU_ZHFY/data/case_info/'
 
 
 def index(request):
@@ -87,11 +87,14 @@ def sjayc(request):
         'map_data' : sjayc_map_data,
         'line_data' : line_data,
         'his_data1' : his_data1,
+        'his_sa' : his_sa, 
+        'his_ja' : his_ja,
         'his_data2' : his_data2,
         'pie_data' : pie_data,
         'sa_predictions' : sa_predictions,
         'advice' : advice,
-        'test':test
+        'test': test,
+        'region' : region
     }
     return render(request, 'sjayc/sjayc1.html', context)
 

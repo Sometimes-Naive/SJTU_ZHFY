@@ -6,7 +6,7 @@ from django_web.case_info_process import *
 import copy
 
 
-data_path = '/Users/wsk/PycharmProjects/master_project/SJTU_ZHFY/data/case_info/'
+data_path = '/Users/Tracy/SJTU_ZHFY/data/case_info/'
 
 
 allcase_info = {

@@ -19,28 +19,28 @@
                         <table class="ui celled table">
                           <thead>
                             <tr><th>区县名称</th>
-                            <th>司法特征指标</th>
+                            <th>法官人数</th>
 
                           </tr></thead>
                           <tbody>
                             <tr>
                               <td data-label="名称">万州区</td>
-                              <td data-label="指标">XXX</td>
+                              <td data-label="指标">91</td>
 
                             </tr>
                             <tr>
                               <td data-label="名称">渝中区</td>
-                              <td data-label="指标">XXX</td>
+                              <td data-label="指标">94</td>
 
                             </tr>
                             <tr>
                               <td data-label="名称">九龙坡区</td>
-                              <td data-label="指标">XXX</td>
+                              <td data-label="指标">100</td>
 
                             </tr>
                           <tr>
-                              <td data-label="名称">XX区</td>
-                              <td data-label="指标">XXX</td>
+                              <td data-label="名称">南川区</td>
+                              <td data-label="指标">43</td>
 
                             </tr>
 
@@ -54,10 +54,10 @@
             <div class="ui segment container row" style="height: 71%;background-color: #ffffff" id="chart3"></div>
             <div class="ui two column grid container" style="width:100%;height: 29%;background-color: #ffffff" id="chart4">
                 <div class=" ui segment container column" style="width: 49%;height: 100%;margin: 1em 0 0 0;" id="chart4-1">
-                        aa
+                    case    
                 </div>
                 <div class="ui segment container column" style="width: 49%;height: 100%;" id="chart4-2">
-                        asa
+                    case   
                 </div>
             </div>
         </div>
@@ -184,7 +184,9 @@
 	}]
 });
     }
-    function his_chart(chart_name,title_name) {
+
+
+    function his_chart(his_data1,chart_name,title_name) {
         var chart = Highcharts.chart(chart_name, {
 	chart: {
 		type: 'column'
@@ -205,7 +207,7 @@
 		}
 	},
 	yAxis: {
-		min: 0,
+		min: 300,
 		title: {
 			text: title_name[1]
 		}
@@ -217,43 +219,29 @@
 		pointFormat: '数量'
 	},
 	series: [{
-		name: '总人口',
-		data: [
-			['地区1', 24.25],
-			['地区2', 23.50],
-			['地区3', 21.51],
-			['地区4', 16.78],
-			['地区5', 16.06],
-			['地区6', 15.20],
-			['地区7', 14.16],
-			['地区8', 13.51],
-			['地区9', 13.08],
-			['地区10', 12.44],
-			['地区11', 12.19],
-			['地区12', 12.03],
-			['地区13', 10.46],
-			['地区14', 10.07],
-			['地区15', 10.05],
+		name: '总数量',
+		data: his_data1,
+		//data:[['region1',100.0],['region2',200.0],['region3',300.0],
+		//['region4',400.0],['region5',500.0]],
 
-		],
 		dataLabels: {
 			enabled: true,
 			rotation: -90,
 			color: '#FFFFFF',
 			align: 'right',
 			format: '{point.y:.1f}', // :.1f 为保留 1 位小数
-			y: 10
+			y: 100
 		}
 	}]
 });
     }
-    function his_chart_multi() {
+    function his_chart_multi(his_data2, region) {
         var chart = Highcharts.chart('chart2',{
 	chart: {
 		type: 'column'
 	},
 	title: {
-		text: '月平均降雨量'
+		text: '最新一个月重庆各地区司法特征数据'
 	},
     credits:{
             enabled:false
@@ -262,22 +250,20 @@
     enabled:false,
     },
 	xAxis: {
-		categories: [
-			'一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'
-		],
+		categories: region,
 		crosshair: true
 	},
 	yAxis: {
 		min: 0,
 		title: {
-			text: '降雨量 (mm)'
+			text: '数量 (件)'
 		}
 	},
 	tooltip: {
 		// head + 每个 point + footer 拼接成完整的 table
 		headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
 		pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-		'<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+		'<td style="padding:0"><b>{point.y:.1f} 件</b></td></tr>',
 		footerFormat: '</table>',
 		shared: true,
 		useHTML: true
@@ -287,19 +273,7 @@
 			borderWidth: 0
 		}
 	},
-	series: [{
-		name: '东京',
-		data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
-	}, {
-		name: '纽约',
-		data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
-	}, {
-		name: '伦敦',
-		data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
-	}, {
-		name: '柏林',
-		data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
-	}]
+	series: his_data2
 });
     }
     function line_chart(chart_data,chart_name,title_name){
@@ -427,18 +401,14 @@
 	});
     }
 
-    function his_chart_row() {
-        var categories = ['0-4', '5-9', '10-14', '15-19',
-				  '20-24', '25-29', '30-34', '35-39', '40-44',
-				  '45-49', '50-54', '55-59', '60-64', '65-69',
-				  '70-74', '75-79', '80-84', '85-89', '90-94',
-				  '95-99', '100 + '];
+    function his_chart_row(his_sa,his_ja,region) {
+        var categories = region;
 var chart = Highcharts.chart('chart4-2', {
 	chart: {
 		type: 'bar'
 	},
 	title: {
-		text: '案件数量'
+		text: '重庆各地区收结案数量'
 	},
 	credits:{
             enabled:false
@@ -468,11 +438,11 @@ var chart = Highcharts.chart('chart4-2', {
 		},
 		labels: {
 			formatter: function () {
-				return (Math.abs(this.value) / 1000000) + 'M';
+				return (Math.abs(this.value)) + '件';
 			}
 		},
-		min: -4000000,
-		max: 4000000
+		min: -10000,
+		max: 10000
 	},
 	plotOptions: {
 		series: {
@@ -481,18 +451,16 @@ var chart = Highcharts.chart('chart4-2', {
 	},
 	tooltip: {
 		formatter: function () {
-			return '<b>' + this.series.name + ', age ' + this.point.category + '</b><br/>' +
-				'人口: ' + Highcharts.numberFormat(Math.abs(this.point.y), 0);
+			return '<b>' + this.series.name + ', number ' + this.point.category + '</b><br/>' +
+				'数量: ' + Highcharts.numberFormat(Math.abs(this.point.y), 0);
 		}
 	},
 	series: [{
-		name: 'XX案件',
-		data: [-1746181, -1884428, -2089758, -2222362, -2537431, -2507081, -2443179,
-			   -2664537, -3556505]
+		name: '收案数量',
+		data: his_sa
 	}, {
-		name: 'XX案件',
-		data: [1656154, 1787564, 1981671, 2108575, 2403438, 2366003, 2301402, 2519874,
-			   3360596, 3493473]
+		name: '结案数量',
+		data: his_ja
 	}]
 });
     }
@@ -512,11 +480,12 @@ var chart = Highcharts.chart('chart4-2', {
         {#console.log(prediction_data)#}
     }
     pie_chart();
-    his_chart_multi();
-    his_chart('chart4-1',['案件数量','数量']);
-    his_chart_row();
+    his_chart({{ his_data1 | safe }},'chart4-1',['最新一个月重庆各地区收案数量','数量（件）']);
+	his_chart_multi({{ his_data2 | safe }}, {{ region | safe }});
+    his_chart_row({{ his_sa | safe }}, {{ his_ja | safe }}, {{ region | safe }});
     line_chart({{ line_data.0 | safe }},'chart5-1','收案数量');
     line_chart({{ line_data.1 | safe }},'chart5-2','结案数量');
     line_chart_dynamic({{ test.line_data.0 |safe }})
+    
     </script>
 {% endblock %}

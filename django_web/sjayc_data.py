@@ -20,7 +20,7 @@ class ChartData:
     def __init__(self): 
         
         for i in range(1, 10):
-            url = '/Users/wsk/PycharmProjects/master_project/SJTU_ZHFY/data/sjayc/df0' + str(i) + '.xlsx'
+            url = '/Users/Tracy/SJTU_ZHFY/data/sjayc/df0' + str(i) + '.xlsx'
             excel = xlrd.open_workbook(url)
             sheet = excel.sheet_by_name('Sheet1')
             sa_data = sheet.col_values(3, 1)
@@ -29,7 +29,7 @@ class ChartData:
             self.ja_number.append(ja_data) 
             
         for i in range(10, 41):
-            url = '/Users/wsk/PycharmProjects/master_project/SJTU_ZHFY/data/sjayc/df' + str(i) + '.xlsx'
+            url = '/Users/Tracy/SJTU_ZHFY/data/sjayc/df' + str(i) + '.xlsx'
             excel = xlrd.open_workbook(url)
             sheet = excel.sheet_by_name('Sheet1')
             sa_data = sheet.col_values(3, 1)
@@ -47,7 +47,7 @@ class ChartData:
     #得到地图数据,show sa_number and ja_number of every region at last month
     def get_map_data(self):
 
-        map_key = json_data_r('/Users/wsk/PycharmProjects/master_project/SJTU_ZHFY/data/case_info/map_key')
+        map_key = json_data_r('/Users/Tracy/SJTU_ZHFY/data/case_info/map_key')
 
         map_data = []
         for i in range(len(self.region)):
@@ -66,16 +66,18 @@ class ChartData:
     #get sa_number and ja_number of every region at last month
     def get_his_case_data(self):       
 
-        his_data = []
+        his_sa_data = []
         for i in range(len(self.region)):
-            his_meta_data = {}
-            his_meta_data['name'] = self.region[i]
-            his_meta_data['value'] = []
-            his_meta_data['value'].append(self.sa_number[39][i])
-            his_meta_data['value'].append(self.ja_number[39][i])
-            his_data.append(his_meta_data)
+#            his_meta_data = {}
+#            his_meta_data['name'] = self.region[i]
+#            his_meta_data['data'] = self.sa_number[39][i]
+            his_meta_data = []
+            his_meta_data.append(self.region[i])
+            his_meta_data.append(self.sa_number[39][i])
+            his_sa_data.append(his_meta_data)
+            inverse_sa_number = [-l for l in self.sa_number[39]]
 
-        return his_data
+        return his_sa_data, inverse_sa_number[0: 10], self.ja_number[39][0: 10]
 
 
     #get three judicial features of every region at last month
@@ -83,15 +85,16 @@ class ChartData:
         
         feature_name = ['撤诉结案数', '调节结案数', '法定期限内结案数']
         his_data = []
-        for i in range(len(self.region)):
+        
+        for i in range(len(feature_name)):
             his_meta_data = {}
-            his_meta_data['name'] = self.region[i]
-            his_meta_data['value'] = []
-            for j in range(3):
-                his_meta_data['value'].append(self.feature[j][i])
+            his_meta_data['name'] = feature_name[i]
+            #his_meta_data['value'] = []
+            #for j in range(len(self.region)):
+            his_meta_data['data'] = self.feature[i]
             his_data.append(his_meta_data)
         
-        return his_data 
+        return his_data
 
     
     #40 months sa_number and ja_number grouped by 28 regions, draw the line chart 
@@ -238,11 +241,13 @@ class ChartData:
 
 #test all the modules
 real_chart = ChartData()
+region = real_chart.region
 sjayc_map_data = real_chart.get_map_data()
 line_data_pre = real_chart.get_line_data()
 line_data = real_chart.line_data_new(line_data_pre)
-his_data1 = real_chart.get_his_case_data()
+his_data1, his_sa, his_ja = real_chart.get_his_case_data()
 his_data2 = real_chart.get_his_feature_data()
+region_part = region[0: 10]
 pie_data = real_chart.get_pie_data()
 sa_predictions, advice = real_chart.prediction()
 test = real_chart.test()
@@ -251,7 +256,7 @@ if __name__ == '__main__':
     # map_key_pre = []
     # for i in sjayc_map_data:
     #     map_key_pre.append(i['name'].split('区')[0])
-    # map_key = json_data_r('/Users/wsk/PycharmProjects/master_project/SJTU_ZHFY/data/case_info/map_key')
+    # map_key = json_data_r('/Users/Tracy/SJTU_ZHFY/data/case_info/map_key')
     # for i in map_key_pre:
     #     key = process.extractOne(i, map_key)
     #     key_ok = key[0]
