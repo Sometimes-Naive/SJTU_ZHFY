@@ -20,5 +20,8 @@ from django.conf import settings
 
 urlpatterns = [
 	path('overview/', include('apps.overview.urls')),
+    path('special-topic/', include('apps.special_topic.urls')),
+    path('situation-assessment/', include('apps.situation_assessment.urls')),
+    path('situation-prediction/', include('apps.situation_prediction.urls')),
     path('admin/', admin.site.urls),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

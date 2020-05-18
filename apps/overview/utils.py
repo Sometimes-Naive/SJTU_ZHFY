@@ -40,7 +40,7 @@ def json_data_w(data, file_name):
 
 
 def json_data_r(file_name):
-    with open(file_name, 'r') as f:
+    with open(file_name, 'r', encoding='utf-8') as f:
         data = json.load(f)
     return data
 
@@ -81,4 +81,4 @@ def info2str(info):
             str1 = j
         else:
             str1 = str1 + '\n' + j
-    return str1     
+    return str1

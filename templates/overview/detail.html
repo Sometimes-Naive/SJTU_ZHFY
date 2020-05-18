@@ -10,7 +10,7 @@
 <div class="ui centered grid" style="height:150%">
 <div class="column" style="width:65%;">
 
-        <h2 id="chart1" style="margin-top: 3%; margin-bottom: 2%; text-align: center">{{ details.title }}</h2>
+        <h2 id="chart" style="margin-top: 3%; margin-bottom: 2%; text-align: center">{{ details.title }}</h2>
 
         <div class="ui segment container row" style="width: 100%; font-size: 18px; line-height: 25px; ">
             <h3 class="row" style="text-align: center">案件受理信息</h3>
@@ -31,10 +31,11 @@
             <div class="ui divider"></div>
             <div class="row" style="font-size: 18px; white-space: pre-wrap; padding-left: 0.5em; line-height: 2em">{{ details.personnel }}</div>
         </div>
-        <div class="ui segment container row"  style="height: 50%; ">
+        <div class="ui segment container row" >
             <h3 class="row" style="text-align: center">案件评估</h3>
             <div class="ui divider"></div>
-            <div class="row" style="font-size: 18px; white-space: pre-wrap; padding-left: 0.5em; line-height: 2em"></div>   
+            <div class="ui container row" style="height: 40em; " id="chart1"></div>
+            <div class="ui container row" style="height: 40em; " id="chart2"></div>
         </div>
 </div>
 
@@ -43,4 +44,203 @@
 
 
 {% endblock %}
+{% block jschart %}
+<script>
+function network_charts(chart_name) {
+    // Add the nodes option through an event call. We want to start with the parent
+// item and apply separate colors to each child element, then the same color to
+// grandchildren.
+Highcharts.addEvent(
+	Highcharts.seriesTypes.networkgraph,
+	'afterSetOptions',
+	function (e) {
+		var colors = Highcharts.getOptions().colors,
+			i = 0,
+			nodes = {};
+		e.options.data.forEach(function (link) {
+			if (link[0] === '本案') {
+				nodes['本案'] = {
+					id: '本案',
+					marker: {
+						radius: 20
+					}
+				};
+				nodes[link[1]] = {
+					id: link[1],
+					marker: {
+						radius: 10
+					},
+					color: colors[i++]
+				};
+			} else if (nodes[link[0]] && nodes[link[0]].color) {
+				nodes[link[1]] = {
+					id: link[1],
+					color: nodes[link[0]].color
+				};
+			}
+		});
+		e.options.nodes = Object.keys(nodes).map(function (id) {
+			return nodes[id];
+		});
+	}
+);
+Highcharts.chart(chart_name, {
+	chart: {
+		type: 'networkgraph',
+		height: '100%'
+	},
+    credits:{
+                enabled:false,
+                },
+    exporting:{
+                enabled:false,
+                },
+	title: {
+		text: '案件信息网络'
+	},
+	subtitle: {
+		text: ''
+	},
+	plotOptions: {
+		networkgraph: {
+			keys: ['from', 'to'],
+			layoutAlgorithm: {
+				enableSimulation: true
+			}
+		}
+	},
+	series: [{
+		dataLabels: {
+			enabled: true
+		},
+		data: [
+			['本案', '罪名：交通肇事罪'],
+			['本案', '判决法条'],
+			['本案', '案发地：肖家湾'],
+			['本案', '被告：谭剑波'],
+			['本案', '原告：李某'],
+			['本案', '原告：吴某'],
+			['本案', '判决结果'],
+			['被告：谭剑波', '驾驶重型牵引车'],
+			['原告：李某', '小型客车'],
+			['小型客车', '原告：吴某'],
+			['原告：吴某', '乘坐客车'],
+			['乘坐客车', '车祸颅脑损伤死亡'],
+			['判决法条', '刑法133条'],
+			['判决法条', '刑法67条'],
+			['判决法条', '刑法72条'],
+			['判决法条', '刑法73条'],
+			['判决结果', '有期徒刑一年缓刑一年六个月'],
+			// Leaves:
+		]
+	}]
+});
 
+}
+network_charts('chart1');
+function redar_echatrs(chart_name) {
+    var myChart = echarts.init(document.getElementById(chart_name));
+    {#alert(chart_name);#}
+    var option = {
+    title: {
+        text: ''
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        left: 'center',
+        data: ['维度一', '案件平均一', '维度二', '案件平均二', '维度三','案件平均三']
+    },
+    radar: [
+        {
+            indicator: [
+                {text: '案件人数', max: 100},
+                {text: '案底情况', max: 100},
+                {text: '人物关系', max: 100},
+                {text: '当事人风险', max: 100}
+            ],
+            center: ['25%', '40%'],
+            radius: 80
+        },
+        {
+            indicator: [
+                {text: '案件起因', max: 100},
+                {text: '涉案标的', max: 100},
+                {text: '案件关系', max: 100},
+                {text: '案件结果', max: 100},
+                {text: '纠纷评估', max: 100}
+            ],
+            radius: 80,
+            center: ['50%', '80%'],
+        },
+        {
+            indicator: [
+                {text: '判决结果', max: 100},
+                {text: '判决法条', max: 100},
+                {text: '当事人态度', max: 100},
+                {text: '案件材料', max: 100},
+
+            ],
+            center: ['75%', '38%'],
+            radius: 80
+        }
+    ],
+    series: [
+        {
+            type: 'radar',
+            tooltip: {
+                trigger: 'item'
+            },
+            areaStyle: {},
+            data: [
+                {
+                    value: [60, 73, 85, 40],
+                    name: '维度一'
+                },
+                {
+                    value: [40, 80, 82, 50],
+                    name: '案件平均一'
+                }
+            ]
+        },
+        {
+            type: 'radar',
+            radarIndex: 1,
+            areaStyle: {},
+            data: [
+                {
+                    value: [85, 90, 90, 95, 95],
+                    name: '维度二'
+                },
+                {
+                    value: [95, 80, 95, 90, 93],
+                    name: '案件平均二'
+                }
+            ]
+        },
+        {
+            type: 'radar',
+            radarIndex: 2,
+            areaStyle: {},
+            data: [
+                {
+                    name: '维度三',
+                    value: [26, 59, 90, 26, 87],
+                },
+                {
+                    name: '案件平均三',
+                    value: [20, 49, 70, 32, 56]
+                }
+            ]
+        }
+    ]
+};
+
+
+        myChart.setOption(option);
+
+}
+redar_echatrs('chart2');
+</script>
+{% endblock %}

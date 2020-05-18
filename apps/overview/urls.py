@@ -13,4 +13,5 @@ urlpatterns = [
     path('criminal', views.show_criminal_scope, name='criminal'),
     path('administrative', views.show_administrative_scope, name='administrative'),
     path('detail/<str:case_id>', views.show_case_details, name='detail'),
+    path('ajax_add/', views.ajax_add, name='ajax_add'),
 ]
