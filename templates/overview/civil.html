@@ -6,6 +6,60 @@
 {% endblock %}
 {% block column1 %}
 <div class="ui relaxed centered grid" style="height:150%" >
+<<<<<<< HEAD
+<div class="row" style="height: 50%;">
+        <div class="column" style="width:28%;height: 100%;">
+            <div class="ui row segment container" style="height:33%; " id="chart1">
+                <h1 style="text-align: center">
+                    季度案件数量分析
+                </h1>
+
+                <table class="ui striped table" style="text-align: center;margin-top: 8%">
+                    <thead>
+                        <tr>
+                            <th>数量类型</th>
+                            <th>案件数量</th>
+                            <th>增幅比对</th>
+                            <th>指示</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                      <td>本季度收案数</td>
+                      <td>1000</td>
+                        <td>1%</td>
+                        <td>
+                            <i class="large red arrow up icon"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                      <td>本季度结案数</td>
+                      <td>880</td>
+                        <td>1%</td>
+                        <td>
+                            <i class="large green arrow down icon"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                      <td>本季度存案数</td>
+                      <td>50</td>
+                        <td>1%</td>
+                        <td>
+                            <i class="large green arrow down icon"></i>
+                        </td>
+
+                    </tr>
+
+
+
+  </tbody>
+</table>
+            </div>
+            <div class="ui segment container row" style="height:33%; " id="chart2"></div>
+            <div class="ui segment container row" style="height:33%; " id="chart2-1"></div>
+        </div>
+=======
 <div class="row" style="height: 50%">
     <div class="column" style="width:19%;height:100%;background-color: #ffffff">
         <div class="ui selection dropdown" style="">案由列表
@@ -51,20 +105,23 @@
 
     <div class="ui segment container row" style="height: 49%;background-color: #ffffff" id="chart2">
         案由统计
+>>>>>>> c6581c444fdcd55f1f18e304eb79e0c0089944fb
 
+        <div class="column" style="width:38%;height: 100%;">
+            <div class="ui segment container column" style="height:102%" id="chart3"></div>
+        </div>
+
+        <div class="column" style="width:34%;height: 100%;">
+            <div class="ui segment container row" style="height:102%" id="chart4"></div>
+
+        </div>
     </div>
-
-</div>
-
-    <div class="column" style="width:40%;height:100%;background-color: #ffffff">
-        <div class="ui segment container row" style="height:102%;background-color: #ffffff" id="chart3"></div>
-</div>
-
-    <div class="column" style="width:40%;height:100%;background-color: #ffffff">
-        <div class="ui segment container row" style="height: 50%;background-color: #ffffff" id="chart4"></div>
-        <div class="ui segment container row" style="height: 50%;background-color: #ffffff" id="chart5">
-
-    </div>
+<<<<<<< HEAD
+    <div class="row" style="height: 20%;">
+        <div class="column" style="width:50%;height: 100%">
+            <div class="ui segment container" style="width:100%;height:100%" id="chart6"></div>
+        </div>
+=======
 </div>
 </div>
 <div class="ui segment container row" style="height:55%;background-color: #ffffff">
@@ -99,8 +156,14 @@
 {#            <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.2 %}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ case_evaluation.case_title.2 }}</div>#}
 {#            <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.3 %}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ case_evaluation.case_title.3 }}</div>#}
 {#            <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.4 %}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ case_evaluation.case_title.4 }}</div>#}
+>>>>>>> c6581c444fdcd55f1f18e304eb79e0c0089944fb
 
+        <div class="column" style="width:50%;height: 100%">
+                <div class="ui segment container" style="width:100%;height:100%" id="chart7"></div>
         </div>
+<<<<<<< HEAD
+    </div>
+=======
         <div class="ui container column" style="background-color: #ffffff;height: 80%;width: 50%;padding-left: 4em;line-height: 400%;font-size: 16px;" id="chart12">
 {#            <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.5 %}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ case_evaluation.case_title.5 }}</div>#}
 {#            <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.6 %}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ case_evaluation.case_title.6 }}</div>#}
@@ -108,8 +171,8 @@
 {#            <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.8 %}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ case_evaluation.case_title.8 }}</div>#}
 {#            <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.9 %}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ case_evaluation.case_title.9 }}</div>#}
         </div>
+>>>>>>> c6581c444fdcd55f1f18e304eb79e0c0089944fb
 
-</div>
 <div class="ui segment container row" style="height:35%;background-color: #ffffff">
         <div class="ui  container row" style="height: 10%;width: 100%">
            <span class="ui header " style="height:8%;">重点案由
@@ -139,7 +202,8 @@
 
 {% block jschart %}
 
-<script>
+{% include 'overview/test_js.html' %}
+<script type="text/javascript">
     function jump(url){
 
         window.open(url);
@@ -176,6 +240,8 @@ function append_case_difficulty_titles(obj){
         {#var key = test['key_list'][i];#}
         html12 += '<div href="javascript:void(0);" onclick="jump(\'detail/' + test['case_id'][i] + '\')"><i class="file text icon" style="width: 20%;text-align: left;"> 案件难度 '+ test['case_degree'][i] +'</i><p style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis">'+test['case_title'][i] +'</p></div>';
         {#alert(html)#}
+<<<<<<< HEAD
+=======
     }
     $('#chart11').html(html11);
     $('#chart12').html(html12);
@@ -207,8 +273,30 @@ maxColor: '#006aee',
 labels:{
     style:{
         "color":"red","fontWeight":"bold"
+>>>>>>> c6581c444fdcd55f1f18e304eb79e0c0089944fb
     }
+    $('#chart11').html(html11);
+    $('#chart12').html(html12);
 }
+<<<<<<< HEAD
+
+    pie_list_echarts('chart13',{{ case_outline.2.pie |safe }});
+    his_chart_echarts('chart14',{{ case_outline.2.his | safe }});
+    {#line_chart_echarts('chart5', {{ case_outline | get_list:0 |get_list:5| get_dict:'date_case_number' | safe }});#}
+    {##}
+    {##}
+    {#bubble_chart('chart2', {{ case_outline | get_list:1 | safe }});#}
+    {#map_chart('chart3', {{ case_outline | get_list:0 |get_list:5| get_dict:'map' | safe }});#}
+    {#his_chart('chart4', {{ case_outline | get_list:0 |get_list:5| get_dict:'region_case_number' | safe }});#}
+    his_chart('chart2');
+    percent_chart('chart2-1');
+    region_case_number('chart4');
+    line_chart('chart6');
+    court_class('chart7');
+    map_chart('chart3', {{ case_outline.map_data | safe }});
+
+
+=======
 },
 series: [{
 data: data,
@@ -565,6 +653,7 @@ option = {
     map_chart('chart3', {{ case_outline | get_list:0 |get_list:5| get_dict:'map' | safe }});
     his_chart('chart4', {{ case_outline | get_list:0 |get_list:5| get_dict:'region_case_number' | safe }});
 
+>>>>>>> c6581c444fdcd55f1f18e304eb79e0c0089944fb
 
 
 </script>

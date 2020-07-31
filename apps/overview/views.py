@@ -85,7 +85,29 @@ def ajax_add(request):
     test_data = json.dumps(loader.load_case_evaluation_title(cate_ok)[tag_ok])
     # print(test_data)
     return HttpResponse(test_data)
+<<<<<<< HEAD
 
+def show_civil_case_situation_scope(request):
+    loader = loaders.ResultLoader()
+    context = {
+
+    }
+    return render(request, 'overview/civil_case_situation.html', context)
+def show_criminal_case_situation_scope(request):
+    loader = loaders.ResultLoader()
+    context = {
+=======
+>>>>>>> c6581c444fdcd55f1f18e304eb79e0c0089944fb
+
+    }
+    return render(request, 'overview/criminal_case_situation.html', context)
+
+def show_administrative_case_situation_scope(request):
+    loader = loaders.ResultLoader()
+    context = {
+
+    }
+    return render(request, 'overview/administrative_case_situation.html', context)
 
 from django.template.defaulttags import register
 @register.filter

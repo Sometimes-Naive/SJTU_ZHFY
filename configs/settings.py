@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     # Application apps
     'core',
     'apps.overview',
+    'apps.special_topic',
+    'apps.situation_assessment',
+    'apps.situation_prediction'
 ]
 
 MIDDLEWARE = [

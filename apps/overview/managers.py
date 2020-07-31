@@ -491,3 +491,7 @@ class DataProcessManager(object):
 #             line_data.append(info['case_date_number'][1])
 #         date_number.append(line_data)
 #         return date_number
+
+
+if __name__ == '__main__':
+    pass

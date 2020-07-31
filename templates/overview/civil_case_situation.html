@@ -1,0 +1,575 @@
+{% extends 'layout.html' %}
+
+
+
+{% block head %}
+<div class="item header">民事类案态势</div>
+
+
+{% endblock %}
+{% block column1 %}
+<div class="ui centered grid" style="height:150%">
+    <div class="left floated right aligned column" style="width: auto;padding: 10px 0 0 0;margin-left: 20px">
+        <div class="ui selection dropdown" style="">类案列表
+          <input type="hidden" name="类案">
+          <i class="dropdown icon"></i>
+          <div class="default text " style="width: 15.4em"><i class="world icon"></i>测试类案一</div>
+          <div class="menu">
+              <a class="item" href="javascript:void(0);" onclick="case_list_click()"><i class="world icon"></i>测试类案一</a>
+              <a class="item" href="javascript:void(0);" onclick="case_list_click()"><i class="world icon"></i>测试类案二</a>
+              <a class="item" href="javascript:void(0);" onclick="case_list_click()"><i class="world icon"></i>测试类案三</a>
+          </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <h3 style="margin-top: 0">
+            案件审判特征
+        </h3>
+
+    </div>
+{#    <div class="ui divider"></div>#}
+    <div class="ui row " id="justice_cha" style="height:50%;width: 100%">
+        <div class="ui  column" style="width: 50%; height: 100%">
+
+            <div class="ui segment" id="region_1" style="width: 29%;height:68%;float: left; margin: 0 1% 0 0"></div>
+            <div class="ui segment" id="map" style="width: 69%;height:68%;float: left; margin: 0 0 0 1%" ></div>
+            <div class="ui segment" id="sjc_number" style="height: 33%;width:100%;float: left; margin: 1% 0 0 0"></div>
+
+        </div>
+        <div class="ui column " style="width: 50%;height: 100%">
+            <div class="ui segment " id="court_level_pie" style="height: 33%;width:29%;float: left;margin: 0 0.5% 0.6% 0">
+
+            </div>
+            <div class="ui segment " id="court_level_line" style="height: 33%;width:69%;float: left;margin: 0 0 0.6% 0.5%">
+
+            </div>
+            <div class="ui segment " id="process_12_pie" style="height: 33%;width:29%;float: left;margin: 0.6% 0.5% 0.6% 0">
+
+            </div>
+            <div class="ui segment " id="process_12_line" style="height: 33%;width:69%;float: left;margin: 0.6% 0 0.6% 0.5%">
+
+            </div>
+            <div class="ui segment " id="process_final_pie" style="height: 33%;width:29%;float: left;margin: 0.6% 0.5% 0 0">
+
+            </div>
+            <div class="ui segment " id="process_final_line" style="height: 33%;width:69%;float: left;margin: 0.6% 0 0 0.5%">
+
+            </div>
+        </div>
+
+    </div>
+    <div class="row" style="margin-top: 14px">
+        <h3>案件审判特征分析</h3>
+
+
+
+    </div>
+{#    <div class="ui divider"></div>#}
+    <div class="ui row segment container" id="case_cha" style="height:40%">
+        <div class="ui segment" style="height: 50%;width:50%;float: left;margin-top: 14px">
+            <h3>收结存案数据分析</h3>
+            <table class="ui striped table" style="text-align: center;margin-top: 4%">
+                    <thead>
+                        <tr>
+                            <th>数量类型</th>
+                            <th>案件数量</th>
+                            <th>增幅比对</th>
+                            <th>指示</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                      <td>本季度收案数</td>
+                      <td>1000</td>
+                        <td>1%</td>
+                        <td>
+                            <i class="large red arrow up icon"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                      <td>本季度结案数</td>
+                      <td>880</td>
+                        <td>1%</td>
+                        <td>
+                            <i class="large green arrow down icon"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                      <td>本季度存案数</td>
+                      <td>50</td>
+                        <td>1%</td>
+                        <td>
+                            <i class="large green arrow down icon"></i>
+                        </td>
+
+                    </tr>
+
+
+
+  </tbody>
+</table>
+        </div>
+        <div class="ui segment" style="height: 50%;width:50%;float: left">
+            <h3>法院层级案件数据分析</h3>
+            <table class="ui striped table" style="text-align: center;margin-top: 4%">
+                    <thead>
+                        <tr>
+                            <th>数量类型</th>
+                            <th>案件数量</th>
+                            <th>增幅比对</th>
+                            <th>指示</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                      <td>本季度收案数</td>
+                      <td>1000</td>
+                        <td>1%</td>
+                        <td>
+                            <i class="large red arrow up icon"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                      <td>本季度结案数</td>
+                      <td>880</td>
+                        <td>1%</td>
+                        <td>
+                            <i class="large green arrow down icon"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                      <td>本季度存案数</td>
+                      <td>50</td>
+                        <td>1%</td>
+                        <td>
+                            <i class="large green arrow down icon"></i>
+                        </td>
+
+                    </tr>
+
+
+
+  </tbody>
+</table>
+        </div>
+        <div class="ui segment" style="height: 50%;width:50%;float: left">
+            <h3>一审二审案件数据分析</h3>
+            <table class="ui striped table" style="text-align: center;margin-top: 4%">
+                    <thead>
+                        <tr>
+                            <th>数量类型</th>
+                            <th>案件数量</th>
+                            <th>增幅比对</th>
+                            <th>指示</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                      <td>本季度收案数</td>
+                      <td>1000</td>
+                        <td>1%</td>
+                        <td>
+                            <i class="large red arrow up icon"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                      <td>本季度结案数</td>
+                      <td>880</td>
+                        <td>1%</td>
+                        <td>
+                            <i class="large green arrow down icon"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                      <td>本季度存案数</td>
+                      <td>50</td>
+                        <td>1%</td>
+                        <td>
+                            <i class="large green arrow down icon"></i>
+                        </td>
+
+                    </tr>
+
+
+
+  </tbody>
+</table>
+        </div>
+        <div class="ui segment" style="height: 50%;width:50%;float: left">
+            <h3>再审终审案件数据分析</h3>
+            <table class="ui striped table" style="text-align: center;margin-top: 4%">
+                    <thead>
+                        <tr>
+                            <th>数量类型</th>
+                            <th>案件数量</th>
+                            <th>增幅比对</th>
+                            <th>指示</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                      <td>本季度收案数</td>
+                      <td>1000</td>
+                        <td>1%</td>
+                        <td>
+                            <i class="large red arrow up icon"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                      <td>本季度结案数</td>
+                      <td>880</td>
+                        <td>1%</td>
+                        <td>
+                            <i class="large green arrow down icon"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                      <td>本季度存案数</td>
+                      <td>50</td>
+                        <td>1%</td>
+                        <td>
+                            <i class="large green arrow down icon"></i>
+                        </td>
+
+                    </tr>
+
+
+
+  </tbody>
+</table>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 14px">
+        <h3>当事人特征</h3>
+    </div>
+{#    <div class="ui divider"></div>#}
+    <div class="ui row segment container" id="person_cha" style="height: 40%;">
+        <div class="ui segment" id="person_1" style="height:48%; width:16%; float: left;margin-top: 14px"></div>
+
+        <div class="ui segment" id="person_2" style="height:48%; width:33%; float: left;margin-right: 0.5%"></div>
+
+        <div class="ui segment" id="person_3" style="height:48%; width:16%; float: left;margin-left: 0.5%"></div>
+
+        <div class="ui segment" id="person_4" style="height:48%; width:33%; float: left"></div>
+
+        <div class="ui segment" id="person_5" style="height:48%; width:16%; float: left"></div>
+
+        <div class="ui segment" id="person_6" style="height:48%; width:33%; float: left;margin-right: 0.5%"></div>
+
+        <div class="ui segment" id="person_7" style="height:48%; width:16%; float: left;margin-left: 0.5%"></div>
+
+        <div class="ui segment" id="person_8" style="height:48%; width:33%; float: left"></div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block jschart %}
+<script>
+function region_1(chart_name){
+    var chart = Highcharts.chart(chart_name, {
+        credits:{
+                enabled:false,
+                },
+                exporting:{
+                enabled:false,
+                },
+	chart: {
+		type: 'bar'
+	},
+	title: {
+		text: '地区年度数量'
+	},
+	xAxis: {
+		categories: ['地区一', '地区二', '地区三', '地区四', '地区五']
+	},
+	yAxis: {
+		min: 0,
+		title: {
+			text: '案件数量'
+		}
+	},
+	legend: {
+		/* 图例显示顺序反转
+         * 这是因为堆叠的顺序默认是反转的，可以设置
+         * yAxis.reversedStacks = false 来达到类似的效果
+         */
+		reversed: true
+	},
+	plotOptions: {
+		series: {
+			stacking: 'normal'
+		}
+	},
+	series: [{
+		name: '2018年',
+		data: [5, 3, 4, 7, 2]
+	}, {
+		name: '2019年',
+		data: [2, 2, 3, 2, 1]
+	}, {
+		name: '2020年',
+		data: [3, 4, 4, 2, 5]
+	}]
+});
+}
+function map_chart(chart_name, chart_data){
+    $.getJSON('https://data.jianshukeji.com/jsonp?filename=geochina/chongqing.json&callback=?', function(mapdata) {
+            var data = chart_data;
+
+            map1 = new Highcharts.Map(chart_name, {
+            title: {
+            text: '重庆地区案件分布'
+            },
+            mapNavigation: {
+            enabled: true,
+            buttonOptions: {
+                verticalAlign: 'bottom'
+            }
+            },
+            credits:{
+            enabled:false,
+            },
+            exporting:{
+            enabled:false,
+            },
+            colorAxis: {
+            min: 0,
+            minColor: '#ffffff',
+            maxColor: '#006aee',
+            labels:{
+                style:{
+                    "color":"red","fontWeight":"bold"
+                }
+            }
+            },
+            series: [{
+            data: data,
+            mapData: mapdata,
+            joinBy: 'name',
+            name: '重庆市地图'
+            }]
+            });
+            });
+            }
+function sjc_case_number(chart_name){
+    var chart = Highcharts.chart(chart_name,{
+        credits:{
+                enabled:false,
+                },
+                exporting:{
+                enabled:false,
+                },
+	chart: {
+		type: 'column'
+	},
+	title: {
+		text: '收结存案数量趋势'
+	},
+	subtitle: {
+		text: ''
+	},
+	xAxis: {
+		categories: [
+			'一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'
+		],
+		crosshair: true
+	},
+	yAxis: {
+		min: 0,
+		title: {
+			text: '数量（件）'
+		}
+	},
+	tooltip: {
+		// head + 每个 point + footer 拼接成完整的 table
+		headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+		pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+		'<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+		footerFormat: '</table>',
+		shared: true,
+		useHTML: true
+	},
+	plotOptions: {
+		column: {
+			borderWidth: 0
+		}
+	},
+	series: [{
+		name: '收案数',
+		data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+	}, {
+		name: '结案数',
+		data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+	}, {
+		name: '存案数',
+
+
+		data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+	}]
+});
+}
+function pie_chart(chart_name,chart_title){
+    // Build the chart
+    var chart = Highcharts.chart(chart_name, {
+        credits:{
+                enabled:false,
+                },
+                exporting:{
+                enabled:false,
+                },
+	chart: {
+		plotBackgroundColor: null,
+		plotBorderWidth: null,
+		plotShadow: false,
+		type: 'pie'
+	},
+	title: {
+		text:chart_title
+	},
+	tooltip: {
+		pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+	},
+	plotOptions: {
+		pie: {
+			allowPointSelect: true,
+			cursor: 'pointer',
+			dataLabels: {
+				enabled: false
+			},
+			showInLegend: true
+		}
+	},
+	series: [{
+		name: 'Brands',
+		colorByPoint: true,
+        fontsize:10,
+		data: [{
+			name: '类别一',
+			y: 61.41,
+
+		}, {
+			name: '类别二',
+			y: 11.84
+		}, {
+			name: '类别三',
+			y: 10.85
+		}, {
+			name: '类别四',
+			y: 4.67
+		}, {
+			name: '类别五',
+			y: 4.18
+		}, {
+			name: '类别六',
+			y: 7.05
+		}]
+	}]
+});
+}
+function line_chart(chart_name, chart_title){
+    var chart = Highcharts.chart(chart_name, {
+        credits:{
+                enabled:false,
+                },
+                exporting:{
+                enabled:false,
+                },
+	title: {
+		text: chart_title
+	},
+	subtitle: {
+		text: ''
+	},
+	yAxis: {
+		title: {
+			text: '数量'
+		}
+	},
+	legend: {
+		layout: 'vertical',
+		align: 'right',
+		verticalAlign: 'middle'
+	},
+	plotOptions: {
+		series: {
+			label: {
+				connectorAllowed: false
+			},
+			pointStart: 1
+		}
+	},
+	series: [{
+		name: '分类一',
+		data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+	}, {
+		name: '分类二',
+		data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
+	}, {
+		name: '分类三',
+		data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
+	}, {
+		name: '分类四',
+		data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
+	}, {
+		name: '分类五',
+		data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
+	}],
+	responsive: {
+		rules: [{
+			condition: {
+				maxWidth: 500
+			},
+			chartOptions: {
+				legend: {
+					layout: 'horizontal',
+					align: 'center',
+					verticalAlign: 'bottom'
+				}
+			}
+		}]
+	}
+});
+}
+function case_pie_line(){
+    pie_chart('court_level_pie','法院层级案件统计');
+    line_chart('court_level_line', '法院层级案件数量时间趋势');
+    pie_chart('process_12_pie', '一审二审案件统计');
+    line_chart('process_12_line', '一审二审案件数量时间趋势');
+    pie_chart('process_final_pie','再审终审案件统计');
+    line_chart('process_final_line', '再审终审案件数量时间趋势');
+}
+function person_pie_line(){
+    pie_chart('person_1','当事人性别统计');
+    line_chart('person_2','当事人性别时间变化趋势');
+    pie_chart('person_3','当事人年龄统计');
+    line_chart('person_4','当事人年龄时间变化趋势');
+    pie_chart('person_5','当事人职业统计');
+    line_chart('person_6','当事人职业时间变化趋势');
+    pie_chart('person_7','当事人学历统计');
+    line_chart('person_8','当事人学历时间变化趋势');
+
+}
+function case_list_click(){
+    {#alert(case_name);#}
+    case_pie_line();
+    person_pie_line();
+    region_1('region_1');
+    map_chart('map');
+    sjc_case_number('sjc_number');
+}
+region_1('region_1');
+map_chart('map');
+sjc_case_number('sjc_number');
+case_pie_line();
+person_pie_line();
+</script>
+
+
+{% endblock %}

@@ -14,4 +14,12 @@ urlpatterns = [
     path('administrative', views.show_administrative_scope, name='administrative'),
     path('detail/<str:case_id>', views.show_case_details, name='detail'),
     path('ajax_add/', views.ajax_add, name='ajax_add'),
+<<<<<<< HEAD
+    path('civil_case_situation', views.show_civil_case_situation_scope, name='civil_case_situation'),
+    path('criminal_case_situation', views.show_criminal_case_situation_scope, name='criminal_case_situation'),
+    path('administrative_case_situation', views.show_administrative_case_situation_scope, name='administrative_case_situation'),
+
+
+=======
+>>>>>>> c6581c444fdcd55f1f18e304eb79e0c0089944fb
 ]

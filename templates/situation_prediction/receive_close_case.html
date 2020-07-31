@@ -1,0 +1,491 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block head %}
+<div class="item header">收结案预测</div>
+
+
+{% endblock %}
+{% block column1 %}
+<div class="ui  centered grid" style="height: 90%;background-color: #ffffff"  >
+    {% block sjayc_date %}
+{#    <div class="row" style="height: 98%;background-color: #ffffff" >#}
+        <div class="column" style="width: 25%;height:100%;background-color: #ffffff">
+
+            <div class="ui segment container row" style="height: 50%;background-color: #ffffff" id="chart1"></div>
+            <div class="ui segment container row" style="height: 90%;background-color: #ffffff" >
+                <div class="ui segment container row" style="height: 50%" id="chart2">
+
+                </div>
+                <div class="ui segment container row" style="height: 48%;">
+                        <table class="ui celled table">
+                          <thead>
+                            <tr><th>区县名称</th>
+                            <th>法官人数</th>
+
+                          </tr></thead>
+                          <tbody>
+                            <tr>
+                              <td data-label="名称">万州区</td>
+                              <td data-label="指标">91</td>
+
+                            </tr>
+                            <tr>
+                              <td data-label="名称">渝中区</td>
+                              <td data-label="指标">94</td>
+
+                            </tr>
+                            <tr>
+                              <td data-label="名称">九龙坡区</td>
+                              <td data-label="指标">100</td>
+
+                            </tr>
+                          <tr>
+                              <td data-label="名称">南川区</td>
+                              <td data-label="指标">43</td>
+
+                            </tr>
+
+                          </tbody>
+                        </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="column" style="width: 40%;height:100%;background-color: #ffffff">
+            <div class="ui segment container row" style="height: 66%;background-color: #ffffff" id="chart3"></div>
+                <div class=" ui segment container column" style="width: 100%;height: 32%;margin: 1em 0 0 0;" id="chart4-1">
+                    case    
+                </div>
+                <div class="ui segment container column" style="width: 100%;height: 40%;" id="chart4-2">
+                    case   
+                </div>
+            
+        </div>
+        <div class="column" style="width: 35%;height:100%;background-color: #ffffff">
+
+            <div class="ui segment container row" style="height: 85%;background-color: #ffffff" >
+                <div class="ui segment container row" style="height: 49%" id="chart5-1">
+
+                </div>
+                <div class="ui segment container row" style="height: 49%" id="chart5-2">
+
+                </div>
+            </div>
+            <div class="ui segment container row" style="height: 55%;background-color: #ffffff" >
+                <div class="ui  container row" style="height: 60%;background-color: #ffffff" id="chart6"></div>
+                <div class=" ui container row" style="margin: 0 0 0 0;padding: 0 0 0 0 " id="chart6-1">
+            <div class="ui selection dropdown">地区
+              <input type="hidden" name="地区" style="width: 80%">
+              <i class="dropdown icon"></i>
+              <div class="text"><i class="world icon" ></i>请选择</div>
+              <div class="menu">
+                <a class="item" href="javascript:void(0);" onclick="line_chart_dynamic({{ test.line_data.0|safe }});prediction('#chart6-2',{{ test.line_data.0 }});$('#chart6-3').text('具体建议:'+'{{ advice.0 |safe }}')"><i class="world icon"></i>{{ test.region.0 }}</a>
+                <a class="item" href="javascript:void(0);" onclick="line_chart_dynamic({{ test.line_data.1|safe }});prediction('#chart6-2',{{ test.line_data.1 }});$('#chart6-3').text('具体建议:'+'{{ advice.1 |safe }}')"><i class="world icon"></i>{{ test.region.1 }}</a>
+                <a class="item" href="javascript:void(0);" onclick="line_chart_dynamic({{ test.line_data.2|safe }});prediction('#chart6-2',{{ test.line_data.2 }});$('#chart6-3').text('具体建议:'+'{{ advice.2 |safe }}')"><i class="world icon"></i>{{ test.region.2 }}</a>
+                <a class="item" href="javascript:void(0);" onclick="line_chart_dynamic({{ test.line_data.3|safe }});prediction('#chart6-2',{{ test.line_data.3 }});$('#chart6-3').text('具体建议:'+'{{ advice.3 |safe }}')"><i class="world icon"></i>{{ test.region.3 }}</a>
+                   <a class="item" href="javascript:void(0);" onclick="line_chart_dynamic({{ test.line_data.4|safe }});prediction('#chart6-2',{{ test.line_data.4 }});$('#chart6-3').text('具体建议:'+'{{ advice.4 |safe }}')"><i class="world icon"></i>{{ test.region.4 }}</a>
+                <a class="item" href="javascript:void(0);" onclick="line_chart_dynamic({{ test.line_data.5|safe }});prediction('#chart6-2',{{ test.line_data.5 }});$('#chart6-3').text('具体建议:'+'{{ advice.5 |safe }}')"><i class="world icon"></i>{{ test.region.5 }}</a>
+                <a class="item" href="javascript:void(0);" onclick="line_chart_dynamic({{ test.line_data.6|safe }});prediction('#chart6-2',{{ test.line_data.6 }});$('#chart6-3').text('具体建议:'+'{{ advice.6 |safe }}')"><i class="world icon"></i>{{ test.region.6 }}</a>
+            </div>
+        </div>
+            </div>
+            <div class="ui  two column grid container" style="height: 23%;background-color: #ffffff;padding: 2em 0;" >
+
+                <div class=" column" style="width: 34%;height: 100%;margin: 0 0 0 0; vertical-align: middle" id="chart6-2">预测结果
+            </div>
+                <div class=" column" style="width: 65%;height: 100%;margin: 0 0 0.5em 0;" id="chart6-3">具体建议
+            </div>
+            </div>
+
+        </div>
+{#    </div>#}
+
+    {% endblock %}
+
+
+
+</div>
+
+{% endblock %}
+
+{% block jschart %}
+    <script src="{% static 'js/variable-pie.js' %}"></script>
+    <script>
+
+     //热力图函数,得到地图数据,show sa_number and ja_number of every region at last month
+    function functiondate(map_data){
+            //function1(date_data);
+            //function2(date_data);
+            $.getJSON('https://data.jianshukeji.com/jsonp?filename=geochina/chongqing.json&callback=?', map_data, function(mapdata) {
+                    var data = map_data;
+                    map1 = new Highcharts.Map('chart3', {
+                        title: {
+                            text: '最新一个月重庆各地区收结案数量'
+                        },
+                        mapNavigation: {
+                            enabled: true,
+                            buttonOptions: {
+                                verticalAlign: 'bottom'
+                            }
+                        },
+                                  credits:{
+                                        enabled:false,
+                                    },
+                                    exporting:{
+                                        enabled:false,
+                                    },
+                        colorAxis: {
+                            min: 0,
+                            minColor: '#fff',
+                            maxColor: '#006cee',
+                            labels:{
+                                style:{
+                                    "color":"red","fontWeight":"bold"
+                                }
+                            }
+                        },
+                        series: [{
+                            data: data,
+                            mapData: mapdata,
+                            joinBy: 'name',
+                            name: '重庆市地图'
+                        }]
+                    });
+                });
+        }
+    functiondate({{ map_data|safe }})
+    </script>
+    <script>
+    function pie_chart(){
+        Highcharts.chart('chart1', {
+    chart: {
+        type: 'variablepie'
+    },
+    title: {
+        text: '司法资源分配'
+    },
+    credits:{
+            enabled:false
+    },
+    exporting:{
+    enabled:false,
+    },
+    tooltip: {
+        headerFormat: '',
+        pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
+        '指标数值: <b>{point.y}</b><br/>' +
+        '指标比重: <b>{point.z}</b><br/>'
+    },
+    series: [{
+        minPointSize: 10,
+        innerSize: '20%',
+        zMin: 0,
+        name: 'countries',
+        data: {{ pie_data | safe }}
+    }]
+});
+    }
+
+
+    function his_chart(his_data1,chart_name,title_name) {
+        var chart = Highcharts.chart(chart_name, {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: title_name[0]
+    },
+    credits:{
+            enabled:false
+    },
+    exporting:{
+    enabled:false,
+    },
+    xAxis: {
+        type: 'category',
+        labels: {
+            rotation: -45  // 设置轴标签旋转角度
+        }
+    },
+    yAxis: {
+        min: 300,
+        title: {
+            text: title_name[1]
+        }
+    },
+    legend: {
+        enabled: false
+    },
+    tooltip: {
+        pointFormat: '数量'
+    },
+    series: [{
+        name: '总数量',
+        data: his_data1,
+        //data:[['region1',100.0],['region2',200.0],['region3',300.0],
+        //['region4',400.0],['region5',500.0]],
+
+        dataLabels: {
+            enabled: true,
+            rotation: -90,
+            color: '#FFFFFF',
+            align: 'right',
+            format: '{point.y:.1f}', // :.1f 为保留 1 位小数
+            y: 100
+        }
+    }]
+});
+    }
+    function his_chart_multi(his_data2, region) {
+        var chart = Highcharts.chart('chart2',{
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: '最新一个月重庆各地区司法特征数据'
+    },
+    credits:{
+            enabled:false
+    },
+    exporting:{
+    enabled:false,
+    },
+    xAxis: {
+        categories: region,
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: '数量 (件)'
+        }
+    },
+    tooltip: {
+        // head + 每个 point + footer 拼接成完整的 table
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+        '<td style="padding:0"><b>{point.y:.1f} 件</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            borderWidth: 0
+        }
+    },
+    series: his_data2
+});
+    }
+    function line_chart(chart_data,chart_name,title_name){
+        var chart = Highcharts.chart(chart_name, {
+    title: {
+        text: title_name
+    },
+    yAxis: {
+        title: {
+            text: '案件数量'
+        }
+    },
+    credits:{
+            enabled:false
+    },
+    exporting:{
+    enabled:false,
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle'
+    },
+    xAxis:{
+           categories:chart_data[0],
+    },
+    series: chart_data[1],
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 500
+            },
+            chartOptions: {
+                legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom'
+                }
+            }
+        }]
+    }
+});
+    }
+    function line_chart_dynamic(data) {
+        var chart = null;
+
+    {#console.log(data)#}
+    chart = Highcharts.chart('chart6', {
+        chart: {
+            zoomType: 'x'
+        },
+        title: {
+            text: '收结案预测'
+        },
+    credits:{
+            enabled:false
+    },
+    exporting:{
+    enabled:false,
+    },
+        xAxis: {
+            type: 'datetime',
+            dateTimeLabelFormats: {
+                millisecond: '%H:%M:%S.%L',
+                second: '%H:%M:%S',
+                minute: '%H:%M',
+                hour: '%H:%M',
+                day: '%m-%d',
+                week: '%m-%d',
+                month: '%Y-%m',
+                year: '%Y'
+            }
+        },
+        tooltip: {
+            dateTimeLabelFormats: {
+                millisecond: '%H:%M:%S.%L',
+                second: '%H:%M:%S',
+                minute: '%H:%M',
+                hour: '%H:%M',
+                day: '%Y-%m-%d',
+                week: '%m-%d',
+                month: '%Y-%m',
+                year: '%Y'
+            }
+        },
+        yAxis: {
+            title: {
+                text: '数量'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        plotOptions: {
+            area: {
+                fillColor: {
+                    linearGradient: {
+                        x1: 0,
+                        y1: 0,
+                        x2: 0,
+                        y2: 1
+                    },
+                    stops: [
+                        [0, new Highcharts.getOptions().colors[0]],
+                        [1, new Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                    ]
+                },
+                marker: {
+                    radius: 2
+                },
+                lineWidth: 1,
+                states: {
+                    hover: {
+                        lineWidth: 1
+                    }
+                },
+                threshold: null
+            }
+        },
+        series: [{
+            type: 'area',
+            name: '',
+            data: data
+        }]
+    });
+    }
+
+    function his_chart_row(his_sa,his_ja,region) {
+        var categories = region;
+var chart = Highcharts.chart('chart4-2', {
+    chart: {
+        type: 'bar'
+    },
+    title: {
+        text: '重庆各地区收结案数量'
+    },
+    credits:{
+            enabled:false
+    },
+    exporting:{
+    enabled:false,
+    },
+    xAxis: [{
+        categories: categories,
+        reversed: false,
+        labels: {
+            step: 1
+        }
+    }, {
+        // 显示在右侧的镜像 xAxis （通过 linkedTo 与第一个 xAxis 关联）
+        opposite: true,
+        reversed: false,
+        categories: categories,
+        linkedTo: 0,
+        labels: {
+            step: 1
+        }
+    }],
+    yAxis: {
+        title: {
+            text: null
+        },
+        labels: {
+            formatter: function () {
+                return (Math.abs(this.value)) + '件';
+            }
+        },
+        min: -10000,
+        max: 10000
+    },
+    plotOptions: {
+        series: {
+            stacking: 'normal'
+        }
+    },
+    tooltip: {
+        formatter: function () {
+            return '<b>' + this.series.name + ', number ' + this.point.category + '</b><br/>' +
+                '数量: ' + Highcharts.numberFormat(Math.abs(this.point.y), 0);
+        }
+    },
+    series: [{
+        name: '收案数量',
+        data: his_sa
+    }, {
+        name: '结案数量',
+        data: his_ja
+    }]
+});
+    }
+    function html_put(chart_name,chart_text) {
+        $(chart_name).empty();
+        html = chart_text
+
+    }
+    function prediction(name,data) {
+        var prediction_data;
+        var range;
+
+        {#range = data.length;#}
+        prediction_data = data[40][1].toFixed(2);
+        {#alert(name,range);#}
+        $(name).text('预测结果:\n'+prediction_data);
+        {#console.log(prediction_data)#}
+    }
+    pie_chart();
+    his_chart({{ his_data1 | safe }},'chart4-1',['最新一个月重庆各地区收案数量','数量（件）']);
+    his_chart_multi({{ his_data2 | safe }}, {{ region | safe }});
+    his_chart_row({{ his_sa | safe }}, {{ his_ja | safe }}, {{ region | safe }});
+    line_chart({{ line_data.0 | safe }},'chart5-1','收案数量');
+    line_chart({{ line_data.1 | safe }},'chart5-2','结案数量');
+    line_chart_dynamic({{ test.line_data.0 |safe }})
+    </script>
+{% endblock %}

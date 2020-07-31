@@ -1,0 +1,715 @@
+{% load static %}
+<script type="text/javascript">
+function his_chart(chart_name){
+    var chart = Highcharts.chart(chart_name,{
+        credits:{
+                enabled:false,
+                },
+                exporting:{
+                enabled:false,
+                },
+	chart: {
+		type: 'column'
+	},
+	title: {
+		text: '案件审理数量统计'
+	},
+	subtitle: {
+		text: ''
+	},
+	xAxis: {
+		categories: [
+			'一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'
+		],
+		crosshair: true
+	},
+	yAxis: {
+		min: 0,
+		title: {
+			text: '案件数量'
+		}
+	},
+	tooltip: {
+		// head + 每个 point + footer 拼接成完整的 table
+		headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+		pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+		'<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+		footerFormat: '</table>',
+		shared: true,
+		useHTML: true
+	},
+	plotOptions: {
+		column: {
+			borderWidth: 0
+		}
+	},
+	series: [{
+		name: '总体案件',
+		data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+	}, {
+		name: '民事案件',
+		data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+	}, {
+		name: '刑事案件',
+		data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+	}, {
+		name: '行政案件',
+		data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+	}]
+});
+}
+function line_chart(chart_name){
+    var chart = Highcharts.chart(chart_name, {
+        credits:{
+                enabled:false,
+                },
+                exporting:{
+                enabled:false,
+                },
+	title: {
+		text: '审级分布'
+	},
+	subtitle: {
+		text: ''
+	},
+	yAxis: {
+		title: {
+			text: '案件数'
+		}
+	},
+	legend: {
+		layout: 'vertical',
+		align: 'right',
+		verticalAlign: 'middle'
+	},
+	plotOptions: {
+		series: {
+			label: {
+				connectorAllowed: false
+			},
+			pointStart: 2010
+		}
+	},
+	series: [{
+		name: '案件总数',
+		data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+	}, {
+		name: '一审案件',
+		data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
+	}, {
+		name: '二审案件',
+		data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
+	}, {
+		name: '再审案件',
+		data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
+	}, {
+		name: '终审案件',
+		data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
+	}],
+	responsive: {
+		rules: [{
+			condition: {
+				maxWidth: 500
+			},
+			chartOptions: {
+				legend: {
+					layout: 'horizontal',
+					align: 'center',
+					verticalAlign: 'bottom'
+				}
+			}
+		}]
+	}
+});
+}
+function percent_chart(chart_name){
+    var chart = Highcharts.chart(chart_name, {
+        credits:{
+                enabled:false,
+                },
+                exporting:{
+                enabled:false,
+                },
+	chart: {
+		type: 'area'
+	},
+	title: {
+		text: '案件类型占比'
+	},
+	subtitle: {
+		text: ''
+	},
+	xAxis: {
+		categories: ['1750', '1800', '1850', '1900', '1950', '1999', '2050'],
+		tickmarkPlacement: 'on',
+		title: {
+			enabled: false
+		}
+	},
+	yAxis: {
+		title: {
+			text: '百分比'
+		}
+	},
+	tooltip: {
+		pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.percentage:.1f}%</b> ({point.y:,.0f} 百万)<br/>',
+		shared: true
+	},
+	plotOptions: {
+		area: {
+			stacking: 'percent',
+			lineColor: '#ffffff',
+			lineWidth: 1,
+			marker: {
+				lineWidth: 1,
+				lineColor: '#ffffff'
+			}
+		}
+	},
+	series: [{
+		name: '民事案件',
+		data: [502, 635, 809, 947, 1402, 3634, 5268]
+	}, {
+		name: '刑事案件',
+		data: [106, 107, 111, 133, 221, 767, 1766]
+	}, {
+		name: '行政案件',
+		data: [163, 203, 276, 408, 547, 729, 628]
+	}]
+});
+}
+function region_case_number(chart_name){
+    var chart = Highcharts.chart(chart_name, {
+        credits:{
+                enabled:false,
+                },
+                exporting:{
+                enabled:false,
+                },
+	chart: {
+		type: 'bar'
+	},
+	title: {
+		text: '地区案件数量'
+	},
+	xAxis: {
+		categories: ['地区一', '地区二', '地区三', '地区四', '地区五']
+	},
+	yAxis: {
+		min: 0,
+		title: {
+			text: '时间'
+		}
+	},
+	legend: {
+		/* 图例显示顺序反转
+         * 这是因为堆叠的顺序默认是反转的，可以设置
+         * yAxis.reversedStacks = false 来达到类似的效果
+         */
+		reversed: true
+	},
+	plotOptions: {
+		series: {
+			stacking: 'normal'
+		}
+	},
+	series: [{
+		name: '第一季度',
+		data: [5, 3, 4, 7, 2]
+	}, {
+		name: '第二季度',
+		data: [2, 2, 3, 2, 1]
+	}, {
+		name: '第三季度',
+		data: [3, 4, 4, 2, 5]
+	}]
+});
+}
+function court_class(chart_name){
+    var chart = Highcharts.chart(chart_name, {
+	chart: {
+		type: 'column'
+	},
+	title: {
+		text: '法院层级案件数量分布'
+	},
+	xAxis: {
+		categories: ['第一季度', '第二季度', '第三季度', '第四季度']
+	},
+	yAxis: {
+		min: 0,
+		title: {
+			text: '案件数量'
+		},
+		stackLabels: {  // 堆叠数据标签
+			enabled: true,
+			style: {
+				fontWeight: 'bold',
+				color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+			}
+		}
+	},
+	legend: {
+		align: 'right',
+		x: -30,
+		verticalAlign: 'top',
+		y: 25,
+		floating: true,
+		backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+		borderColor: '#CCC',
+		borderWidth: 1,
+		shadow: false
+	},
+	tooltip: {
+		formatter: function () {
+			return '<b>' + this.x + '</b><br/>' +
+				this.series.name + ': ' + this.y + '<br/>' +
+				'总量: ' + this.point.stackTotal;
+		}
+	},
+	plotOptions: {
+		column: {
+			stacking: 'normal',
+			dataLabels: {
+				enabled: true,
+				color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+				style: {
+					// 如果不需要数据标签阴影，可以将 textOutline 设置为 'none'
+					textOutline: '1px 1px black'
+				}
+			}
+		}
+	},
+	series: [{
+		name: '基层法院',
+		data: [5, 3, 4, 7]
+	}, {
+		name: '中级法院',
+		data: [2, 2, 3, 1]
+	}, {
+		name: '高级法院',
+		data: [3, 4, 4, 5]
+	}]
+});
+}
+function map_chart(name, data){
+    $.getJSON('https://data.jianshukeji.com/jsonp?filename=geochina/chongqing.json&callback=?', function(mapdata) {
+    // $.getJSON("{% static 'js/chongqing.json' %}",function(mapdata) {
+            map1 = new Highcharts.Map('chart3', {
+                title: {
+                	text: '重庆地区案件分布'
+                },
+                mapNavigation: {
+	                enabled: true,
+	                buttonOptions: {
+	                    verticalAlign: 'bottom'
+	                }
+                },
+                credits:{
+                	enabled:false,
+                },
+                exporting:{
+                	enabled:false,
+                },
+                colorAxis: {
+	                min: 0,
+	                minColor: '#fff',
+	                maxColor: '#006cee',
+	                labels:{
+	                    style:{
+	                        "color":"red","fontWeight":"bold"
+	                    }
+	                }
+                },
+                series: [{
+	                data: data,
+	                mapData: mapdata,
+	                joinBy: 'name',
+	                name: '重庆市地图'
+                }]
+            });
+    });
+}
+
+
+<!--civil backup js function -->
+function civil_map_chart(chart_name, chart_data){
+    $.getJSON('https://data.jianshukeji.com/jsonp?filename=geochina/chongqing.json&callback=?', function(mapdata) {
+var data = chart_data;
+
+map1 = new Highcharts.Map(chart_name, {
+title: {
+text: '重庆地区案件分布'
+},
+mapNavigation: {
+enabled: true,
+buttonOptions: {
+    verticalAlign: 'bottom'
+}
+},
+credits:{
+enabled:false,
+},
+exporting:{
+enabled:false,
+},
+colorAxis: {
+min: 0,
+minColor: '#ffffff',
+maxColor: '#006aee',
+labels:{
+    style:{
+        "color":"red","fontWeight":"bold"
+    }
+}
+},
+series: [{
+data: data,
+mapData: mapdata,
+joinBy: 'name',
+name: '重庆市地图'
+}]
+});
+});
+}
+    function civil_his_chart(chart_name, chart_data){
+    Highcharts.chart(chart_name,{
+        chart: {
+                type: 'bar'
+                },
+                credits:{
+                        enabled:false
+                },
+                title: {
+                text: '各地区收案情况'
+                },
+
+                exporting:{
+                enabled:false,
+                },
+                legend:{
+                        enabled:false
+                },
+                xAxis: {
+                categories: chart_data[0],
+                title: {
+                text: null
+                }
+                },
+                yAxis: {
+                min: 0,
+                title: {
+                text: '案件数量',
+                align: 'high'
+                },
+
+                },
+
+                plotOptions: {
+                bar: {
+                dataLabels: {
+                    enabled: true,
+                    allowOverlap: true // 允许数据标签重叠
+                }
+                }
+                },
+
+                series: [ {
+                name: '',
+                data: chart_data[1]
+                }]
+                })
+}
+
+    function pie_list_echarts(chart_name, chart_data) {
+        var myChart = echarts.init(document.getElementById(chart_name));
+        {#console.log(chart_data)#}
+        var option = {
+                legend: {},
+                tooltip: {},
+                dataset: {
+                    source:chart_data
+
+                },
+                title: [{
+                    text: ''
+                }, {
+                    subtext: '案件难度80~100',
+                    left: '25%',
+                    top: '45%',
+                    textAlign: 'center',
+                    subtextStyle:{
+                        fontWeight:'bold',
+                        color:'#000'
+                    }
+                }, {
+                    subtext: '案件难度60~80',
+                    left: '75%',
+                    top: '45%',
+                    textAlign: 'center',
+                    subtextStyle:{
+                        fontWeight:'bold',
+                        color:'#000'
+                    }
+                }, {
+                    subtext: '案件难度40~60',
+                    left: '25%',
+                    top: '90%',
+                    textAlign: 'center',
+                    subtextStyle:{
+                        fontWeight:'bold',
+                        color:'#000'
+                    }
+                },{
+                    subtext: '案件难度0~40',
+                    left: '75%',
+                    top: '90%',
+                    textAlign: 'center',
+                    subtextStyle:{
+                        fontWeight:'bold',
+                        color:'#000'
+                    }
+                }
+                ],
+
+                series: [{
+                    type: 'pie',
+                    radius: 60,
+                    center: ['25%', '30%']
+                    // No encode specified, by default, it is '2012'.
+
+                }, {
+                    type: 'pie',
+                    radius: 60,
+                    center: ['75%', '30%'],
+                    encode: {
+                        itemName: '案件难度',
+                        value: '案件难度60~80',
+
+                    }
+                }, {
+                    type: 'pie',
+                    radius: 60,
+                    center: ['25%', '75%'],
+                    encode: {
+                        itemName: '案件难度',
+                        value: '案件难度40~60'
+                    }
+                }, {
+                    type: 'pie',
+                    radius: 60,
+                    center: ['75%', '75%'],
+                    encode: {
+                        itemName: '案件难度',
+                        value: '案件难度0~40'
+                    }
+                }]
+            };
+        myChart.setOption(option);
+    }
+
+    function his_chart_echarts(chart_name, chart_data) {
+        var myChart = echarts.init(document.getElementById(chart_name));
+        {#alert(chart_data);#}
+        var option = {
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                        type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                    }
+                },
+                legend: {
+                    data: ['难度80~100', '难度60~80', '难度40~60', '难度0~40']
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'value'
+                },
+                yAxis: {
+                    type: 'category',
+                    data: chart_data[0]
+                },
+                series: [
+                    {
+                        name: '难度80~100',
+                        type: 'bar',
+                        stack: '总量',
+                        label: {
+                            show: true,
+                            position: 'insideRight'
+                        },
+                        data: chart_data[1]
+                    },
+                    {
+                        name: '难度60~80',
+                        type: 'bar',
+                        stack: '总量',
+                        label: {
+                            show: true,
+                            position: 'insideRight'
+                        },
+                        data: chart_data[2]
+                    },
+                    {
+                        name: '难度40~60',
+                        type: 'bar',
+                        stack: '总量',
+                        label: {
+                            show: true,
+                            position: 'insideRight'
+                        },
+                        data: chart_data[3]
+                    },
+                    {
+                        name: '难度0~40',
+                        type: 'bar',
+                        stack: '总量',
+                        label: {
+                            show: true,
+                            position: 'insideRight'
+                        },
+                        data: chart_data[4]
+                    }
+                ]
+            };
+        myChart.setOption(option);
+    }
+
+
+    function bubble_chart(chart_name, chart_data){
+        {#alert(chart_data['data'][0]['value'])#}
+        Highcharts.chart(chart_name, {
+                chart: {
+                type: 'packedbubble',
+                },
+                title: {
+                text: '案件案由数量'
+                },
+                tooltip: {
+                useHTML: true,
+                pointFormat: '<b>{point.name}:</b> {point.y}'
+                },
+                plotOptions: {
+                packedbubble: {
+                minSize: '30%',
+                maxSize: '120%',
+                zMin: 0,
+                zMax: chart_data['data'][0]['value'],
+                layoutAlgorithm: {
+                    splitSeries: false,
+                    gravitationalConstant: 0.02
+                },
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}',
+                    filter: {
+                        property: 'y',
+                        operator: '>',
+                        value: 2000
+                    },
+                    style: {
+                        color: 'black',
+                        textOutline: 'none',
+                        fontWeight: 'normal'
+                    }
+                }
+                }
+                },
+                credits:{
+                enabled:false,
+                },
+                exporting:{
+                enabled:false,
+                },
+                series: [chart_data],
+                });
+    }
+
+    function line_chart_echarts(chart_name, chart_data) {
+    var myChart = echarts.init(document.getElementById(chart_name));
+        // 指定图表的配置项和数据
+
+
+var date = chart_data[0];
+var data = chart_data[1][0]['data'];
+option = {
+    tooltip: {
+        trigger: 'axis',
+        position: function (pt) {
+            return [pt[0], '10%'];
+        }
+    },
+    title: {
+        left: 'center',
+        text: '案件数量走势',
+    },
+    toolbox: {
+        feature: {
+            dataZoom: {
+                yAxisIndex: 'none'
+            },
+            restore: {},
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: date
+    },
+    yAxis: {
+        max:Math.max.apply(null,data)+200,
+        type: 'value',
+        boundaryGap: [0, '100%']
+    },
+    dataZoom: [{
+        type: 'inside',
+        start: 0,
+        end: 100
+    }, {
+        start: 0,
+        end: 10,
+        handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+        handleSize: '80%',
+        handleStyle: {
+            color: '#fff',
+            shadowBlur: 3,
+            shadowColor: 'rgba(0, 0, 0, 0.6)',
+            shadowOffsetX: 2,
+            shadowOffsetY: 2
+        }
+    }],
+    series: [
+        {
+            name: '案件数量',
+            type: 'line',
+            smooth: true,
+            symbol: 'none',
+            sampling: 'average',
+            itemStyle: {
+                color: 'rgb(255, 70, 131)'
+            },
+            areaStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: 'rgb(255, 158, 68)'
+                }, {
+                    offset: 1,
+                    color: 'rgb(255, 70, 131)'
+                }])
+            },
+            data: data
+        }
+    ]
+};
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+}
+
+</script>

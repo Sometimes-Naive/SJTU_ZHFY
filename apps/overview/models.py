@@ -23,7 +23,7 @@ class AllData(Document):
     判决信息 = ListField()
     meta = {
         # 'db_alias': 'all_data_db',
-        'collection': 'database'
+        'collection': 'WSK',#database
     }
 
 class CriminalCaseDoc(Document):
