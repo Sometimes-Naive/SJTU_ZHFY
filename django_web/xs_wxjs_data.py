@@ -497,7 +497,8 @@ F_chart_wxjs_data = ChartRegion(WXJSdefendant_info).get_Fchart_data()
 S_chart_wxjs_data = ChartRegion(WXJSdefendant_info).get_Schart_data()
 
 T_chart_wxjs_data = ChartRegion(WXJSdefendant_info).get_Tchart_data()
-# print(F_chart_wxjs_data)
+
+print('F_chart_wxjs_data: ', F_chart_wxjs_data)
 # print('*'*100)
 # print(S_chart_wxjs_data)
 # print('*'*100)

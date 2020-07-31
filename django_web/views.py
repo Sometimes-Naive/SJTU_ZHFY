@@ -9,10 +9,11 @@ from django_web.overview import *
 from django_web.ms_data import *
 from django_web.xs_data import *
 from django_web.xz_data import *
+from django_web.yshj_test_data import *
+
 # Create your views here.
 def index(request):
-    return render(request,'index.html')
-
+    return render(request, 'index.html')
 
 def overview(request):
 
@@ -21,7 +22,7 @@ def overview(request):
         'CASE': CASE,
         'CASE_CATE': '总体'
     }
-    return render(request,'home/overview.html',context)
+    return render(request, 'home/overview.html', context)
 def chart1(request):
     context = {
         'CASE_INFO': mscase_info,
@@ -38,7 +39,7 @@ def chart2(request):
         'XSCASE': xscase,
         'CASE_CATE': '刑事'
     }
-    return render(request,'home/chart2.html',context)
+    return render(request, 'home/chart2.html', context)
 def chart3(request):
     context = {
         'CASE_INFO': xzcase_info,
@@ -46,7 +47,7 @@ def chart3(request):
         'XZCASE': xzcase,
         'CASE_CATE': '行政'
     }
-    return render(request,'home/chart3.html',context)
+    return render(request, 'home/chart3.html', context)
 
 def wxjsz(request):
 
@@ -56,7 +57,7 @@ def wxjsz(request):
         'S_chart_data': S_chart_wxjs_data,
         'T_chart_data': T_chart_wxjs_data,
     }
-    return render(request, 'XS_topic/WXJSZ.html',context)
+    return render(request, 'XS_topic/WXJSZ.html', context)
 def dqz(request):
     context = {
         'AY_INFO': xsay_info,
@@ -64,17 +65,15 @@ def dqz(request):
         'S_chart_data': S_chart_dqz_data,
         'T_chart_data': T_chart_dqz_data,
     }
-    return render(request, 'XS_topic/DQZ.html',context)
+    return render(request, 'XS_topic/DQZ.html', context)
 
 def lhjf(request):
     context={
         'person_info': person_info,
         'msay_info': msay_info,
-        'overview_data':overview_data,
+        'overview_data': overview_data,
     }
-
-
-    return render(request, 'MS_topic/LHJF.html',context)
+    return render(request, 'MS_topic/LHJF.html', context)
 
 def sjayc(request):
     context = {
@@ -132,6 +131,30 @@ def tsyp(request):
         'histogram_data': [ysxg_hdata, jazx_hdata],
     }
     return render(request, 'tsyp/tsyp1.html', context)
+
+# try
+def yshj(request):
+    context = {
+        'rank_data': overall_rank,
+        'line_data': overall_trend,
+        'heatmap_data': heatmap_data,
+        'hist_data': indicator_trend,
+        # 'pccl_data': pccl_score,
+        # 'htzx_data': htzx_score,
+        # 'spider_data': spidermap_data,
+        # 'diff_data': diff_data,
+    }
+    return render(request, 'yshj/yshj1.html', context)
+
+# 关联关系
+def yshj2(request):
+    context = {
+        'pccl_data': pccl_score,
+        'htzx_data': htzx_score,
+        'spider_data': spidermap_data,
+        'diff_data': diff_data,
+    }
+    return render(request, 'yshj2/yshj2.html', context)
 
 def get_detail_page(request,case_id_cate):
     case_cate = case_id_cate.split('&&')[1]

@@ -30,5 +30,7 @@ urlpatterns = [
     path('sjayc/', sjayc),
     path('tsyp/', tsyp),
     path('detail/<str:case_id_cate>', get_detail_page),
+    path('yshj/', yshj),    # drf
+    path('yshj2/', yshj2)
     # path('detail/<str:mscase_id_cate>', get_msdetail_page)
 ]

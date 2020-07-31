@@ -101,8 +101,12 @@ class XsData:
         name_list = list(set(defendant_name_list))
         return name_list
 
-
+"""
+for i in XSAJ.objects:
+    print('XSAJ.objects: ',  i.标题)
+"""
 xscase_info = XsData().get_case_info()
+print('xscase_info: ', xscase_info)
 xscase = XsData().get_detail_info()
 xsay_info = XsData().get_ay_info()
 

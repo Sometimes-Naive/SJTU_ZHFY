@@ -457,7 +457,7 @@ S_chart_dqz_data = ChartRegion(DQdefendant_info).get_Schart_data()
 
 T_chart_dqz_data = ChartRegion(DQdefendant_info).get_Tchart_data()
 
-
+# print('F_chart_dqz_data: ', F_chart_dqz_data)
 
 
 

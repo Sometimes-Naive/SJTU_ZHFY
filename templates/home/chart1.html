@@ -297,7 +297,11 @@ name: '重庆市地图'
                 });
     }
     bubble_chart('chart2', {{ AY_INFO |safe }});
+    function aa(data) {
+        console.log(data)
 
+    }
+    aa({{ MSCASE | safe }})
 </script>
 
 

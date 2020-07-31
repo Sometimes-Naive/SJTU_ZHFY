@@ -95,8 +95,8 @@ class RangeChartData:
         return hdata, pie_data
 
 #排名数据
-url_result = 'C:\\Users\\WSK\\PycharmProjects\\Django\\data\\tsyp\\result.xls'
-url_data = 'C:\\Users\\WSK\\PycharmProjects\\Django\\data\\tsyp\\data.xls'
+url_result = 'E:\\Pycharm_projects\\SJTU_ZHFY\\data\\tsyp\\result.xls'
+url_data = 'E:\\Pycharm_projects\\SJTU_ZHFY\\data\\tsyp\\data.xls'
 zzx_region, zzx_score = RangeChartData('总排名', url_result).get_region_score1()
 lagl_region, lagl_score = RangeChartData('立案管理排名', url_result).get_region_score()
 spbl_region, spbl_score = RangeChartData('审判办理排名', url_result).get_region_score()
@@ -108,3 +108,7 @@ lasl_data = RangeChartData('全部地区', url_data).get_pie_data()
 #柱状图数据
 ysxg_hdata, yszs_data = RangeChartData('全部地区', url_data).get_his_data(14, 15, '一审效果指数')
 jazx_hdata, jazx_data = RangeChartData('全部地区', url_data).get_his_data(21, 24, '结案与执行指数')
+
+print('map_data: ', map_data)
+print('zzx_region: ', zzx_region)
+print('zzx_score: ', zzx_score)

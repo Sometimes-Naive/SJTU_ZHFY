@@ -4,7 +4,7 @@ from mongoengine import *
 # Create your models here.
 from mongoengine import connect
 
-connect('MS_data', host='127.0.0.1', port=27017)
+connect('MS_data', host='202.121.180.66', port=7101)
 
 
 class XSAJ(Document):
@@ -46,7 +46,7 @@ class XSAJ(Document):
     附录 = StringField()
     附录2 = StringField()
     meta = {
-        'collection':'XS_law_data'
+        'collection': 'XS_law_data'
     }
 
 class XZAJ(Document):
@@ -88,7 +88,7 @@ class XZAJ(Document):
     附录 = StringField()
     附录2 = StringField()
     meta = {
-        'collection':'XZ_law_data'
+        'collection': 'XZ_law_data'
     }
 
 class MSAJ(Document):
@@ -130,7 +130,11 @@ class MSAJ(Document):
     附录 = StringField()
     附录2 = StringField()
     meta = {
-        'collection':'MS_law_data'
+        'collection': 'MS_law_data'
     }
 
 
+"""
+for i in XSAJ.objects:
+    print(i.标题)
+"""

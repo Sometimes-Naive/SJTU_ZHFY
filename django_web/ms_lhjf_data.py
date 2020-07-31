@@ -1,11 +1,12 @@
 #coding: utf-8
 import re
 from mongoengine import *
-disconnect()
-connect('TOPIC_data', host='127.0.0.1', port=27017)
+# disconnect()
+connect('TOPIC_data', host='202.121.180.66', port=7101)
+
 
 class LHJF(Document):
-    头部信息=StringField()
+    头部信息 = StringField()
     当事人信息 = StringField()
     庭审过程 = StringField()
     尾部信息 = StringField()
@@ -61,6 +62,7 @@ class MsLhjfData:
             '男': 0,
             '女': 0
         }
+        # print(LHJF.objects)
         for i in LHJF.objects:
             if i.头部信息:
                 for j in i.头部信息.split('、'):
@@ -422,7 +424,7 @@ class OverviewInfo:
 
     def get_overview_data(self):
         map_lhjf_data = MsLhjfData().get_map_data()
-        lhjf_ajnumber = 85696#LHJF.objects.count()  #
+        lhjf_ajnumber = 85696   # LHJF.objects.count() #
         lhjf_pnumber = plaintiff_sex['男'] + plaintiff_sex['女'] + defendant_sex['男'] + defendant_sex['女']
         region_case_number = OverviewInfo().get_his_row_data(map_lhjf_data)
         line_data = OverviewInfo().get_line_data(case_date_number)
@@ -507,7 +509,8 @@ class ChartData:
 
 person_info = ChartData().get_person_info()
 
-
+# print(person_info)
+print(overview_data['line_data'])
 
 
 # female_num1 = []
