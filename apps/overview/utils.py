@@ -41,8 +41,13 @@ def json_data_w(data, file_name):
 
 
 def json_data_r(file_name):
-    with open(file_name, 'r', encoding='utf-8') as f:
-        data = json.load(f)
+    try:
+        with open(file_name, 'r', encoding='utf-8') as f:
+            # encoding='utf-8'
+            data = json.load(f)
+    except:
+        with open(file_name, 'r', encoding='gbk') as f:
+            data = json.load(f)
     return data
 
 
@@ -83,7 +88,6 @@ def info2str(info):
         else:
             str1 = str1 + '\n' + j
     return str1
-<<<<<<< HEAD
 
 def unzip_single(src_file, dest_dir, password):
     ''' 解压单个文件到目标文件夹。
@@ -134,5 +138,3 @@ def data_unzip():
         os.mkdir(dest_dir)
 
     unzip_all(source_dir, dest_dir, password)
-=======
->>>>>>> c6581c444fdcd55f1f18e304eb79e0c0089944fb

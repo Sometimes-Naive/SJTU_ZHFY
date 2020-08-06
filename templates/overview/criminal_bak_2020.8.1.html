@@ -1,0 +1,556 @@
+{% extends 'layout.html' %}
+{% block head %}
+<div class="item header">刑事案件</div>
+
+
+{% endblock %}
+{% block column1 %}
+<div class="ui relaxed centered grid" style="height:150%" >
+<div class="row" style="height: 50%">
+    <div class="column" style="width:19%;height:100%;background-color: #ffffff">
+        <div class="ui selection dropdown" style="">案由列表
+          <input type="hidden" name="案由">
+          <i class="dropdown icon"></i>
+          <div class="default text " style="width: 15.4em"><i class="world icon"></i>整体数据</div>
+          <div class="menu">
+              <a class="item" href="javascript:void(0);" onclick="line_chart_echarts('chart5', {{ case_outline|get_list:0|get_list:0|get_dict:'date_case_number' | safe}}),his_chart('chart4', {{ case_outline|get_list:0|get_list:0|get_dict:'region_case_number' | safe }}),map_chart('chart3',{{ case_outline|get_list:0|get_list:0|get_dict:'map' | safe }})"><i class="world icon"></i>{{case_cause.0}}</a>
+              <a class="item" href="javascript:void(0);" onclick="line_chart_echarts('chart5', {{ case_outline|get_list:0|get_list:1|get_dict:'date_case_number' | safe}}),his_chart('chart4', {{ case_outline|get_list:0|get_list:1|get_dict:'region_case_number' | safe }}),map_chart('chart3',{{ case_outline|get_list:0|get_list:1|get_dict:'map' | safe }})"><i class="world icon"></i>{{case_cause.1}}</a>
+              <a class="item" href="javascript:void(0);" onclick="line_chart_echarts('chart5', {{ case_outline|get_list:0|get_list:2|get_dict:'date_case_number' | safe}}),his_chart('chart4', {{ case_outline|get_list:0|get_list:2|get_dict:'region_case_number' | safe }}),map_chart('chart3',{{ case_outline|get_list:0|get_list:2|get_dict:'map' | safe }})"><i class="world icon"></i>{{case_cause.2}}</a>
+              <a class="item" href="javascript:void(0);" onclick="line_chart_echarts('chart5', {{ case_outline|get_list:0|get_list:3|get_dict:'date_case_number' | safe}}),his_chart('chart4', {{ case_outline|get_list:0|get_list:3|get_dict:'region_case_number' | safe }}),map_chart('chart3',{{ case_outline|get_list:0|get_list:3|get_dict:'map' | safe }})"><i class="world icon"></i>{{case_cause.3}}</a>
+              <a class="item" href="javascript:void(0);" onclick="line_chart_echarts('chart5', {{ case_outline|get_list:0|get_list:4|get_dict:'date_case_number' | safe}}),his_chart('chart4', {{ case_outline|get_list:0|get_list:4|get_dict:'region_case_number' | safe }}),map_chart('chart3',{{ case_outline|get_list:0|get_list:4|get_dict:'map' | safe }})"><i class="world icon"></i>{{case_cause.4}}</a>
+          </div>
+        </div>
+    <div class="ui segment container row" style="height: 44%;background-color: #ffffff" >
+        <div class="ui  container" style="height: 44%;width: 100%;">
+        <div class="ui cen small statistic" style="margin: 12.5% 25%">
+          <div class="value" >
+            {{ case_outline|get_list:0|get_list:5|get_dict:'case_number' }}
+          </div>
+          <div class="label" style="font-size: 20px">
+            案件数量
+          </div>
+        </div>
+        </div>
+        <div class="ui divider"></div>
+        <div class="ui  container" style="height: 44%;width: 100%;">
+        <div class="ui cen small statistic" style="margin: 12.5% 25%">
+          <div class="value">
+            {{ case_outline|get_list:0|get_list:5|get_dict:'people_number' }}
+          </div>
+          <div class="label" style="font-size: 20px">
+            当事人数量
+          </div>
+        </div>
+        </div>
+
+    </div>
+    <div class="ui segment container row" style="height: 50%;background-color: #ffffff" id="chart2">
+        案由统计
+
+    </div>
+
+</div>
+
+    <div class="column" style="width:40%;height:100%;background-color: #ffffff">
+    <div class="ui segment container row" style="height:102%;background-color: #ffffff" id="chart3"></div>
+</div>
+
+    <div class="column" style="width:40%;height:100%;background-color: #ffffff">
+    <div class="ui segment container row" style="height: 50%;background-color: #ffffff" id="chart4"></div>
+    <div class="ui segment container row" style="height: 50%;background-color: #ffffff" id="chart5">
+
+    </div>
+</div>
+</div>
+<div class="ui segment container row" style="height:55%;background-color: #ffffff">
+        <div class="ui  container row" style="height: 10%;width: 100%">
+            <span class="ui header " style="height:8%;">热点案件</span>
+            <div class="ui divider" style="width: 100%"></div>
+            
+        </div>
+        <p></p>
+            {% csrf_token %}
+            <div class="ui container row" style="margin-left:2em !important">
+                <div class="ui selection dropdown"  id="dropdown" style="margin-right: 70%;width: auto;text-align: center;border: 0">刑事案由
+                <input type="hidden" name="案由">
+                <i class="dropdown icon"></i>
+                <div class="text" style="margin-top: 0.5em;width: 30em"><i class="world icon"></i>请选择</div>
+                <div class="menu" >
+                <a class="item" href="javascript:void(0);"><i class="world icon"></i>{{ case_cause.0 }}</a>
+                <a class="item" href="javascript:void(0);"><i class="world icon"></i>{{ case_cause.1 }}</a>
+                <a class="item" href="javascript:void(0);"><i class="world icon"></i>{{ case_cause.2 }}</a>
+                <a class="item" href="javascript:void(0);"><i class="world icon"></i>{{ case_cause.3 }}</a>
+                <a class="item" href="javascript:void(0);"><i class="world icon"></i>{{ case_cause.4 }}</a>
+            </div>
+        </div>
+
+
+        </div>
+        
+
+        <div class="ui container column" style="background-color: #ffffff;height: 80%;width: 50%;padding-left: 6em;line-height: 400%;font-size: 16px;" id="chart11">
+{#            <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.0 %}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ case_evaluation.case_title.0 }}</div>#}
+{#            <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.1 %}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ case_evaluation.case_title.1 }}</div>#}
+{#            <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.2 %}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ case_evaluation.case_title.2 }}</div>#}
+{#            <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.3 %}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ case_evaluation.case_title.3 }}</div>#}
+{#            <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.4 %}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ case_evaluation.case_title.4 }}</div>#}
+
+        </div>
+        <div class="ui container column" style="background-color: #ffffff;height: 80%;width: 50%;padding-left: 4em;line-height: 400%;font-size: 16px;" id="chart12">
+{#            <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.5 %}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ case_evaluation.case_title.5 }}</div>#}
+{#            <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.6 %}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ case_evaluation.case_title.6 }}</div>#}
+{#            <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.7 %}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ case_evaluation.case_title.7 }}</div>#}
+{#            <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.8 %}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ case_evaluation.case_title.8 }}</div>#}
+{#            <div href="javascript:void(0);" onclick="jump('{% url 'detail' case_evaluation.case_id.9 %}')"><i class="file text icon" style="width: 10%;"> 案件难度</i>{{ case_evaluation.case_title.9 }}</div>#}
+        </div>
+
+</div>
+<div class="ui segment container row" style="height:35%;background-color: #ffffff">
+        <div class="ui  container row" style="height: 10%;width: 100%">
+           <span class="ui header " style="height:8%;">重点案由
+
+            </span>
+            <p></p>
+                <div class="text" style="font-size: 16px"></div>
+            <p></p>
+
+        </div>
+<div class="ui divider" style="width: 100%"></div>
+        <div class="ui container column" style="background-color: #ffffff;height: 120%;width: 50%" id="chart13"></div>
+
+        <div class="ui container column" style="background-color: #ffffff;height: 120%;width:50%" id="chart14"></div>
+
+</div>
+
+</div>
+
+
+{% endblock %}
+
+{% block jschart %}
+
+<script>
+    function jump(url){
+        window.open(url);
+    }
+    function map_chart(chart_name, chart_data){
+    $.getJSON('https://data.jianshukeji.com/jsonp?filename=geochina/chongqing.json&callback=?', function(mapdata) {
+var data = chart_data;
+
+map1 = new Highcharts.Map(chart_name, {
+title: {
+text: '重庆地区案件分布'
+},
+mapNavigation: {
+enabled: true,
+buttonOptions: {
+    verticalAlign: 'bottom'
+}
+},
+credits:{
+enabled:false,
+},
+exporting:{
+enabled:false,
+},
+colorAxis: {
+min: 0,
+minColor: '#fff',
+maxColor: '#006cee',
+labels:{
+    style:{
+        "color":"red","fontWeight":"bold"
+    }
+}
+},
+series: [{
+data: data,
+mapData: mapdata,
+joinBy: 'name',
+name: '重庆市地图'
+}]
+});
+});
+}
+    function his_chart(chart_name, chart_data){
+    Highcharts.chart(chart_name,{
+        chart: {
+                type: 'bar'
+                },
+                credits:{
+                        enabled:false
+                },
+                title: {
+                text: '各地区收案情况'
+                },
+
+                exporting:{
+                enabled:false,
+                },
+                legend:{
+                        enabled:false
+                },
+                xAxis: {
+                categories: chart_data[0],
+                title: {
+                text: null
+                }
+                },
+                yAxis: {
+                min: 0,
+                title: {
+                text: '案件数量',
+                align: 'high'
+                },
+
+                },
+
+                plotOptions: {
+                bar: {
+                dataLabels: {
+                    enabled: true,
+                    allowOverlap: true // 允许数据标签重叠
+                }
+                }
+                },
+
+                series: [ {
+                name: '',
+                data: chart_data[1]
+                }]
+                })
+}
+$("#dropdown").on("click", function () {
+    var csrfToken = $("[name='csrfmiddlewaretoken']").val();
+    $.ajax({
+        url: "ajax_add/",
+        type: "POST",
+        data: {"dropdown": $("#dropdown").text(), "csrfmiddlewaretoken": csrfToken},
+
+        success: function(result){
+            append_case_difficulty_titles(result) 
+        }
+    })
+});
+function append_case_difficulty_titles(obj){
+    {#alert(obj)#}
+    $('#chart11').empty();   //清空resText里面的所有内容
+    $('#chart12').empty();
+    var html11 = '';
+    var html12 = '';
+    var test;
+    {#alert(obj);#}
+    test = eval("("+obj+")");
+    {#alert(test);#}
+    for (var i=0 ;i<5;i++){
+        {#alert(obj["case_id"]);#}
+        html11 += '<div href="javascript:void(0);" onclick="jump(\'detail/' + test['case_id'][i] + '\')"><i class="file text icon" style="width: 20%;text-align: left;"> 案件难度 '+ test['case_degree'][i] +'</i><p style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis">'+test['case_title'][i] +'</p></div>';
+        {#alert(html11)#}
+    }
+
+    for (var i=5 ;i<10;i++){
+        {#alert(obj["case_id"]);#}
+        {#var key = test['key_list'][i];#}
+        html12 += '<div href="javascript:void(0);" onclick="jump(\'detail/' + test['case_id'][i] + '\')"><i class="file text icon" style="width: 20%;text-align: left;"> 案件难度 '+ test['case_degree'][i] +'</i><p style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis">'+test['case_title'][i] +'</p></div>';
+        {#alert(html)#}
+    }
+    $('#chart11').html(html11);
+    $('#chart12').html(html12);
+}
+    function pie_list_echarts(chart_name, chart_data) {
+        var myChart = echarts.init(document.getElementById(chart_name));
+        {#console.log(chart_data)#}
+        var option = {
+                legend: {},
+                tooltip: {},
+                dataset: {
+                    source:chart_data
+
+                },
+                title: [{
+                    text: ''
+                }, {
+                    subtext: '案件难度80~100',
+                    left: '25%',
+                    top: '45%',
+                    textAlign: 'center',
+                    subtextStyle:{
+                        fontWeight:'bold',
+                        color:'#000'
+                    }
+                }, {
+                    subtext: '案件难度60~80',
+                    left: '75%',
+                    top: '45%',
+                    textAlign: 'center',
+                    subtextStyle:{
+                        fontWeight:'bold',
+                        color:'#000'
+                    }
+                }, {
+                    subtext: '案件难度40~60',
+                    left: '25%',
+                    top: '90%',
+                    textAlign: 'center',
+                    subtextStyle:{
+                        fontWeight:'bold',
+                        color:'#000'
+                    }
+                },{
+                    subtext: '案件难度0~40',
+                    left: '75%',
+                    top: '90%',
+                    textAlign: 'center',
+                    subtextStyle:{
+                        fontWeight:'bold',
+                        color:'#000'
+                    }
+                }
+                ],
+
+                series: [{
+                    type: 'pie',
+                    radius: 60,
+                    center: ['25%', '30%']
+                    // No encode specified, by default, it is '2012'.
+
+                }, {
+                    type: 'pie',
+                    radius: 60,
+                    center: ['75%', '30%'],
+                    encode: {
+                        itemName: '案件难度',
+                        value: '案件难度60~80',
+
+                    }
+                }, {
+                    type: 'pie',
+                    radius: 60,
+                    center: ['25%', '75%'],
+                    encode: {
+                        itemName: '案件难度',
+                        value: '案件难度40~60'
+                    }
+                }, {
+                    type: 'pie',
+                    radius: 60,
+                    center: ['75%', '75%'],
+                    encode: {
+                        itemName: '案件难度',
+                        value: '案件难度0~40'
+                    }
+                }]
+            };
+        myChart.setOption(option);
+    }
+    pie_list_echarts('chart13',{{ case_outline.2.pie |safe }});
+    function his_chart_echarts(chart_name, chart_data) {
+        var myChart = echarts.init(document.getElementById(chart_name));
+        {#alert(chart_data);#}
+        var option = {
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                        type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                    }
+                },
+                legend: {
+                    data: ['难度80~100', '难度60~80', '难度40~60', '难度0~40']
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'value'
+                },
+                yAxis: {
+                    type: 'category',
+                    data: chart_data[0]
+                },
+                series: [
+                    {
+                        name: '难度80~100',
+                        type: 'bar',
+                        stack: '总量',
+                        label: {
+                            show: true,
+                            position: 'insideRight'
+                        },
+                        data: chart_data[1]
+                    },
+                    {
+                        name: '难度60~80',
+                        type: 'bar',
+                        stack: '总量',
+                        label: {
+                            show: true,
+                            position: 'insideRight'
+                        },
+                        data: chart_data[2]
+                    },
+                    {
+                        name: '难度40~60',
+                        type: 'bar',
+                        stack: '总量',
+                        label: {
+                            show: true,
+                            position: 'insideRight'
+                        },
+                        data: chart_data[3]
+                    },
+                    {
+                        name: '难度0~40',
+                        type: 'bar',
+                        stack: '总量',
+                        label: {
+                            show: true,
+                            position: 'insideRight'
+                        },
+                        data: chart_data[4]
+                    }
+                ]
+            };
+        myChart.setOption(option);
+    }
+    his_chart_echarts('chart14',{{ case_outline.2.his | safe }})
+    function bubble_chart(chart_name, chart_data){
+        Highcharts.chart(chart_name, {
+                chart: {
+                type: 'packedbubble',
+                },
+                title: {
+                text: '案件案由数量'
+                },
+                tooltip: {
+                useHTML: true,
+                pointFormat: '<b>{point.name}:</b> {point.y}'
+                },
+                plotOptions: {
+                packedbubble: {
+                minSize: '30%',
+                maxSize: '120%',
+                zMin: 0,
+                zMax: chart_data['data'][0]['value'],
+                layoutAlgorithm: {
+                    splitSeries: false,
+                    gravitationalConstant: 0.02
+                },
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}',
+                    filter: {
+                        property: 'y',
+                        operator: '>',
+                        value: 0
+                    },
+                    style: {
+                        color: 'black',
+                        textOutline: 'none',
+                        fontWeight: 'normal'
+                    }
+                }
+                }
+                },
+                credits:{
+                enabled:false,
+                },
+                exporting:{
+                enabled:false,
+                },
+                series: [chart_data],
+                });
+    }
+    function line_chart_echarts(chart_name, chart_data) {
+    var myChart = echarts.init(document.getElementById(chart_name));
+        // 指定图表的配置项和数据
+
+
+var date = chart_data[0];
+var data = chart_data[1][0]['data'];
+option = {
+    tooltip: {
+        trigger: 'axis',
+        position: function (pt) {
+            return [pt[0], '10%'];
+        }
+    },
+    title: {
+        left: 'center',
+        text: '案件数量走势',
+    },
+    toolbox: {
+        feature: {
+            dataZoom: {
+                yAxisIndex: 'none'
+            },
+            restore: {},
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: date
+    },
+    yAxis: {
+        max:Math.max.apply(null,data)+30,
+        type: 'value',
+        boundaryGap: [0, '100%']
+    },
+    dataZoom: [{
+        type: 'inside',
+        start: 0,
+        end: 100
+    }, {
+        start: 0,
+        end: 10,
+        handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+        handleSize: '80%',
+        handleStyle: {
+            color: '#fff',
+            shadowBlur: 3,
+            shadowColor: 'rgba(0, 0, 0, 0.6)',
+            shadowOffsetX: 2,
+            shadowOffsetY: 2
+        }
+    }],
+    series: [
+        {
+            name: '案件数量',
+            type: 'line',
+            smooth: true,
+            symbol: 'none',
+            sampling: 'average',
+            itemStyle: {
+                color: 'rgb(255, 70, 131)'
+            },
+            areaStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: 'rgb(255, 158, 68)'
+                }, {
+                    offset: 1,
+                    color: 'rgb(255, 70, 131)'
+                }])
+            },
+            data: data
+        }
+    ]
+};
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+}
+    line_chart_echarts('chart5', {{ case_outline | get_list:0 |get_list:5| get_dict:'date_case_number' | safe }});
+    bubble_chart('chart2', {{ case_outline | get_list:1 | safe }});
+    map_chart('chart3', {{ case_outline | get_list:0 |get_list:5| get_dict:'map' | safe }});
+    his_chart('chart4', {{ case_outline | get_list:0 |get_list:5| get_dict:'region_case_number' | safe }});
+
+
+</script>
+
+
+{% endblock %}

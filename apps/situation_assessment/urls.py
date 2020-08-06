@@ -10,4 +10,5 @@ from . import views
 urlpatterns = [
     path('index', views.show_index, name='situation_assessment.index'),
     path('index-system-tree', views.get_index_system_tree, name='tree'),
+
 ]

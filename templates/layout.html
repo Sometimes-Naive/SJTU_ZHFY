@@ -31,10 +31,9 @@
     <div class="ui menu" style="height: 60px;">
         <div class="ui basic dropdown button" id="aa" style="background-color:#ffffff" >
             <div class="item" style="font-weight: bold;font-size: 20px;height: 100%;"  >
-                <i class="world icon"></i>案件总览
+                <i class="world icon"></i>案件宏观态势研判
             </div>
             <div class="menu">
-<<<<<<< HEAD
                 <div class="item">
 
                     <i class="dropdown icon"></i>
@@ -62,7 +61,7 @@
 
         <div class="ui basic dropdown button" style="background-color:#ffffff">
             <span class="item" style="font-weight: bold;font-size: 20px;height: 100%;" >
-                <i class="book icon"></i>专题案件
+                <i class="book icon"></i>热点专题态势分析
             </span>
             <div class="menu">
                 <div class="item">
@@ -83,81 +82,36 @@
                         <a class="item" href="{% url 'dangerous_driving' %}">危险驾驶罪</a>
                         <a class="item" href="{% url 'theft' %}">盗窃罪</a>
                         <a class="item" href="{% url 'drug_trafficking' %}">走私、贩卖、运输毒品罪</a>
-=======
-                <div class="item">
-                <a class="text" href="{% url 'overall' %}" style="color: #000000;">案件总览</a>
-                </div>
-                <div class="item">
-                    <a class="text" href="{% url 'civil' %}" style="color: #000000">民事案件</a>
-                </div>
-                <div class="item">
-                    <a class="text" href="{% url 'criminal' %}" style="color: #000000">刑事案件</a>
-                </div>
-                <div class="item">
-                    <a class="text" href="{% url 'administrative' %}" style="color: #000000">行政案件</a>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="ui basic dropdown button" style="background-color:#ffffff">
-            <span class="item" style="font-weight: bold;font-size: 20px;height: 100%;" >
-                <i class="book icon"></i>专题案件
-            </span>
+        <div class="ui basic dropdown button" id="aa" style="background-color:#ffffff" >
+            <div class="item" style="font-weight: bold;font-size: 20px;height: 100%;"  >
+                <i class="world icon"></i>审判质效评估优化
+            </div>
             <div class="menu">
                 <div class="item">
-                    <i class="dropdown icon"></i>
-                    <span class="text">民事专题分析</span>
-                    <div class="menu">
-                        <a class="item" href="../lhjf">离婚纠纷案件</a>
-                        <a class="item" href="#">未定</a>
-                        <a class="item" href="#">未定</a>
-                    </div>
+
+
+                    <a class="text" href="{% url 'situation_assessment.index' %} " style="color: #000000">审判质效司法指标分析</a>
+
+
                 </div>
                 <div class="item">
-                    <i class="dropdown icon"></i>
-                    <span class="text">刑事专题分析</span>
-                    <div class="menu">
-                        <a class="item" href="../wxjsz">危险驾驶罪</a>
-                        <a class="item" href="../dqz">盗窃罪</a>
-                        <a class="item" href="#">未定</a>
-                    </div>
+
+
+
+                    <a class="text" href="{% url 'situation_assessment.index' %}" style="color: #000000">营商环境司法指标分析</a>
+
                 </div>
-                <div class="item">
-                    <i class="dropdown icon"></i>
-                    <span class="text">行政专题分析</span>
-                    <div class="menu">
-                        <a class="item" href="#">无</a>
-                        <a class="item" href="#">无</a>
-                        <a class="item" href="#">未定</a>
-                    </div>
-                </div>
-                <div class="item">
-                    <i class="dropdown icon"></i>
-                    <span class="text">定制专题分析</span>
-                    <div class="menu">
-                        <a class="item" href="#">无</a>
-                        <a class="item" href="#">无</a>
-                        <a class="item" href="#">未定</a>
->>>>>>> c6581c444fdcd55f1f18e304eb79e0c0089944fb
-                    </div>
-                </div>
+
             </div>
-        </div>
-        <div class="ui basic button" style="background-color:#ffffff" >
-<<<<<<< HEAD
-            <a class="item" style="font-weight: bold;font-size: 20px;height: 100%;" href="{% url 'situation_assessment.index' %}" >
-            <i class="student icon"></i>态势研判</a>
         </div>
         <div class="ui  basic button" style="background-color:#ffffff" >
             <a class="item" style="font-weight: bold;font-size: 20px;height: 100%;" href="{% url 'receive_close_prediction' %}" >
-=======
-            <a class="item" style="font-weight: bold;font-size: 20px;height: 100%;" href="../tsyp" >
-            <i class="student icon"></i>态势研判</a>
-        </div>
-        <div class="ui  basic button" style="background-color:#ffffff" >
-            <a class="item" style="font-weight: bold;font-size: 20px;height: 100%;" href="../sjayc" >
->>>>>>> c6581c444fdcd55f1f18e304eb79e0c0089944fb
-            <i class="bar chart icon"></i>收结案预测</a>
+            <i class="bar chart icon"></i>精细化管理预测</a>
         </div>
     </div>
     {% block column1 %}
