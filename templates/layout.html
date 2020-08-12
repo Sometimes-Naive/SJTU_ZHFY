@@ -35,18 +35,18 @@
                 <i class="world icon"></i>案件总览
             </div>
             <div class="menu">
-                <div class="item">
-                <a class="text" href="{% url 'overall' %}" style="color: #000000;">案件总览</a>
-                </div>
-                <div class="item">
-                    <a class="text" href="{% url 'civil' %}" style="color: #000000">民事案件</a>
-                </div>
-                <div class="item">
-                    <a class="text" href="{% url 'criminal' %}" style="color: #000000">刑事案件</a>
-                </div>
-                <div class="item">
-                    <a class="text" href="{% url 'administrative' %}" style="color: #000000">行政案件</a>
-                </div>
+{#                <div class="item">#}
+{#                <a class="text" href="{% url 'overall' %}" style="color: #000000;">案件总览</a>#}
+{#                </div>#}
+{#                <div class="item">#}
+{#                    <a class="text" href="{% url 'civil' %}" style="color: #000000">民事案件</a>#}
+{#                </div>#}
+{#                <div class="item">#}
+{#                    <a class="text" href="{% url 'criminal' %}" style="color: #000000">刑事案件</a>#}
+{#                </div>#}
+{#                <div class="item">#}
+{#                    <a class="text" href="{% url 'administrative' %}" style="color: #000000">行政案件</a>#}
+{#                </div>#}
             </div>
         </div>
 
@@ -93,9 +93,22 @@
                 </div>
             </div>
         </div>
-        <div class="ui basic button" style="background-color:#ffffff" >
-            <a class="item" style="font-weight: bold;font-size: 20px;height: 100%;" href="{% url 'situation_assessment.index' %}" >
-            <i class="student icon"></i>态势研判</a>
+        <div class="ui basic dropdown button" style="background-color:#ffffff">
+            <span class="item" style="font-weight: bold;font-size: 20px;height: 100%;">
+                <i class="book icon"></i>态势研判
+            </span>
+            {#                  <i class="dropdown icon"></i>#}
+            <div class="menu">
+                <div class="item">
+                    <a class="text" href="../situation-assessment/index-pre" style="color: #000000;">指标体系介绍</a>
+                </div>
+                <div class="item">
+                    <a class="text" href="../situation-assessment/index-app" style="color: #000000;">指标体系应用</a>
+                </div>
+                <div class="item">
+                    <a class="text" href="../situation-assessment/yshj" style="color: #000000;">营商指标分析</a>
+                </div>
+            </div>
         </div>
         <div class="ui  basic button" style="background-color:#ffffff" >
             <a class="item" style="font-weight: bold;font-size: 20px;height: 100%;" href="../sjayc" >

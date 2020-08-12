@@ -12,7 +12,7 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from . import managers
 from . import loaders
-from .temp_data import *
+from .yshj_test_data import *
 from .managers import *
 from .utils import json_data_r
 import json
@@ -73,7 +73,7 @@ import json
 #         'details': managers.compose_case_details(case_id)
 #     })
 
-def show_index(request):
+def index_app(request):
 
     context = {
         'range_data': [
@@ -129,11 +129,28 @@ def show_index(request):
         'spider_data': spidermap_data,
         'diff_data': diff_data,
     }
-    return render(request, 'situation-assessment/index.html', context)
+    return render(request, 'situation-assessment/index_app.html', context)
 
 def get_index_system_tree(request):
     return JsonResponse(json_data_r(DATA_PATH + 'tree.json.active'))
 
+def index_pre(request):
+
+    context = {}
+    return render(request, 'situation-assessment/index_pre.html', context)
+
+def yshj1(request):
+    context = {
+        'rank_data': overall_rank,
+        'line_data': overall_trend,
+        'heatmap_data': heatmap_data,
+        'hist_data': indicator_trend,
+        # 'pccl_data': pccl_score,
+        # 'htzx_data': htzx_score,
+        # 'spider_data': spidermap_data,
+        # 'diff_data': diff_data,
+    }
+    return render(request, 'situation-assessment/yshj1.html', context)
 
 from django.template.defaulttags import register
 @register.filter

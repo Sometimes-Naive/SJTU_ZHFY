@@ -36,9 +36,9 @@ import pandas as pd
 from fuzzywuzzy import process
 
 from .models import *
-from .temp_data import *
+from .yshj_test_data import *
 from .utils import *
-from .constants import * 
+from .constants import *
 from core.drivers import connect_mongo
 
 @connect_mongo('court')
