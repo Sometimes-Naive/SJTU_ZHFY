@@ -94,11 +94,11 @@ def show_receive_and_close_case_prediction(request):
     return render(request, 'situation_prediction/receive_close_case.html', context)
 
 
-from django.template.defaulttags import register
-@register.filter
-def get_dict(my_dict, key):
-    return my_dict.get(key)
+# from django.template.defaulttags import register
+# @register.filter
+# def get_dict(my_dict, key):
+#     return my_dict.get(key)
 
-@register.filter
-def get_list(my_list, index):
-    return my_list[index]
+# @register.filter
+# def get_list(my_list, index):
+#     return my_list[index]

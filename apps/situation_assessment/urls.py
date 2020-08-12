@@ -8,6 +8,9 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('index', views.show_index, name='situation_assessment.index'),
+    path('assessment', views.show_assessment_scope, name='situation_assessment.assessment'),
     path('index-system-tree', views.get_index_system_tree, name='tree'),
+    # path('index', views.show_index, name='situation_assessment.index'),
+    path('bussiness-environment', views.get_bussiness_environment_scope, name='situation_assessment.bussiness'),
+    path('indicator-relationship', views.get_indicator_relationship_scope, name='situation_assessment.indicator'),
 ]

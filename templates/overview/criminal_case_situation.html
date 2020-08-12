@@ -1,0 +1,318 @@
+{% extends 'layout.html' %}
+
+
+
+{% block head %}
+<div class="item header">刑事类案态势</div>
+
+
+{% endblock %}
+{% block column1 %}
+<div class="ui centered grid" style="height:150%">
+    <div class="left floated right aligned column" style="width: auto;padding: 10px 0 0 0;margin-left: 20px">
+        <div class="ui selection dropdown" style="">类案列表
+          <input type="hidden" name="类案">
+          <i class="dropdown icon"></i>
+          <div class="default text " style="width: 16em"><i class="world icon"></i>{{ case_outline.0.name | safe }}</div>
+          <div class="menu">
+              <a class="item" href="javascript:void(0);" onclick="case_list_click({{ case_outline.0 | safe }})"><i class="world icon"></i>{{ case_outline.0.name | safe }}</a>
+              <a class="item" href="javascript:void(0);" onclick="case_list_click({{ case_outline.1 | safe }})"><i class="world icon"></i>{{ case_outline.1.name | safe }}</a>
+              <a class="item" href="javascript:void(0);" onclick="case_list_click({{ case_outline.2 | safe }})"><i class="world icon"></i>{{ case_outline.2.name | safe }}</a>
+              <a class="item" href="javascript:void(0);" onclick="case_list_click({{ case_outline.3 | safe }})"><i class="world icon"></i>{{ case_outline.3.name | safe }}</a>
+              <a class="item" href="javascript:void(0);" onclick="case_list_click({{ case_outline.4 | safe }})"><i class="world icon"></i>{{ case_outline.4.name | safe }}</a>
+
+          </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <h3 style="margin-top: 0">
+            案件审判特征
+        </h3>
+
+    </div>
+{#    <div class="ui divider"></div>#}
+    <div class="ui row " id="justice_cha" style="height:50%;width: 100%">
+        <div class="ui  column" style="width: 50%; height: 100%">
+
+            <div class="ui segment" id="region_1" style="width: 37%;height:68%;float: left; margin: 0 1% 0 0"></div>
+            <div class="ui segment" id="map" style="width: 61%;height:68%;float: left; margin: 0 0 0 1%" ></div>
+            <div class="ui segment" id="sjc_number" style="height: 33%;width:100%;float: left; margin: 1% 0 0 0"></div>
+
+        </div>
+        <div class="ui column " style="width: 50%;height: 100%">
+            <div class="ui segment " id="court_level_pie" style="height: 33%;width:29%;float: left;margin: 0 0.5% 0.6% 0">
+
+            </div>
+            <div class="ui segment " id="court_level_line" style="height: 33%;width:69%;float: left;margin: 0 0 0.6% 0.5%">
+
+            </div>
+            <div class="ui segment " id="process_12_pie" style="height: 33%;width:29%;float: left;margin: 0.6% 0.5% 0.6% 0">
+
+            </div>
+            <div class="ui segment " id="process_12_line" style="height: 33%;width:69%;float: left;margin: 0.6% 0 0.6% 0.5%">
+
+            </div>
+            <div class="ui segment " id="process_final_pie" style="height: 33%;width:29%;float: left;margin: 0.6% 0.5% 0 0">
+
+            </div>
+            <div class="ui segment " id="process_final_line" style="height: 33%;width:69%;float: left;margin: 0.6% 0 0 0.5%">
+
+            </div>
+        </div>
+
+    </div>
+    <div class="row" style="margin-top: 14px">
+        <h3>案件审判特征分析</h3>
+
+
+
+    </div>
+{#    <div class="ui divider"></div>#}
+    <div class="ui row segment container" id="case_cha" style="height:40%">
+        <div class="ui segment" style="height: 50%;width:50%;float: left;margin-top: 14px">
+            <h3>收结存案数据分析</h3>
+            <table class="ui striped table" style="text-align: center;margin-top: 4%">
+                    <thead>
+                        <tr>
+                            <th>数量类型</th>
+                            <th>案件数量</th>
+                            <th>增幅比对</th>
+                            <th>指示</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                      <td>本季度收案数</td>
+                      <td id="sa"></td>
+                        <td id="sa-1"></td>
+                        <td id="sa-2">
+
+                        </td>
+                    </tr>
+                    <tr>
+                      <td>本季度结案数</td>
+                      <td>数据未知</td>
+                        <td>数据未知</td>
+                        <td>
+
+                        </td>
+                    </tr>
+                    <tr>
+                      <td>本季度存案数</td>
+                      <td>数据未知</td>
+                        <td>数据未知</td>
+                        <td>
+
+                        </td>
+
+                    </tr>
+
+
+
+  </tbody>
+</table>
+        </div>
+        <div class="ui segment" style="height: 50%;width:50%;float: left">
+            <h3>法院层级案件数据分析</h3>
+            <table class="ui striped table" style="text-align: center;margin-top: 4%">
+                    <thead>
+                        <tr>
+                            <th>数量类型</th>
+                            <th>案件数量</th>
+                            <th>增幅比对</th>
+                            <th>指示</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                      <td>本季度基层法院案件数</td>
+                      <td id="jc"></td>
+                        <td id="jc-1"></td>
+                        <td id="jc-2">
+                    </tr>
+                    <tr>
+                      <td>本季度中级法院案件数</td>
+                      <td id="zj"></td>
+                        <td id="zj-1"></td>
+                        <td id="zj-2">
+                    </tr>
+                    <tr>
+                      <td>本季度高级法院案件数</td>
+                      <td id="gj"></td>
+                        <td id="gj-1"></td>
+                        <td id="gj-2">
+
+                    </tr>
+
+
+
+  </tbody>
+</table>
+        </div>
+        <div class="ui segment" style="height: 50%;width:50%;float: left">
+            <h3>一审二审案件数据分析</h3>
+            <table class="ui striped table" style="text-align: center;margin-top: 4%">
+                    <thead>
+                        <tr>
+                            <th>数量类型</th>
+                            <th>案件数量</th>
+                            <th>增幅比对</th>
+                            <th>指示</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                      <td>本季度一审案件数</td>
+                      <td id="ys"></td>
+                        <td id="ys-1"></td>
+                        <td id="ys-2">
+
+                        </td>
+                    </tr>
+                    <tr>
+                      <td>本季度二审案件数</td>
+                      <td id="es"></td>
+                        <td id="es-1"></td>
+                        <td id="es-2">
+                    </tr>
+
+
+
+
+  </tbody>
+</table>
+        </div>
+        <div class="ui segment" style="height: 50%;width:50%;float: left">
+            <h3>再审终审案件数据分析</h3>
+            <table class="ui striped table" style="text-align: center;margin-top: 4%">
+                    <thead>
+                        <tr>
+                            <th>数量类型</th>
+                            <th>案件数量</th>
+                            <th>增幅比对</th>
+                            <th>指示</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                      <td>本季度再审案件数</td>
+                      <td id="ts"></td>
+                        <td id="ts-1"></td>
+                        <td id="ts-2">
+                    </tr>
+                    <tr>
+                      <td>本季度终审案件数</td>
+                      <td id="fs"></td>
+                        <td id="fs-1"></td>
+                        <td id="fs-2">
+                    </tr>
+
+
+
+
+  </tbody>
+</table>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 14px">
+        <h3>当事人特征</h3>
+    </div>
+{#    <div class="ui divider"></div>#}
+    <div class="ui row segment container" id="person_cha" style="height: 40%;">
+        <div class="ui segment" id="person_1" style="height:48%; width:16%; float: left;margin-top: 14px"></div>
+
+        <div class="ui segment" id="person_2" style="height:48%; width:33%; float: left;margin-right: 0.5%"></div>
+
+        <div class="ui segment" id="person_3" style="height:48%; width:16%; float: left;margin-left: 0.5%"></div>
+
+        <div class="ui segment" id="person_4" style="height:48%; width:33%; float: left"></div>
+
+        <div class="ui segment" id="person_5" style="height:48%; width:16%; float: left"></div>
+
+        <div class="ui segment" id="person_6" style="height:48%; width:33%; float: left;margin-right: 0.5%"></div>
+
+        <div class="ui segment" id="person_7" style="height:48%; width:16%; float: left;margin-left: 0.5%"></div>
+
+        <div class="ui segment" id="person_8" style="height:48%; width:33%; float: left"></div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block jschart %}
+{% include 'overview/chart_js.html' %}
+<script type="text/javascript">
+function case_pie_line(data){
+    pie_chart('court_level_pie','法院层级案件统计', data['class_data']['pie_data']);
+    line_chart('court_level_line', '法院层级案件数量时间趋势', data['class_data']['line_data'].slice(1));
+    pie_chart('process_12_pie', '一审二审案件统计',data['process_data']['pie_data'].slice(0,2));
+    line_chart('process_12_line', '一审二审案件数量时间趋势',data['process_data']['line_data'].slice(1,3));
+    pie_chart('process_final_pie','再审终审案件统计',data['process_data']['pie_data'].slice(2));
+    line_chart('process_final_line', '再审终审案件数量时间趋势',data['process_data']['line_data'].slice(3));
+}
+function person_pie_line(data){
+    pie_chart('person_1','当事人学历统计', data['education']['pie_data']);
+    line_chart('person_2','当事人学历时间变化趋势', data['education']['line_data'].slice(1));
+    pie_chart('person_3','当事人性别统计', data['gender_data']['pie_data']);
+    line_chart('person_4','当事人性别时间变化趋势', data['gender_data']['line_data'].slice(1));
+    pie_chart('person_5','当事人年龄统计', data['age_data']['pie_data']);
+    line_chart('person_6','当事人年龄时间变化趋势', data['age_data']['line_data'].slice(1));
+    pie_chart('person_7','当事人民族统计', data['nation_data']['pie_data']);
+    line_chart('person_8','当事人民族时间变化趋势', data['nation_data']['line_data'].slice(1));
+
+}
+function cal_percentage(id, data1, data2){
+    {#alert(data1)#}
+    {#alert(data2)#}
+    var per = (data2-data1)/data1 * 100
+    var output = toString(per) + '%'
+    document.getElementById(id).innerText = data2
+    if (per === Infinity){
+        document.getElementById(id+ '-1').innerText = '上季度无数据'
+    }else if (per > 0){
+        document.getElementById(id+ '-1').innerText = per.toFixed(2) + '%'
+    }else if (per <= 0){
+        document.getElementById(id+ '-1').innerText = per.toFixed(2) + '%'
+    }else{
+        document.getElementById(id+ '-1').innerText = '上季度本季度无数据'
+    }
+
+
+    {#alert(per)#}
+    if (per > 0){
+        document.getElementById(id+ '-2').innerHTML = '<i class="large red arrow up icon"></i>'
+    }else if (per <= 0){
+        document.getElementById(id+ '-2').innerHTML = '<i class="large green arrow down icon"></i>'
+    }else{
+        document.getElementById(id+ '-2').innerHTML = ''
+    }
+
+}
+function case_list_click(data){
+    {#alert(case_name);#}
+    case_pie_line(data);
+    person_pie_line(data);
+    region_1('region_1',data['region_season_data']);
+    map_chart('map', data['map_data']);
+    sjc_case_number('sjc_number', data['sja_data']);
+    cal_percentage('ys',data['process_season_data']['一审'][2],data['process_season_data']['一审'][3]);
+    cal_percentage('es',data['process_season_data']['二审'][2],data['process_season_data']['二审'][3]);
+    cal_percentage('ts',data['process_season_data']['再审'][2],data['process_season_data']['再审'][3]);
+    cal_percentage('fs',data['process_season_data']['终审'][2],data['process_season_data']['终审'][3]);
+    cal_percentage('jc',data['class_season_data']['基层法院'][2],data['class_season_data']['基层法院'][3]);
+    cal_percentage('zj',data['class_season_data']['中级法院'][2],data['class_season_data']['中级法院'][3]);
+    cal_percentage('gj',data['class_season_data']['高级法院'][2],data['class_season_data']['高级法院'][3]);
+    cal_percentage('sa',data['sja_season_data'][2],data['sja_season_data'][3]);
+
+}
+case_list_click({{ case_outline.0 | safe }});
+</script>
+
+
+{% endblock %}

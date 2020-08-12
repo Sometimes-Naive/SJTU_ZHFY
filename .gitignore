@@ -38,4 +38,5 @@ __pycache__/
 
 ### Result Data Directory ###
 apps/overview/data/*.json
+apps/overview/data/cache*
 apps/overview/data/preprocess/*.json

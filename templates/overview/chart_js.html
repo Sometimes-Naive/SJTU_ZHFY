@@ -1,0 +1,519 @@
+{% load static %}
+<script type="text/javascript">
+function his_chart(chart_name,chart_data){
+    var chart = Highcharts.chart(chart_name,{
+        credits:{
+                enabled:false,
+                },
+                exporting:{
+                enabled:false,
+                },
+	chart: {
+		type: 'column'
+	},
+	title: {
+		text: '案件审理数量统计'
+	},
+	subtitle: {
+		text: ''
+	},
+	xAxis: {
+		categories: [
+			'一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'
+		],
+		crosshair: true
+	},
+	yAxis: {
+		min: 0,
+		title: {
+			text: '案件数量'
+		}
+	},
+	tooltip: {
+		// head + 每个 point + footer 拼接成完整的 table
+		headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+		pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+		'<td style="padding:0"><b>{point.y:.1f} 件</b></td></tr>',
+		footerFormat: '</table>',
+		shared: true,
+		useHTML: true
+	},
+	plotOptions: {
+		column: {
+			borderWidth: 0
+		}
+	},
+	series: [{
+		name: '总体案件',
+		data: chart_data['总体案件']
+	}, {
+		name: '民事案件',
+		data: chart_data['民事案件']
+	}, {
+		name: '刑事案件',
+		data: chart_data['刑事案件']
+	}, {
+		name: '行政案件',
+		data: chart_data['行政案件']
+	}]
+});
+}
+
+function percent_chart(chart_name,chart_data){
+    var chart = Highcharts.chart(chart_name, {
+        credits:{
+                enabled:false,
+                },
+                exporting:{
+                enabled:false,
+                },
+	chart: {
+		type: 'area'
+	},
+	title: {
+		text: '案件类型占比'
+	},
+	subtitle: {
+		text: ''
+	},
+	xAxis: {
+		categories:  [
+			'一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'
+		],
+		tickmarkPlacement: 'on',
+		title: {
+			enabled: false
+		}
+	},
+	yAxis: {
+		title: {
+			text: '百分比'
+		}
+	},
+	tooltip: {
+		pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.percentage:.1f}%</b> ({point.y:,.0f} )<br/>',
+		shared: true
+	},
+	plotOptions: {
+		area: {
+			stacking: 'percent',
+			lineColor: '#ffffff',
+			lineWidth: 1,
+			marker: {
+				lineWidth: 1,
+				lineColor: '#ffffff'
+			}
+		}
+	},
+	series: [{
+		name: '民事案件',
+		data: chart_data['民事案件']
+	}, {
+		name: '刑事案件',
+		data: chart_data['刑事案件']
+	}, {
+		name: '行政案件',
+		data: chart_data['行政案件']
+	}]
+});
+}
+function region_case_number(chart_name,chart_data){
+    var chart = Highcharts.chart(chart_name, {
+        credits:{
+                enabled:false,
+                },
+                exporting:{
+                enabled:false,
+                },
+	chart: {
+		type: 'bar'
+	},
+	title: {
+		text: '地区案件数量'
+	},
+	xAxis: {
+		categories: chart_data[0]
+	},
+	yAxis: {
+		min: 0,
+		title: {
+			text: '时间'
+		}
+	},
+	legend: {
+		/* 图例显示顺序反转
+         * 这是因为堆叠的顺序默认是反转的，可以设置
+         * yAxis.reversedStacks = false 来达到类似的效果
+         */
+		reversed: true
+	},
+	plotOptions: {
+		series: {
+			stacking: 'normal'
+		}
+	},
+	series: [{
+		name: '第一季度',
+		data: chart_data[1]
+	}, {
+		name: '第二季度',
+		data: chart_data[2]
+	}, {
+		name: '第三季度',
+		data: chart_data[3]
+	}, {
+		name: '第四季度',
+		data: chart_data[4]
+	}]
+});
+}
+function court_class(chart_name,chart_data){
+    var chart = Highcharts.chart(chart_name, {
+	chart: {
+		type: 'column'
+	},
+	title: {
+		text: '法院层级案件数量分布'
+	},
+	xAxis: {
+		categories: ['第一季度', '第二季度', '第三季度', '第四季度']
+	},
+	yAxis: {
+		min: 0,
+		title: {
+			text: '案件数量'
+		},
+		stackLabels: {  // 堆叠数据标签
+			enabled: true,
+			style: {
+				fontWeight: 'bold',
+				color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+			}
+		}
+	},
+	legend: {
+		align: 'right',
+		x: -30,
+		verticalAlign: 'top',
+		y: 25,
+		floating: true,
+		backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+		borderColor: '#CCC',
+		borderWidth: 1,
+		shadow: false
+	},
+	tooltip: {
+		formatter: function () {
+			return '<b>' + this.x + '</b><br/>' +
+				this.series.name + ': ' + this.y + '<br/>' +
+				'总量: ' + this.point.stackTotal;
+		}
+	},
+	plotOptions: {
+		column: {
+			stacking: 'normal',
+			dataLabels: {
+				enabled: true,
+				color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+				style: {
+					// 如果不需要数据标签阴影，可以将 textOutline 设置为 'none'
+					textOutline: '1px 1px black'
+				}
+			}
+		}
+	},
+	series: [{
+		name: '基层法院',
+		data: chart_data['基层法院']
+	}, {
+		name: '中级法院',
+		data: chart_data['中级法院']
+	}, {
+		name: '高级法院',
+		data: chart_data['高级法院']
+	}]
+});
+}
+
+
+function detail_his_chart(chart_name,chart_class,chart_data){
+    var chart = Highcharts.chart(chart_name,{
+        credits:{
+                enabled:false,
+                },
+                exporting:{
+                enabled:false,
+                },
+	chart: {
+		type: 'column'
+	},
+	title: {
+		text: '案件审理数量统计'
+	},
+	subtitle: {
+		text: ''
+	},
+	xAxis: {
+		categories: [
+			'一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'
+		],
+		crosshair: true
+	},
+	yAxis: {
+		min: 0,
+		title: {
+			text: '案件数量'
+		}
+	},
+	tooltip: {
+		// head + 每个 point + footer 拼接成完整的 table
+		headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+		pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+		'<td style="padding:0"><b>{point.y:.1f} 件</b></td></tr>',
+		footerFormat: '</table>',
+		shared: true,
+		useHTML: true
+	},
+	plotOptions: {
+		column: {
+			borderWidth: 0
+		}
+	},
+	series: [{
+		name: chart_class,
+		data: chart_data[chart_class]
+	}]
+});
+}
+
+<!--civil backup js function -->
+function region_1(chart_name,chart_data){
+    var chart = Highcharts.chart(chart_name, {
+        credits:{
+                enabled:false,
+                },
+                exporting:{
+                enabled:false,
+                },
+	chart: {
+		type: 'bar'
+	},
+	title: {
+		text: '地区年度数量'
+	},
+	xAxis: {
+		categories: chart_data['name']
+	},
+	yAxis: {
+		min: 0,
+		title: {
+			text: '案件数量'
+		}
+	},
+	legend: {
+		/* 图例显示顺序反转
+         * 这是因为堆叠的顺序默认是反转的，可以设置
+         * yAxis.reversedStacks = false 来达到类似的效果
+         */
+		reversed: true
+	},
+	plotOptions: {
+		series: {
+			stacking: 'normal'
+		}
+	},
+	series: [{
+		name: '第一季度',
+		data: chart_data['season_data'][0]
+	}, {
+		name: '第二季度',
+		data: chart_data['season_data'][1]
+	},{
+		name: '第三季度',
+		data: chart_data['season_data'][2]
+	},{
+		name: '第四季度',
+		data: chart_data['season_data'][3]
+	}]
+});
+}
+function map_chart(chart_name, chart_data){
+    $.getJSON('../static/js/chongqing.json', function(mapdata) {
+
+            var data = chart_data;
+            var data1 = mapdata
+        console.log(mapdata)
+            map1 = new Highcharts.Map(chart_name, {
+            title: {
+            text: '重庆地区案件分布'
+            },
+            mapNavigation: {
+            enabled: true,
+            buttonOptions: {
+                verticalAlign: 'bottom'
+            }
+            },
+            credits:{
+            enabled:false,
+            },
+            exporting:{
+            enabled:false,
+            },
+            colorAxis: {
+            min: 0,
+            minColor: '#ffffff',
+            maxColor: '#006aee',
+            labels:{
+                style:{
+                    "color":"red","fontWeight":"bold"
+                }
+            }
+            },
+            series: [{
+            data: data,
+            mapData: mapdata,
+            joinBy: 'name',
+            name: '重庆市地图'
+            }]
+            });
+            });
+            }
+function sjc_case_number(chart_name,chart_data){
+    var chart = Highcharts.chart(chart_name,{
+        credits:{
+                enabled:false,
+                },
+                exporting:{
+                enabled:false,
+                },
+	chart: {
+		type: 'column'
+	},
+	title: {
+		text: '收结存案数量趋势'
+	},
+	subtitle: {
+		text: ''
+	},
+	xAxis: {
+		categories: [
+			'一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'
+		],
+		crosshair: true
+	},
+	yAxis: {
+		min: 0,
+		title: {
+			text: '数量（件）'
+		}
+	},
+	tooltip: {
+		// head + 每个 point + footer 拼接成完整的 table
+		headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+		pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+		'<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+		footerFormat: '</table>',
+		shared: true,
+		useHTML: true
+	},
+	plotOptions: {
+		column: {
+			borderWidth: 0
+		}
+	},
+	series: [{
+		name: '收案数',
+		data: chart_data
+	}]
+});
+}
+function pie_chart(chart_name,chart_title,chart_data){
+    // Build the chart
+    var chart = Highcharts.chart(chart_name, {
+        credits:{
+                enabled:false,
+                },
+                exporting:{
+                enabled:false,
+                },
+	chart: {
+		plotBackgroundColor: null,
+		plotBorderWidth: null,
+		plotShadow: false,
+		type: 'pie'
+	},
+	title: {
+		text:chart_title
+	},
+	tooltip: {
+		pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+	},
+	plotOptions: {
+		pie: {
+			allowPointSelect: true,
+			cursor: 'pointer',
+			dataLabels: {
+				enabled: false
+			},
+			showInLegend: true
+		}
+	},
+	series: [{
+		name: 'Brands',
+		colorByPoint: true,
+        fontsize:10,
+		data: chart_data
+	}]
+});
+}
+function line_chart(chart_name, chart_title, chart_data){
+    var chart = Highcharts.chart(chart_name, {
+        credits:{
+                enabled:false,
+                },
+                exporting:{
+                enabled:false,
+                },
+	title: {
+		text: chart_title
+	},
+	subtitle: {
+		text: ''
+	},
+	yAxis: {
+		title: {
+			text: '数量'
+		}
+	},
+	legend: {
+		layout: 'vertical',
+		align: 'right',
+		verticalAlign: 'middle'
+	},
+	plotOptions: {
+		series: {
+			label: {
+				connectorAllowed: false
+			},
+			pointStart: 1
+		}
+	},
+	series: chart_data,
+	responsive: {
+		rules: [{
+			condition: {
+				maxWidth: 500
+			},
+			chartOptions: {
+				legend: {
+					layout: 'horizontal',
+					align: 'center',
+					verticalAlign: 'bottom'
+				}
+			}
+		}]
+	}
+});
+}
+
+</script>

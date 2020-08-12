@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <title>法院审判态势研判与决策分析平台</title>
     <link rel="stylesheet" href="{% static 'css/semantic.css' %}">
+    {% block style %}
+    {% endblock %}
 </head>
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <script src="{% static 'js/semantic.js' %}"></script>
@@ -30,27 +32,37 @@
     <div class="ui menu" style="height: 60px;">
         <div class="ui basic dropdown button" id="aa" style="background-color:#ffffff" >
             <div class="item" style="font-weight: bold;font-size: 20px;height: 100%;"  >
-                <i class="world icon"></i>案件总览
+                <i class="world icon"></i>案件宏观态势研判
             </div>
             <div class="menu">
                 <div class="item">
-                <a class="text" href="{% url 'overall' %}" style="color: #000000;">案件总览</a>
+
+                    <i class="dropdown icon"></i>
+                    <span class="text">整体态势分析</span>
+                    <div class="menu">
+                        <a class="item" href="{% url 'overall' %}">整体案件态势</a>
+                        <a class="item" href="{% url 'civil' %}">民事案件态势</a>
+                        <a class="item" href="{% url 'criminal' %}">刑事案件态势</a>
+                        <a class="item" href="{% url 'administrative' %}">行政案件态势</a>
+                    </div>
                 </div>
                 <div class="item">
-                    <a class="text" href="{% url 'civil' %}" style="color: #000000">民事案件</a>
-                </div>
-                <div class="item">
-                    <a class="text" href="{% url 'criminal' %}" style="color: #000000">刑事案件</a>
-                </div>
-                <div class="item">
-                    <a class="text" href="{% url 'administrative' %}" style="color: #000000">行政案件</a>
+
+                    <i class="dropdown icon"></i>
+                    <span class="text">类案态势分析</span>
+                    <div class="menu">
+
+                        <a class="item" href="{% url 'civil_case_situation' %}">民事类案态势</a>
+                        <a class="item" href="{% url 'criminal_case_situation' %}">刑事类案态势</a>
+                        <a class="item" href="{% url 'administrative_case_situation' %}">行政类案态势</a>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="ui basic dropdown button" style="background-color:#ffffff">
             <span class="item" style="font-weight: bold;font-size: 20px;height: 100%;" >
-                <i class="book icon"></i>专题案件
+                <i class="book icon"></i>热点专题态势分析
             </span>
             <div class="menu">
                 <div class="item">
@@ -75,13 +87,23 @@
                 </div>
             </div>
         </div>
-        <div class="ui basic button" style="background-color:#ffffff" >
-            <a class="item" style="font-weight: bold;font-size: 20px;height: 100%;" href="{% url 'situation_assessment.index' %}" >
-            <i class="student icon"></i>态势研判</a>
+
+        <div class="ui basic dropdown button" id="aa" style="background-color:#ffffff" >
+            <div class="item" style="font-weight: bold;font-size: 20px;height: 100%;"  >
+                <i class="world icon"></i>审判质效评估优化
+            </div>
+            <div class="menu">
+                <div class="item">
+                    <a class="text" href="{% url 'situation_assessment.assessment' %}" style="color: #000000;">审判质效司法指标分析</a>
+                </div>
+                <div class="item">
+                    <a class="text" href="{% url 'situation_assessment.bussiness' %}" style="color: #000000;">营商环境司法指标分析</a>
+                </div>
+            </div>
         </div>
         <div class="ui  basic button" style="background-color:#ffffff" >
             <a class="item" style="font-weight: bold;font-size: 20px;height: 100%;" href="{% url 'receive_close_prediction' %}" >
-            <i class="bar chart icon"></i>收结案预测</a>
+            <i class="bar chart icon"></i>精细化管理预测</a>
         </div>
     </div>
     {% block column1 %}

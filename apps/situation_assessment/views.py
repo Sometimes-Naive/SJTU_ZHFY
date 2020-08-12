@@ -73,8 +73,8 @@ import json
 #         'details': managers.compose_case_details(case_id)
 #     })
 
-def show_index(request):
-
+def show_assessment_scope(request):
+    
     context = {
         'range_data': [
             {
@@ -120,26 +120,35 @@ def show_index(request):
             },
         ],
         'histogram_data': [ysxg_hdata, jazx_hdata],
+    }
+    return render(request, 'situation_assessment/assessment.html', context)
+
+def get_index_system_tree(request):
+    return JsonResponse(json_data_r(DATA_PATH + 'tree.json.active'))
+
+def get_bussiness_environment_scope(request):
+    context = {
         'rank_data': overall_rank,
         'line_data': overall_trend,
         'heatmap_data': heatmap_data,
         'hist_data': indicator_trend,
+    }
+    return render(request, 'situation_assessment/bussiness_environment.html', context)
+
+def get_indicator_relationship_scope(request):
+    context = {
         'pccl_data': pccl_score,
         'htzx_data': htzx_score,
         'spider_data': spidermap_data,
         'diff_data': diff_data,
     }
-    return render(request, 'situation-assessment/index.html', context)
+    return render(request, 'situation_assessment/indicator_relationship.html', context)
 
-def get_index_system_tree(request):
-    return JsonResponse(json_data_r(DATA_PATH + 'tree.json.active'))
+# from django.template.defaulttags import register
+# @register.filter
+# def get_dict(my_dict, key):
+#     return my_dict.get(key)
 
-
-from django.template.defaulttags import register
-@register.filter
-def get_dict(my_dict, key):
-    return my_dict.get(key)
-
-@register.filter
-def get_list(my_list, index):
-    return my_list[index]
+# @register.filter
+# def get_list(my_list, index):
+#     return my_list[index]

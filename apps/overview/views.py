@@ -4,11 +4,12 @@
 在此文件中定义模块中所有展示页面的视图，并将视图中所需要的
 数据（context）打包进相应的模板文件（template）。
 """
-import json
+import json, os
 from django.http import HttpResponse
 from django.shortcuts import render
 from . import managers
 from . import loaders
+from .utils import json_data_r
 
 def show_overall_scope(request):
 
@@ -17,20 +18,21 @@ def show_overall_scope(request):
         'case_outline': loader.load_case_basic_result('overall'),
         'case_evaluation': loader.load_case_evaluation_title('overall'),
     }
-    # print(context)
+    print(context)
     return render(request,'overview/overall.html', context)
 
 def show_civil_scope(request):
 
     loader = loaders.ResultLoader()
     context = {
-        'case_outline': [
-            loader.load_case_basic_result('civil'),
-            # loader.load_case_cause_result('civil'),
-            loader.load_case_cause_result('civil')[0],
-            loader.load_case_cause_result('civil')[1]  
-
-        ],
+       'case_outline': loader.load_case_basic_result('civil'),
+        # 'case_outline': [
+        #     loader.load_case_basic_result('civil'),
+        #     # loader.load_case_cause_result('civil'),
+        #     loader.load_case_cause_result('civil')[0],
+        #     loader.load_case_cause_result('civil')[1]
+        #
+        # ],
         'case_evaluation': loader.load_case_evaluation_title('civil'),
         'case_cause': loader.load_case_evaluation_title('civil')['key_list'],
     }
@@ -40,12 +42,13 @@ def show_criminal_scope(request):
 
     loader = loaders.ResultLoader()
     context = {
-        'case_outline': [
-            loader.load_case_basic_result('criminal'),
-            # loader.load_case_cause_result('criminal')
-            loader.load_case_cause_result('criminal')[0],
-            loader.load_case_cause_result('criminal')[1],
-        ],
+         'case_outline': loader.load_case_basic_result('criminal'),
+        # 'case_outline': [
+        #     loader.load_case_basic_result('criminal'),
+        #     # loader.load_case_cause_result('criminal')
+        #     loader.load_case_cause_result('criminal')[0],
+        #     loader.load_case_cause_result('criminal')[1],
+        # ],
         'case_evaluation': loader.load_case_evaluation_title('criminal'),
         'case_cause': loader.load_case_evaluation_title('criminal')['key_list'],
     }
@@ -55,10 +58,11 @@ def show_administrative_scope(request):
 
     loader = loaders.ResultLoader()
     context = {
-        'case_outline': [
-            loader.load_case_basic_result('administrative'),
-            loader.load_case_cause_result('administrative')
-        ],
+       'case_outline': loader.load_case_basic_result('administrative'),
+        # 'case_outline': [
+        #     loader.load_case_basic_result('administrative'),
+        #     loader.load_case_cause_result('administrative')
+        # ],
         'case_evaluation': loader.load_case_evaluation_title('administrative'),
     }
     return render(request, 'overview/administrative.html', context)
@@ -86,6 +90,39 @@ def ajax_add(request):
     # print(test_data)
     return HttpResponse(test_data)
 
+def show_civil_case_situation_scope(request):
+    loader = loaders.ResultLoader()
+    path = os.getcwd()
+    context = {
+        'case_outline': [json_data_r(path + '/apps/overview/data/civil_case_ServiceContractDispute_chartinfo.json'),
+                         json_data_r(path + '/apps/overview/data/civil_case_LaborDispute_chartinfo.json'),
+                         json_data_r(path + '/apps/overview/data/civil_case_CreditCardDispute_chartinfo.json'),
+                         json_data_r(path + '/apps/overview/data/civil_case_LoanContractDispute_chartinfo.json'),
+                         json_data_r(path + '/apps/overview/data/civil_case_PrivateLendingDispute_chartinfo.json'),
+                         json_data_r(path + '/apps/overview/data/civil_case_TradeContractDispute_chartinfo.json'),
+                         json_data_r(path + '/apps/overview/data/civil_case_ContractDispute_chartinfo.json'),
+                         json_data_r(path + '/apps/overview/data/civil_case_TrafficAccidentDispute_chartinfo.json')]
+    }
+    return render(request, 'overview/civil_case_situation.html', context)
+def show_criminal_case_situation_scope(request):
+    loader = loaders.ResultLoader()
+    path = os.getcwd()
+    context = {
+        'case_outline': [json_data_r(path + '/apps/overview/data/criminal_case_drive_chartinfo.json'),
+                         json_data_r(path + '/apps/overview/data/criminal_case_drug_chartinfo.json'),
+                         json_data_r(path + '/apps/overview/data/criminal_case_fraud_chartinfo.json'),
+                         json_data_r(path + '/apps/overview/data/criminal_case_larceny_chartinfo.json'),
+                         json_data_r(path + '/apps/overview/data/criminal_case_taccident_chartinfo.json'),
+                         ]
+    }
+    return render(request, 'overview/criminal_case_situation.html', context)
+
+def show_administrative_case_situation_scope(request):
+    loader = loaders.ResultLoader()
+    context = {
+
+    }
+    return render(request, 'overview/administrative_case_situation.html', context)
 
 from django.template.defaulttags import register
 @register.filter

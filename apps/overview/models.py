@@ -6,7 +6,7 @@
 连接Mongo数据库时，API使用可参考： http://docs.mongoengine.org/index.html
 
 """
-# from core.models import *
+
 from mongoengine import *
 
 
@@ -23,7 +23,7 @@ class AllData(Document):
     判决信息 = ListField()
     meta = {
         # 'db_alias': 'all_data_db',
-        'collection': 'database'
+        'collection': 'WSK',#database
     }
 
 class CriminalCaseDoc(Document):

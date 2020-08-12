@@ -1,0 +1,1599 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block head %}
+    <div class="item header">态势研判——营商环境</div>
+{% endblock %}
+
+{% block column1 %}
+    <div class="ui centered grid" style="height:100%">
+
+        <div class="row" style="height: 76.5%">
+            <div class="column" style="width:33%;height:100%;background-color: #ffffff">
+                <div class="ui segment container row" style="height: 45%;background-color: #ffffff">
+                    <div class="ui left message" style="height: 17%;width: 31%">
+                        <div class="header">2019重庆总体得分</div>
+                    </div>
+                    <div class="ui column" style="height:86%;width:75%;float:left" id="chart01"></div>
+                    <div class="ui column" style="height:80%;width:25%;float:right">
+                        <div class="ui huge vertical label" style="margin-left: -35px; margin-top: -6px">
+                            <div class="text value">评级</div>
+                            <div class="text value">良好</div>
+                        </div>
+                        <div class="ui container" style="margin-top: 28px;font-style:italic;font-size: xx-small;margin-left: -10px;width: 65%">
+                            <60: 不合格<br>
+                            60-70: 合格<br>
+                            70-80: 一般<br>
+                            80-90: 良好<br>
+                            90-100: 优秀<br>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui segment container row" style="height: 53%;width:48%;background-color: #ffffff;float:left">
+                    <div class="ui left message" style="height: 14.5%;width: 54%">
+                        <div class="header">司法要素占比</div>
+                    </div>
+                    <div class="ui column" style="height:100%;width:100%" id="chart02"></div>
+                </div>
+                <div class="ui segment container row" style="height: 53%;width:52%;background-color: #ffffff;float:right">
+                    <div class="ui left message" style="height: 14.5%;width: 50%">
+                        <div class="header">司法要素得分</div>
+                    </div>
+                    <div class="ui column" style="height:100%;width:100%" id="chart03"></div>
+                </div>
+            </div>
+
+            <div class="column" style="width:39%;height:102.5%;background-color: #ffffff">
+                <div class="ui segment container row" style="height:100%;background-color: #ffffff">
+                    <div class="ui left message" style="height: 7.5%;width: 38%">
+                        <div class="header">2019重庆各法院营商司法得分</div>
+                    </div>
+                    <div class="ui container" style="height:85%" id="chart04"></div>
+                </div>
+            </div>
+
+            <div class="column" style="width:28%;height:102.5%;background-color: #ffffff">
+                <div class="ui segment container row" style="height: 44.5%;background-color: #ffffff">
+                    <div class="ui left message" style="height: 17%;width: 37%">
+                        <div class="header">2019优秀区县排名</div>
+                    </div>
+                    <div class="ui container" style="height:85%" id="chart05"></div>
+                </div>
+                <div class="ui segment container row" style="height: 53%;background-color: #ffffff" >
+                    <div class="ui left message" style="height: 14%;width: 29%">
+                        <div class="header">典型区县对比</div>
+                    </div>
+                    <div class="ui column" style="height:92%;margin-top:-22px" id="chart06"></div>
+                    <div class="ui column" style="height:5%;width: 100%;margin-top: -28px; margin-left: 9px">
+                        <i class="small info circle icon"></i>
+                        <span style="font-size: xx-small">圆圈大小表示人口密度：万人/平方公里<span/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="height: 52.5%">
+            <div class="column" style="width:33%;height:100%;background-color: #ffffff">
+                <div class="ui segment container row" style="height: 100%;background-color: #ffffff">
+                    <div class="ui left message" style="height: 12%;width: 47%">
+                        <div class="header">重庆营商环境司法建设发展态势</div>
+                    </div>
+                    <div class="ui column" style="height:85%;width:100%" id="chart07"></div>
+                </div>
+            </div>
+
+            <div class="column" style="width:39%;height:100%;background-color: #ffffff">
+                <div class="ui segment container row" style="height:100%;background-color: #ffffff">
+                    <div class="ui left message" style="height: 12%;width: 30%">
+                        <div class="header">各司法分指标发展态势</div>
+                    </div>
+                    <div class="ui container" style="height:75%; margin-top:30px" id="chart08"></div>
+                    <div class="ui column" style="height:5%;width: 100%;margin-top: -10px; margin-left: 9px">
+                        <a href="{% url 'situation_assessment.indicator' %}">
+                            <i class="small info circle icon"></i>
+                            <span style="font-size: xx-small">查看指标关联关系</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column" style="width:28%;height:100%;background-color: #ffffff">
+                <div class="ui segment container row" style="height: 100%;background-color: #ffffff">
+                    <div class="ui left message" style="height: 12%;width: 29%">
+                        <div class="header">年度分数对比</div>
+                    </div>
+                    <div class="ui container" style="height:100%" id="chart09"></div>
+                </div>
+
+            </div>
+        </div>
+    <!--
+        <div class="row" style="height: 65%; margin-top: 20px">
+            <div class="column" style="width: 66%;" id="chart5">
+                <div class="ui segment container row" style="width: 100%; height: 100%" id="">
+                    <h2 class="ui center aligned dividing header">
+                        <div class="ui small message">营商指标年度对比 (重庆)</div>
+                    </h2>
+
+                    <table class="ui very basic center aligned table" style="font-size: large">
+                    <thead>
+                        <tr class="center aligned">
+                            <th class="three wide">主题</th>
+                            <th class="two wide">DB 2019分数</th>
+                            <th class="two wide">DB 2019排名</th>
+                            <th class="two wide">DB 2018分数</th>
+                            <th class="two wide">DB 2018排名</th>
+                            <th class="two wide">排名变化</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="center aligned active">
+                            <td>总体</td>
+                            <td>77.9</td>
+                            <td>31</td>
+                            <td>74.0</td>
+                            <td>54</td>
+                            <td><i class="arrow up icon" style="font-size: 12px; color: #006400"></i>23</td>
+                        </tr>
+                        <tr class="center aligned">
+                            <td>企业创办<i class="check icon" style="font-size: 12px"></i></td>
+                            <td>94.1</td>
+                            <td>27</td>
+                            <td>93.4</td>
+                            <td>31</td>
+                            <td><i class="arrow up icon" style="font-size: 12px; color: #006400"></i>4</td>
+                        </tr>
+                        <tr class="center aligned active">
+                            <td>
+                                <a href="#pccl">破产处理<i class="check icon" style="font-size: 12px"></i></a>
+                            </td>
+                            <td>62.1</td>
+                            <td>51</td>
+                            <td>55.9</td>
+                            <td>78</td>
+                            <td><i class="arrow up icon" style="font-size: 12px; color: #006400"></i>27</td>
+                        </tr>
+                        <tr class="center aligned">
+                            <td>施工许可<i class="check icon" style="font-size: 12px"></i></td>
+                            <td>77.3</td>
+                            <td>33</td>
+                            <td>65.2</td>
+                            <td>48</td>
+                            <td><i class="arrow up icon" style="font-size: 12px; color: #006400"></i>15</td>
+                        </tr>
+                        <tr class="center aligned">
+                            <td>电力许可<i class="check icon" style="font-size: 12px"></i></td>
+                            <td>95.4</td>
+                            <td>12</td>
+                            <td>92.0</td>
+                            <td>17</td>
+                            <td><i class="arrow up icon" style="font-size: 12px; color: #006400"></i>5</td>
+                        </tr>
+                        <tr class="center aligned">
+                            <td>财产登记<i class="check icon" style="font-size: 12px"></i></td>
+                            <td>81.0</td>
+                            <td>28</td>
+                            <td>80.8</td>
+                            <td>30</td>
+                            <td><i class="arrow up icon" style="font-size: 12px; color: #006400"></i>2</td>
+                        </tr>
+                        <tr class="center aligned active">
+                            <td>
+                                <a href="#htzx">合同执行<i class="check icon" style="font-size: 12px"></i></a>
+                            </td>
+                            <td>80.9</td>
+                            <td>5</td>
+                            <td>79.0</td>
+                            <td>11</td>
+                            <td><i class="arrow up icon" style="font-size: 12px; color: #006400"></i>6</td>
+                        </tr>
+                        <tr class="center aligned">
+                            <td>信贷获取<i class="x icon" style="font-size: 12px"></i></td>
+                            <td>60.0</td>
+                            <td>80</td>
+                            <td>60.0</td>
+                            <td>77</td>
+                            <td><i class="arrow down icon" style="font-size: 12px; color: #8B0000"></i>3</td>
+                        </tr>
+                        <tr class="center aligned">
+                            <td>中小投资者保护<i class="check icon" style="font-size: 12px"></i></td>
+                            <td>72.0</td>
+                            <td>28</td>
+                            <td>62.0</td>
+                            <td>54</td>
+                            <td><i class="arrow up icon" style="font-size: 12px; color: #006400"></i>26</td>
+                        </tr>
+                        <tr class="center aligned">
+                            <td>税务缴纳<i class="check icon" style="font-size: 12px"></i></td>
+                            <td>70.1</td>
+                            <td>105</td>
+                            <td>67.9</td>
+                            <td>121</td>
+                            <td><i class="arrow up icon" style="font-size: 12px; color: #006400"></i>16</td>
+                        </tr>
+                        <tr class="center aligned">
+                            <td>跨境贸易<i class="check icon" style="font-size: 12px"></i></td>
+                            <td>86.5</td>
+                            <td>56</td>
+                            <td>83.4</td>
+                            <td>61</td>
+                            <td><i class="arrow up icon" style="font-size: 12px; color: #006400"></i>5</td>
+                        </tr>
+                    </tbody>
+                    </table>
+
+                    <div class="ui divider"></div>
+                    </br>
+                    <i class="blue check icon"></i>
+                    <span>=改革使得营商更加便捷</span><span>&ensp;</span>
+                    <i class="blue x icon"></i>
+                    <span>=改革使得营商更加困难</span><span>&ensp;&ensp;</span>
+                    <i class="exclamation circle icon"></i>
+                    <span>破产处理与合同执行是两个与司法相关的一级指标</span>
+                </div>
+            </div>
+
+            <div class="column" style="width: 32%;height:100%;background-color: #ffffff">
+                <div class="ui segment container row" style="width: 100%; height: 49%" id="chart12"></div>
+                <div class="ui segment container row" style="width: 100%; height: 49%" id="chart13"></div>
+            </div>
+        </div>
+
+        <div class="row" style="height: 45%; margin-top: 20px">
+            <div class="ui segment container row" style="height: 11%; width:96.6%" id="pccl">
+                <h3 class="ui center header" style="font-size: 21px">
+                    营商环境司法指标-破产处理
+                </h3>
+            </div>
+            <div class="ui column" style="background-color: #ffffff;height: 100%;width: 58%">
+                <div class="ui segment container row" style="height: 100%;background-color: #ffffff" id="chart6">
+                    <p></p>
+                    <h4 class="ui horizontal divider header" style="font-size: large">
+                        <i class="hand point right icon"></i>指标概述
+                    </h4>
+                    <p align="center" style="font-size: large">破产处理指标评估了破产程序的时间和成本，
+                        归纳了破产法规中存在的程序障碍，并衡量了资产回收情况。
+                    </p>
+                    <h4 class="ui horizontal divider header" style="font-size: large">
+                        <i class="bar chart line icon"></i>具体数值
+                    </h4>
+                    <table class="ui center large very basic black table" style="font-size: 16px">
+                        <thead>
+                            <tr class="left aligned">
+                                <th class="five wide">二级指标</th>
+                                <th class="two wide">重庆</th>
+                                <th class="two wide">东亚及太平洋地区</th>
+                                <th class="two wide">高收入经济体</th>
+                                <th class="two wide">表现最佳国家</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>回收率 (百分比)</td>
+                                <td>36.9</td>
+                                <td>35.5</td>
+                                <td>70.2</td>
+                                <td>92.9 (挪威)</td>
+                            </tr>
+                            <tr>
+                                <td>时间 (年)</td>
+                                <td>1.7</td>
+                                <td>2.6</td>
+                                <td>1.7</td>
+                                <td>0.4 (爱尔兰)</td>
+                            </tr>
+                            <tr>
+                                <td>成本 (资产价值的%)</td>
+                                <td>22.0</td>
+                                <td>20.6</td>
+                                <td>9.3</td>
+                                <td>1.0 (挪威)</td>
+                            </tr>
+                            <tr>
+                                <td>结果 (0为零散销售， 1为持续经营)</td>
+                                <td>0</td>
+                                <td>..</td>
+                                <td>..</td>
+                                <td>..</td>
+                            </tr>
+                            <tr>
+                                <td>破产框架力度指数 (0-16)</td>
+                                <td>13.5</td>
+                                <td>7.0</td>
+                                <td>11.9</td>
+                                <td>无表现最佳者</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="ui divider"></div>
+                    </br></br>
+                    <a href="#"><i class="info circle icon"></i>查看详细计算方法</a>
+                </div>
+            </div>
+
+            <div class="ui column" style="background-color: #ffffff;height: 100%;width: 40%">
+                <div class="ui segment container row" style="height: 100%;background-color: #ffffff">
+                    <p></p>
+                    <h4 class="ui horizontal divider header" style="font-size: large">
+                        <i class="hand point right icon"></i>计算规则
+                    </h4>
+                    <p align="center" style="font-size: large">指标得分由营商报告中使用的归一化方法计算得出。
+                    </p>
+                    <h4 class="ui horizontal divider header" style="font-size: large">
+                        <i class="bar chart line icon"></i>得分情况
+                    </h4>
+                    <div id="chart7" style="width: 45%; height: 53%; float: left"></div>
+                    <div id="chart8" style="width: 45%; height: 53%; float: left"></div>
+                    <div  style="width: 100%; height: 10%; float: left">
+                        <p></p>
+                        <br/><p></p>
+                        <i class="exclamation circle icon"></i>破产处理指标的分数为各个分指标的分数的简单平均值。</div>
+                    </div>
+            </div>
+        </div>
+
+        <div class="row" style="height: 41%; margin-top: 95px">
+            <div class="ui segment container row" style="height: 13%; width:96.6%" id="htzx">
+                <h3 class="ui center header" style="font-size: 21px">
+                    营商环境司法指标-合同执行
+                </h3>
+            </div>
+            <div class="ui column" style="background-color: #ffffff;height: 100%;width: 58%">
+                <div class="ui segment container row" style="height: 100%;background-color: #ffffff" id="chart8">
+                    <p></p>
+                    <h4 class="ui horizontal divider header" style="font-size: large">
+                        <i class="hand point right icon"></i>指标概述
+                    </h4>
+                    <p align="center" style="font-size: large">合同执行指标衡量了解决商业纠纷所耗费的时间、成本及司法程序质量，
+                        从而评估法院审判的质量和效率。
+                    </p>
+                    <h4 class="ui horizontal divider header" style="font-size: large">
+                        <i class="bar chart line icon"></i>具体数值
+                    </h4>
+                    <table class="ui center large very basic black table" style="font-size: 16px">
+                        <thead>
+                            <tr class="left aligned">
+                                <th class="five wide">二级指标</th>
+                                <th class="two wide">重庆</th>
+                                <th class="two wide">东亚及太平洋地区</th>
+                                <th class="two wide">高收入经济体</th>
+                                <th class="two wide">表现最佳国家</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>时间 (天数)</td>
+                                <td>485</td>
+                                <td>581.1</td>
+                                <td>589.6</td>
+                                <td>120 (新加坡)</td>
+                            </tr>
+                            <tr>
+                                <td>成本 (占索赔额百分比)</td>
+                                <td>15.1</td>
+                                <td>47.2</td>
+                                <td>21.5</td>
+                                <td>0.1 (不丹)</td>
+                            </tr>
+                            <tr>
+                                <td>司法程序质量指数 (0-18)</td>
+                                <td>16.5</td>
+                                <td>8.1</td>
+                                <td>11.7</td>
+                                <td>无最佳表现者</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="ui divider"></div>
+                    </br></br></br></br>
+                    <a href="#"><i class="info circle icon"></i>查看详细计算方法</a>
+                </div>
+            </div>
+
+            <div class="ui column" style="background-color: #ffffff;height: 100%;width: 40%">
+                <div class="ui segment container row" style="height: 100%;background-color: #ffffff">
+                    <p></p>
+                    <h4 class="ui horizontal divider header" style="font-size: large">
+                        <i class="hand point right icon"></i>计算规则
+                    </h4>
+                    <p align="center" style="font-size: large">指标得分由营商报告中使用的归一化方法计算得出。</p>
+                    <h4 class="ui horizontal divider header" style="font-size: large">
+                        <i class="bar chart line icon"></i>得分情况
+                    </h4>
+                    <div id="chart9" style="width: 33%; height: 53%; float: left"></div>
+                    <div id="chart10" style="width: 33%; height: 53%; float: left"></div>
+                    <div id="chart11" style="width: 33%; height: 53%; float: left"></div>
+                    <div  style="width: 100%; height: 10%; float: left">
+                        </br><p></p>
+                        <i class="exclamation circle icon"></i>合同执行指标的分数为各个分指标的分数的简单平均值。
+                    </div>
+                </div>
+            </div>
+        </div>
+    -->
+    </div>
+
+{% endblock %}
+
+{% block jschart %}
+    <script src="{% static 'js/solid-gauge.js' %}"></script>
+    <script>
+        // 条状图函数，输入为id和作图数据
+        function bar_chart(chart_name, chart_data) {
+            {#console.log(chart_name);#}
+            {#console.log(chart_data);#}
+            var chart = Highcharts.chart(chart_name, {
+                chart: {
+                    type: 'bar'
+                },
+                credits: {
+                    enabled: false
+                },
+                title: {
+                    text: null
+                    // text: chart_data['title']
+                },
+
+                exporting: {
+                    enabled: false,
+                },
+                legend: {
+                    enabled: false
+                },
+                xAxis: {
+                    categories: chart_data['x'],
+                    title: {
+                        text: null
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: '得分',
+                        align: 'high'
+                    },
+
+                },
+
+                plotOptions: {
+                    bar: {
+                        barWidth: 5,
+                        dataLabels: {
+                            enabled: true,
+                            allowOverlap: true // 允许数据标签重叠
+                        }
+                    }
+                },
+
+                series: [{
+                    name: '',
+                    data: chart_data['data']
+                }]
+            });
+        }
+        // bar_chart('chart1', {{ rank_data | safe}});
+        // bar_chart('chart13', {{ diff_data | safe }});
+        bar_chart('chart05', {{ rank_data | safe}} )
+
+        // 折线图函数，输入为id和作图数据
+        function line_chart(chart_name, chart_data) {
+            var chart = Highcharts.chart(chart_name, {
+                title: {
+                    text: '营商环境司法建设总体态势'
+                },
+                subtitle: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: chart_data['xCategory']
+                },
+                yAxis: {
+                    min: 50,
+                    max: 90,
+                    title: {
+                        text: '得分'
+                    },
+                    // categories: chart_data['yCategory']
+                },
+                credits: {
+                    enabled: false,
+                },
+                exporting: {
+                    enabled: false,
+                },
+                legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom'
+                },
+                plotOptions: {
+                    series: {
+                        label: {
+                            connectorAllowed: false
+                        },
+                        dataLabels: {
+                            align: 'center',
+                            enabled: false
+                        }
+                    }
+                },
+                series: chart_data['series'],
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 500
+                        },
+                        chartOptions: {
+                            legend: {
+                                layout: 'horizontal',
+                                align: 'center',
+                                verticalAlign: 'bottom'
+                            }
+                        }
+                    }]
+                }
+            });
+        }
+        // line_chart('chart3', {{ line_data | safe }});
+
+        // 热力图函数，输入为id和作图数据
+        function heat_chart(chart_name, chart_data){
+            $.getJSON('https://data.jianshukeji.com/jsonp?filename=geochina/chongqing.json&callback=?', function (mapdata) {
+                var data = chart_data;
+                map1 = new Highcharts.Map(chart_name, {
+                    title: {
+                        text: null
+                        // text: '2019重庆营商环境司法建设得分'
+                    },
+                    mapNavigation: {
+                        enabled: true,
+                        buttonOptions: {
+                            verticalAlign: 'bottom'
+                        }
+                    },
+                    credits: {
+                        enabled: false,
+                    },
+                    exporting: {
+                        enabled: false,
+                    },
+                    colorAxis: {
+                        min: 70,
+                        max: 100,
+                        minColor: '#fff',
+                        maxColor: '#0087ee',
+                        labels: {
+                            style: {
+                                "color": "red", "fontWeight": "bold"
+                            }
+                        }
+                    },
+                    series: [{
+                        data: data,
+                        mapData: mapdata,
+                        joinBy: 'name',
+                        name: '重庆市地图'
+                    }]
+                });
+            });
+        }
+        heat_chart('chart04', {{ heatmap_data | safe }});
+
+        // 柱状图函数，输入id和作图数据
+        function hist_chart(chart_name, chart_data){
+            var chart = Highcharts.chart(chart_name, {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: '重庆营商环境司法指标态势'
+                },
+                exporting: {
+                    enabled: false
+                },
+                credits: {
+                    enabled: false
+                },
+                xAxis: {
+                    categories: chart_data['xCategory'],
+                    crosshair: true
+                },
+                yAxis: {
+                    min: 0,
+                    max: 100,
+                    title: {
+                        text: '得分'
+                    }
+                },
+                tooltip: {
+                    // head + 每个 point + footer 拼接成完整的 table
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        borderWidth: 0
+                    },
+		            series: {
+			            dataLabels: {
+				            enabled: true
+			            }
+		            }
+                },
+                series: chart_data['series']
+            });
+        }
+        // hist_chart('chart4', {{ hist_data | safe }});
+
+        // 仪表图函数，输入id
+        function gauge_chart_pccl(chart_name1, chart_name2){
+            // 时间
+            var chart7 = Highcharts.chart(chart_name1, {
+                chart: {
+                    type: 'solidgauge'
+                },
+                title: null,
+                credits: {
+                    enabled: false
+                },
+                exporting: {
+                    enabled: false,
+                },
+                pane: {
+                    center: ['62.2%', '60%'],
+                    size: '66%',
+                    startAngle: 0,
+                    endAngle: 360,
+                    background: {
+                        backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+                        innerRadius: '70%',
+                        outerRadius: '100%',
+                        shape: 'arc'
+                    }
+                },
+                tooltip: {
+                    enabled: false
+                },
+                yAxis: {
+                    stops: [
+                        [0.1, '#d2e9ff'],
+                        [0.2, '#acd6ff'],
+                        [0.3, '#84c1ff'],
+                        [0.4, '#46a3ff'],
+                        [0.5, '#2894ff'],
+                        [0.6, '#0080ff'],
+                        [0.7, '#0072e3'],
+                        [0.8, '#0066cc'],
+                        [0.9, '#004b97'],
+                        [1.0, '#003d79']
+                    ],
+                    lineWidth: 0,
+                    minorTickInterval: null,
+                    tickPixelInterval: 400,
+                    tickWidth: 0,
+                    labels: {
+                        y: 18
+                    },
+                    min: 0,
+                    max: 100,
+                    title: {
+                        text: '回收率',
+                        y: -67,
+                        style: {
+                            "fontSize": "medium",
+                        }
+                    }
+                },
+                plotOptions: {
+                    solidgauge: {
+                        dataLabels: {
+                            y: -20,
+                            borderWidth: 0,
+                            useHTML: true
+                        }
+                    }
+                },
+                series: [{
+                    name: '回收率',
+                    data: [39.8],
+                    innerRadius: 70,
+                    dataLabels: {
+                        format: '<div style="text-align:center"><span style="font-size:24px;color:' +
+                            ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+                            '<span style="font-size:12px;color:silver"></span></div>'
+                    },
+                    tooltip: {
+                        valueSuffix: ''
+                    }
+                }]
+            });
+            // 成本
+            var chart8 = Highcharts.chart(chart_name2, {
+                chart: {
+                    type: 'solidgauge'
+                },
+                title: null,
+                credits: {
+                    enabled: false
+                },
+                exporting: {
+                    enabled: false,
+                },
+                pane: {
+                    center: ['62.2%', '60%'],
+                    size: '66%',
+                    startAngle: 0,
+                    endAngle: 360,
+                    background: {
+                        backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+                        innerRadius: '70%',
+                        outerRadius: '100%',
+                        shape: 'arc'
+                    }
+                },
+                tooltip: {
+                    enabled: false
+                },
+                yAxis: {
+                    stops: [
+                        [0.1, '#d2e9ff'],
+                        [0.2, '#acd6ff'],
+                        [0.3, '#84c1ff'],
+                        [0.4, '#46a3ff'],
+                        [0.5, '#2894ff'],
+                        [0.6, '#0080ff'],
+                        [0.7, '#0072e3'],
+                        [0.8, '#0066cc'],
+                        [0.9, '#004b97'],
+                        [1.0, '#003d79']
+                    ],
+                    lineWidth: 0,
+                    minorTickInterval: null,
+                    tickPixelInterval: 400,
+                    tickWidth: 0,
+                    labels: {
+                        y: 18
+                    },
+                    min: 0,
+                    max: 100,
+                    title: {
+                        text: '破产框架力度指数',
+                        y: -67,
+                        style: {
+                            "fontSize": "medium",
+                        }
+                    }
+                },
+                plotOptions: {
+                    solidgauge: {
+                        dataLabels: {
+                            y: -20,
+                            borderWidth: 0,
+                            useHTML: true
+                        }
+                    }
+                },
+                series: [{
+                    name: '破产框架力度指数',
+                    data: [84.4],
+                    innerRadius: 70,
+                    dataLabels: {
+                        format: '<div style="text-align:center"><span style="font-size:24px;color:' +
+                            ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y:.1f}</span><br/>' +
+                            '<span style="font-size:12px;color:silver"></span></div>'
+                    },
+                    tooltip: {
+                        valueSuffix: ''
+                    }
+                }]
+            });
+            // 司法程序质量指数
+        }
+        function gauge_chart_htzx(chart_name1, chart_name2, chart_name3){
+            // 时间
+            var chart9 = Highcharts.chart(chart_name1, {
+                chart: {
+                    type: 'solidgauge'
+                },
+                title: null,
+                credits: {
+                    enabled: false
+                },
+                exporting: {
+                    enabled: false,
+                },
+                pane: {
+                    center: ['53%', '56%'],
+                    size: '75%',
+                    startAngle: 0,
+                    endAngle: 360,
+                    background: {
+                        backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+                        innerRadius: '70%',
+                        outerRadius: '100%',
+                        shape: 'arc'
+                    }
+                },
+                tooltip: {
+                    enabled: false
+                },
+                yAxis: {
+                    stops: [
+                        [0.1, '#d2e9ff'],
+                        [0.2, '#acd6ff'],
+                        [0.3, '#84c1ff'],
+                        [0.4, '#46a3ff'],
+                        [0.5, '#2894ff'],
+                        [0.6, '#0080ff'],
+                        [0.7, '#0072e3'],
+                        [0.8, '#0066cc'],
+                        [0.9, '#004b97'],
+                        [1.0, '#003d79']
+                    ],
+                    lineWidth: 0,
+                    minorTickInterval: null,
+                    tickPixelInterval: 400,
+                    tickWidth: 0,
+                    labels: {
+                        y: 18
+                    },
+                    min: 0,
+                    max: 100,
+                    title: {
+                        text: '时间',
+                        y: -62,
+                        style: {
+                            "fontSize": "medium",
+                        }
+                    }
+                },
+                plotOptions: {
+                    solidgauge: {
+                        dataLabels: {
+                            y: -20,
+                            borderWidth: 0,
+                            useHTML: true
+                        }
+                    }
+                },
+                series: [{
+                    name: '时间',
+                    data: [70.1],
+                    innerRadius: 70,
+                    dataLabels: {
+                        format: '<div style="text-align:center"><span style="font-size:24px;color:' +
+                            ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+                            '<span style="font-size:12px;color:silver"></span></div>'
+                    },
+                    tooltip: {
+                        valueSuffix: ''
+                    }
+                }]
+            });
+            // 成本
+            var chart10 = Highcharts.chart(chart_name2, {
+                chart: {
+                    type: 'solidgauge'
+                },
+                title: null,
+                credits: {
+                    enabled: false
+                },
+                exporting: {
+                    enabled: false,
+                },
+                pane: {
+                    center: ['53%', '56%'],
+                    size: '75%',
+                    startAngle: 0,
+                    endAngle: 360,
+                    background: {
+                        backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+                        innerRadius: '70%',
+                        outerRadius: '100%',
+                        shape: 'arc'
+                    }
+                },
+                tooltip: {
+                    enabled: false
+                },
+                yAxis: {
+                    stops: [
+                        [0.1, '#d2e9ff'],
+                        [0.2, '#acd6ff'],
+                        [0.3, '#84c1ff'],
+                        [0.4, '#46a3ff'],
+                        [0.5, '#2894ff'],
+                        [0.6, '#0080ff'],
+                        [0.7, '#0072e3'],
+                        [0.8, '#0066cc'],
+                        [0.9, '#004b97'],
+                        [1.0, '#003d79']
+                    ],
+                    lineWidth: 0,
+                    minorTickInterval: null,
+                    tickPixelInterval: 400,
+                    tickWidth: 0,
+                    labels: {
+                        y: 18
+                    },
+                    min: 0,
+                    max: 100,
+                    title: {
+                        text: '成本',
+                        y: -62,
+                        style: {
+                            "fontSize": "medium",
+                        }
+                    }
+                },
+                plotOptions: {
+                    solidgauge: {
+                        dataLabels: {
+                            y: -20,
+                            borderWidth: 0,
+                            useHTML: true
+                        }
+                    }
+                },
+                series: [{
+                    name: '成本',
+                    data: [83.1],
+                    innerRadius: 70,
+                    dataLabels: {
+                        format: '<div style="text-align:center"><span style="font-size:24px;color:' +
+                            ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y:.1f}</span><br/>' +
+                            '<span style="font-size:12px;color:silver"></span></div>'
+                    },
+                    tooltip: {
+                        valueSuffix: ''
+                    }
+                }]
+            });
+            // 司法程序质量指数
+            var chart11 = Highcharts.chart(chart_name3, {
+                chart: {
+                    type: 'solidgauge'
+                },
+                title: null,
+                credits: {
+                    enabled: false
+                },
+                exporting: {
+                    enabled: false,
+                },
+                pane: {
+                    center: ['53%', '56%'],
+                    size: '75%',
+                    startAngle: 0,
+                    endAngle: 360,
+                    background: {
+                        backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+                        innerRadius: '70%',
+                        outerRadius: '100%',
+                        shape: 'arc'
+                    }
+                },
+                tooltip: {
+                    enabled: false
+                },
+                yAxis: {
+                    stops: [
+                        [0.1, '#d2e9ff'],
+                        [0.2, '#acd6ff'],
+                        [0.3, '#84c1ff'],
+                        [0.4, '#46a3ff'],
+                        [0.5, '#2894ff'],
+                        [0.6, '#0080ff'],
+                        [0.7, '#0072e3'],
+                        [0.8, '#0066cc'],
+                        [0.9, '#004b97'],
+                        [1.0, '#003d79']
+                    ],
+                    lineWidth: 0,
+                    minorTickInterval: null,
+                    tickPixelInterval: 400,
+                    tickWidth: 0,
+                    labels: {
+                        y: 18
+                    },
+                    min: 0,
+                    max: 100,
+                    title: {
+                        text: '司法程序质量指数',
+                        y: -62,
+                        style: {
+                            "fontSize": "medium",
+                        }
+                    }
+                },
+                plotOptions: {
+                    solidgauge: {
+                        dataLabels: {
+                            y: -20,
+                            borderWidth: 0,
+                            useHTML: true
+                        }
+                    }
+                },
+                series: [{
+                    name: '司法程序质量指数',
+                    data: [91.7],
+                    innerRadius: 70,
+                    dataLabels: {
+                        format: '<div style="text-align:center"><span style="font-size:24px;color:' +
+                            ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y:.1f}</span><br/>' +
+                            '<span style="font-size:12px;color:silver"></span></div>'
+                    },
+                    tooltip: {
+                        valueSuffix: ''
+                    }
+                }]
+            });
+        }
+        function gauge_chart_overall(chart_name){
+            // 时间
+            var chart7 = Highcharts.chart(chart_name, {
+                chart: {
+                    type: 'solidgauge'
+                },
+                title: null,
+                credits: {
+                    enabled: false
+                },
+                exporting: {
+                    enabled: false,
+                },
+                pane: {
+                    center: ['62%', '42.2%'],
+                    size: '84%',
+                    startAngle: 0,
+                    endAngle: 360,
+                    background: {
+                        backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+                        innerRadius: '70%',
+                        outerRadius: '100%',
+                        shape: 'arc'
+                    }
+                },
+                tooltip: {
+                    enabled: false
+                },
+                yAxis: {
+                    stops: [
+                        [0.1, '#d2e9ff'],
+                        [0.2, '#acd6ff'],
+                        [0.3, '#84c1ff'],
+                        [0.4, '#46a3ff'],
+                        [0.5, '#2894ff'],
+                        [0.6, '#0080ff'],
+                        [0.7, '#0072e3'],
+                        [0.8, '#0066cc'],
+                        [0.9, '#004b97'],
+                        [1.0, '#003d79']
+                    ],
+                    lineWidth: 0,
+                    minorTickInterval: null,
+                    tickPixelInterval: 400,
+                    tickWidth: 0,
+                    labels: {
+                        y: 18
+                    },
+                    min: 0,
+                    max: 100,
+                    title: {
+                        text: null,
+                        y: -67,
+                        style: {
+                            "fontSize": "medium",
+                        }
+                    }
+                },
+                plotOptions: {
+                    solidgauge: {
+                        dataLabels: {
+                            y: -20,
+                            borderWidth: 0,
+                            useHTML: true
+                        }
+                    }
+                },
+                series: [{
+                    name: '总分',
+                    data: [86.7],
+                    innerRadius: 70,
+                    dataLabels: {
+                        format: '<div style="text-align:center"><span style="font-size:24px;color:' +
+                            ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+                            '<span style="font-size:12px;color:silver"></span></div>'
+                    },
+                    tooltip: {
+                        valueSuffix: ''
+                    }
+                }]
+            })
+        }
+        // gauge_chart_pccl('chart7', 'chart8');
+        // gauge_chart_htzx('chart9', 'chart10', 'chart11');
+        gauge_chart_overall('chart01');
+
+        // 蜘蛛图函数，输入id和作图数据
+        function spider_map(chart_name, chart_data){
+            var chart = Highcharts.chart(chart_name, {
+                chart: {
+                    polar: true,
+                    type: 'line'
+                },
+                title: {
+                    text: chart_data['title'],
+                    x: 0,
+                    y: 8
+                },
+                credits: {
+                    enabled: false,
+                },
+                exporting: {
+                    enabled: false,
+                },
+                pane: {
+                    size: '90%'
+                },
+                xAxis: {
+                    categories: chart_data['x'],
+                    tickmarkPlacement: 'on',
+                    lineWidth: 0
+                },
+                yAxis: {
+                    gridLineInterpolation: 'polygon',
+                    lineWidth: 0,
+                    min: 0,
+                    max: 100
+                },
+                tooltip: {
+                    shared: true,
+                    pointFormat: '<span style="color:{series.color}">{series.name}: <b>${point.y:,.1f}</b><br/>'
+                },
+                legend: {
+                    align: 'right',
+                    verticalAlign: 'right',
+                    layout: 'vertical'
+                },
+                series: chart_data['series']
+            });
+        }
+        // spider_map('chart12', {{ spider_data | safe }});
+
+        // 饼图函数，输入id
+        function pie_chart(chart_name){
+            // 创建渐变色
+            Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
+                return {
+                    radialGradient: {cx: 0.5, cy: 0.3, r: 0.7},
+                    stops: [
+                        [0, color],
+                        [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+                    ]
+                };
+            });
+            // 构建图表
+            var chart = Highcharts.chart(chart_name, {
+                title: {
+                    text: null
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                exporting: {
+                    enabled: false
+                },
+                credits: {
+                    enabled: false
+                },
+                plotOptions: {
+                    pie: {
+                        center: ['20%', '38%'],
+                        size: 100,
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            },
+                            connectorColor: 'silver'
+                        }
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name: null,
+                    data: [
+                        ['执行合同', 15],
+                        ['办理破产', 6],
+                        ['保护中小投资者', 4],
+                    ]
+                }]
+            });
+        }
+        function e_pie_chart(chart_name){
+            var myChart = echarts.init(document.getElementById(chart_name));
+            var option = {
+                title: {
+                    text: null,
+                    left: 'center'
+                },
+                tooltip: {
+                    trigger: 'item',
+                    formatter: '{a} <br/>{b} : {c} ({d}%)'
+                },
+                legend: {
+                    show: true,
+                    orient: 'vertical',
+                    top: 172,
+                    left: 2
+                    // bottom: 'bottom',
+                },
+                series: [
+                    {
+                        name: '访问来源',
+                        type: 'pie',
+                        radius: '50%',
+                        center: ['50%', '32%'],
+                        data: [
+                            {value: 15, name: '执行合同'},
+                            {value: 6, name: '办理破产'},
+                            {value: 4, name: '保护中小投资者'},
+                        ],
+                        emphasis: {
+                            itemStyle: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
+            };
+            myChart.setOption(option);
+        }
+        e_pie_chart('chart02');
+
+        // 雷达图函数, 输入id
+        function e_radar_chart(chart_name){
+            var myChart = echarts.init(document.getElementById(chart_name));
+            option = {
+                title: {
+                    text: null,
+                },
+                tooltip: {
+                    trigger: 'item',
+                    backgroundColor: 'rgba(0,0,250,0.2)'
+                },
+                legend: {
+                    show: null,
+                    type: 'scroll',
+                    bottom: 10
+                },
+                visualMap: {
+                    orient: 'horizontal',
+                    top: 192,
+                    right: 28,
+                    color: ['red', 'white'],
+                    calculable: true,
+                    min: 60,
+                    max: 100,
+                    hoverlink: true
+                },
+                radar: {
+                    center: ['50%', '39%'],
+                    radius: '62%',
+                    name: {
+                        textStyle: {
+                            color: '#fff',
+                            backgroundColor: '#999',
+                            borderRadius: 3,
+                            padding: [3, 5]
+                        }
+                    },
+                    indicator: [
+                        {text: '保护中小投资者', min: 60, max: 100},
+                        {text: '执行合同', min: 60, max: 100},
+                        {text: '办理破产', min: 60, max: 100}
+                    ]
+                },
+                label: {
+                    show: false,
+                    position: 'left'
+                },
+                series: [{
+                    type: 'radar',
+                    // areaStyle: {normal: {}},
+                    data: [{name: '2019', value: [89.2, 89.7, 81.0]}]
+                }]
+            };
+            myChart.setOption(option);
+        }
+        e_radar_chart('chart03');
+
+        // 气泡图函数，输入id
+        function e_bubble_chart(chart_name){
+            var myChart = echarts.init(document.getElementById(chart_name));
+            var data = [
+                [[186.7, 94.5, 0.0165, '酉阳县', '偏远地区'], [150.6, 94.4, 0.0197, '秀山县', '偏远地区'], [231.9, 96.1, 0.0199, '黔江区', '偏远地区'], [128.7, 92.9, 0.0128, '彭水县', '偏远地区'], [48.8, 90.8, 0.0056, '城口县', '偏远地区'], [116.1, 85.2, 0.0215, '巫山县', '偏远地区']],
+                [[1301.3, 79.9, 0.65, '渝中区', '中心城区'], [1027.9, 77.5, 0.40, '江北区', '中心城区'], [860.2, 78.6, 0.21, '沙家坝区', '中心城区'], [1130.4, 81.4, 0.28, '九龙坡区', '中心城区'], [791.6, 90.8, 0.34, '南岸区', '中心城区'], [176.7, 81.8, 0.33, '大渡口区', '中心城区']]
+            ];
+            option = {
+                legend: {
+                    top: 10,
+                    right: 42
+                },
+                xAxis: {
+                    splitLine: {
+                        lineStyle: {
+                            type: 'dashed'
+                        }
+                    },
+                    name: 'GDP'
+                },
+                yAxis: {
+                    splitLine: {
+                        lineStyle: {
+                            type: 'dashed'
+                        }
+                    },
+                    min: 70,
+                    max: 100,
+                    scale: true,
+                    name: '营商司法得分'
+                    // offset: -20
+                },
+                series: [{
+                    name: '偏远地区',
+                    data: data[0],
+                    type: 'scatter',
+                    symbolSize: function (data) {
+                        return Math.sqrt(data[2]) * 200;
+                    },
+                    emphasis: {
+                        label: {
+                            show: true,
+                            formatter: function (param) {
+                                return param.data[3];
+                            },
+                            position: 'top'
+                        }
+                    },
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowColor: 'rgba(120, 36, 50, 0.5)',
+                        shadowOffsetY: 5,
+                        color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+                            offset: 0,
+                            color: 'rgb(251, 118, 123)'
+                        }, {
+                            offset: 1,
+                            color: 'rgb(204, 46, 72)'
+                        }])
+                    }
+                }, {
+                    name: '中心城区',
+                    data: data[1],
+                    type: 'scatter',
+                    symbolSize: function (data) {
+                        return Math.sqrt(data[2]) * 110;
+                    },
+                    emphasis: {
+                        label: {
+                            show: true,
+                            formatter: function (param) {
+                                return param.data[3];
+                            },
+                            position: 'top'
+                        }
+                    },
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowColor: 'rgba(25, 100, 150, 0.5)',
+                        shadowOffsetY: 5,
+                        color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+                            offset: 0,
+                            color: 'rgb(129, 227, 238)'
+                        }, {
+                            offset: 1,
+                            color: 'rgb(25, 183, 207)'
+                        }])
+                    },
+                }]
+            };
+            myChart.setOption(option);
+        }
+        e_bubble_chart('chart06')
+
+        // 折线图函数，输入id
+        function e_line_chart(chart_name){
+            var myChart = echarts.init(document.getElementById(chart_name));
+            option = {
+                xAxis: {
+                    type: 'category',
+                    data: ['2016', '2017', '2018', '2019'],
+                    name: '年份',
+                },
+                yAxis: {
+                    type: 'value',
+                    min: 60,
+                    max: 100,
+                    name: '得分',
+                    minorTick: {
+                        show: true
+                    },
+                    minorSplitLine: {
+                        show: true
+                    }
+                },
+                legend: {
+                    show: true,
+                    top: 14
+                },
+                series: [{
+                    name: '重庆',
+                    data: [81.9, 84.1, 84.3, 86.7],
+                    type: 'line',
+                    symbol: 'triangle',
+                    symbolSize: 10,
+                    lineStyle: {
+                        color: 'green',
+                        width: 3,
+                        type: 'dashed'
+                    },
+                    itemStyle: {
+                        // borderWidth: 3,
+                        // borderColor: 'yellow',
+                        color: 'blue'
+                    },
+                    label:{
+                        show: true,
+                        position: 'top',
+                        color: 'blue'
+                    }
+                    }
+                ]
+            };
+            myChart.setOption(option);
+        }
+        e_line_chart('chart07');
+
+        // 混合条状图函数，输入id
+        function e_bar_chart(chart_name){
+            var myChart = echarts.init(document.getElementById(chart_name));
+            option = {
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                        type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                    }
+                },
+                legend: {
+                    data: ['执行合同', '办理破产', '保护中小投资者'],
+                    // y: '12px'
+                },
+
+                xAxis: {
+                    type: 'value'
+                },
+                yAxis: {
+                    type: 'category',
+                    data: ['2016', '2017', '2018', '2019']
+                },
+                series: [
+                    {
+                        name: '执行合同',
+                        type: 'bar',
+                        stack: '总量',
+                        label: {
+                            show: true,
+                            position: 'insideRight'
+                        },
+                        data: [85.8, 85.4, 86.6, 89.7]
+                    },
+                    {
+                        name: '办理破产',
+                        type: 'bar',
+                        stack: '总量',
+                        label: {
+                            show: true,
+                            position: 'insideRight'
+                        },
+                        data: [78.3, 80.6, 80.1, 81.0]
+                    },
+                    {
+                        name: '保护中小投资者',
+                        type: 'bar',
+                        stack: '总量',
+                        label: {
+                            show: true,
+                            position: 'insideRight'
+                        },
+                        data: [81.5, 86.5, 86.3, 89.2],
+                        markLine: {
+                            lineStyle: {
+                                type: 'dashed'
+                            },
+                            data: [
+                                [{type: 'min'}, {type: 'max'}]
+                            ]
+                        }
+                    }
+                ]
+            };
+            myChart.setOption(option);
+        }
+        e_bar_chart('chart08');
+
+        // 年度对比雷达图，输入id
+        function e_radar_chart2(chart_name){
+            var myChart = echarts.init(document.getElementById(chart_name));
+            option = {
+                tooltip: {},
+                legend: {
+                    show: true,
+                    orient: 'vertical',
+                    right: 40,
+                    top: 80
+                },
+                radar: {
+                    // shape: 'circle',
+                    name: {
+                        textStyle: {
+                            color: '#fff',
+                            backgroundColor: '#999',
+                            borderRadius: 3,
+                            padding: [3, 5]
+                        }
+                    },
+                    indicator: [
+                        {name: '保护中小投资者', min: 60, max: 100},
+                        {name: '执行合同', min: 60, max: 100},
+                        {name: '办理破产', min: 60, max: 100},
+                    ]
+                },
+                series: [{
+                    name: '2018 vs 2019',
+                    type: 'radar',
+                    // areaStyle: {normal: {}},
+                    areaStyle: {
+                        type: 'normal',
+                        opacity: 0.6, // 图表中各个图区域的透明度
+                        // color: "#1686c2" // 图表中各个图区域的颜色
+                    },
+                    data: [
+                        {
+                            value: [86.3, 86.6, 80.1],
+                            name: '2018',
+                            {#areaStyle: {#}
+                            {#    type: 'default',#}
+                            {#    opacity: 0.6,#}
+                            {#    color: "#DC143C" // 图表中各个图区域的颜色#}
+                            {#}#}
+                        },
+                        {
+                            value: [89.2, 89.7, 81.0],
+                            name: '2019',
+                            {#areaStyle: {#}
+                            {#    type: 'default',#}
+                            {#    opacity: 0.6, // 图表中各个图区域的透明度#}
+                            {#    color: "#1E90FF" // 图表中各个图区域的颜色#}
+                            {#}#}
+                        }
+                    ]
+                }]
+            };
+            myChart.setOption(option);
+        }
+        e_radar_chart2('chart09');
+
+    </script>
+{% endblock %}
