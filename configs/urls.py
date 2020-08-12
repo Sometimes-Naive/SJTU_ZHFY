@@ -17,8 +17,11 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls.static import static
 from django.conf import settings
+from django.views.generic import RedirectView
+from django.conf.urls import url
 
 urlpatterns = [
+    url (r'^$', RedirectView.as_view(url='/overview/overall')),
 	path('overview/', include('apps.overview.urls')),
     path('special-topic/', include('apps.special_topic.urls')),
     path('situation-assessment/', include('apps.situation_assessment.urls')),

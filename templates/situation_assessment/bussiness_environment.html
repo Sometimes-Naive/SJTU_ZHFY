@@ -10,16 +10,16 @@
         <div class="row" style="height: 76.5%">
             <div class="column" style="width:33%;height:100%;background-color: #ffffff">
                 <div class="ui segment container row" style="height: 45%;background-color: #ffffff">
-                    <div class="ui left message" style="height: 17%;width: 31%">
+                    <div class="ui left message" style="height: 21.5%;width: 39%">
                         <div class="header">2019重庆总体得分</div>
                     </div>
                     <div class="ui column" style="height:86%;width:75%;float:left" id="chart01"></div>
                     <div class="ui column" style="height:80%;width:25%;float:right">
-                        <div class="ui huge vertical label" style="margin-left: -35px; margin-top: -6px">
+                        <div class="ui big vertical label" style="margin-left: -35px; margin-top: -35px">
                             <div class="text value">评级</div>
                             <div class="text value">良好</div>
                         </div>
-                        <div class="ui container" style="margin-top: 28px;font-style:italic;font-size: xx-small;margin-left: -10px;width: 65%">
+                        <div class="ui container" style="margin-top: 24px;font-style:italic;font-size: xx-small;margin-left: -10px;width: 65%">
                             <60: 不合格<br>
                             60-70: 合格<br>
                             70-80: 一般<br>
@@ -29,13 +29,13 @@
                     </div>
                 </div>
                 <div class="ui segment container row" style="height: 53%;width:48%;background-color: #ffffff;float:left">
-                    <div class="ui left message" style="height: 14.5%;width: 54%">
+                    <div class="ui left message" style="height: 17.5%;width: 67%">
                         <div class="header">司法要素占比</div>
                     </div>
                     <div class="ui column" style="height:100%;width:100%" id="chart02"></div>
                 </div>
                 <div class="ui segment container row" style="height: 53%;width:52%;background-color: #ffffff;float:right">
-                    <div class="ui left message" style="height: 14.5%;width: 50%">
+                    <div class="ui left message" style="height: 17.5%;width: 63%">
                         <div class="header">司法要素得分</div>
                     </div>
                     <div class="ui column" style="height:100%;width:100%" id="chart03"></div>
@@ -43,8 +43,8 @@
             </div>
 
             <div class="column" style="width:39%;height:102.5%;background-color: #ffffff">
-                <div class="ui segment container row" style="height:100%;background-color: #ffffff">
-                    <div class="ui left message" style="height: 7.5%;width: 38%">
+                <div class="ui segment container row" style="height:100.8%;background-color: #ffffff">
+                    <div class="ui left message" style="height: 8.8%;width: 46%">
                         <div class="header">2019重庆各法院营商司法得分</div>
                     </div>
                     <div class="ui container" style="height:85%" id="chart04"></div>
@@ -52,14 +52,14 @@
             </div>
 
             <div class="column" style="width:28%;height:102.5%;background-color: #ffffff">
-                <div class="ui segment container row" style="height: 44.5%;background-color: #ffffff">
-                    <div class="ui left message" style="height: 17%;width: 37%">
+                <div class="ui segment container row" style="height: 45%;background-color: #ffffff">
+                    <div class="ui left message" style="height: 21.5%;width: 46%">
                         <div class="header">2019优秀区县排名</div>
                     </div>
                     <div class="ui container" style="height:85%" id="chart05"></div>
                 </div>
                 <div class="ui segment container row" style="height: 53%;background-color: #ffffff" >
-                    <div class="ui left message" style="height: 14%;width: 29%">
+                    <div class="ui left message" style="height: 17.5%;width: 37%">
                         <div class="header">典型区县对比</div>
                     </div>
                     <div class="ui column" style="height:92%;margin-top:-22px" id="chart06"></div>
@@ -71,10 +71,10 @@
             </div>
         </div>
 
-        <div class="row" style="height: 52.5%">
+        <div class="row" style="height: 56.5%">
             <div class="column" style="width:33%;height:100%;background-color: #ffffff">
                 <div class="ui segment container row" style="height: 100%;background-color: #ffffff">
-                    <div class="ui left message" style="height: 12%;width: 47%">
+                    <div class="ui left message" style="height: 13.4%;width: 57%">
                         <div class="header">重庆营商环境司法建设发展态势</div>
                     </div>
                     <div class="ui column" style="height:85%;width:100%" id="chart07"></div>
@@ -83,12 +83,12 @@
 
             <div class="column" style="width:39%;height:100%;background-color: #ffffff">
                 <div class="ui segment container row" style="height:100%;background-color: #ffffff">
-                    <div class="ui left message" style="height: 12%;width: 30%">
+                    <div class="ui left message" style="height: 13%;width: 36.5%">
                         <div class="header">各司法分指标发展态势</div>
                     </div>
                     <div class="ui container" style="height:75%; margin-top:30px" id="chart08"></div>
                     <div class="ui column" style="height:5%;width: 100%;margin-top: -10px; margin-left: 9px">
-                        <a href="{% url 'situation_assessment.indicator' %}">
+                        <a href="../yshj2">
                             <i class="small info circle icon"></i>
                             <span style="font-size: xx-small">查看指标关联关系</span>
                         </a>
@@ -98,7 +98,7 @@
 
             <div class="column" style="width:28%;height:100%;background-color: #ffffff">
                 <div class="ui segment container row" style="height: 100%;background-color: #ffffff">
-                    <div class="ui left message" style="height: 12%;width: 29%">
+                    <div class="ui left message" style="height: 13%;width: 37.5%">
                         <div class="header">年度分数对比</div>
                     </div>
                     <div class="ui container" style="height:100%" id="chart09"></div>
@@ -1232,9 +1232,9 @@
                 },
                 legend: {
                     show: true,
-                    orient: 'vertical',
-                    top: 172,
-                    left: 2
+                    orient: 'horizontal',
+                    top: 146,
+                    left: 19
                     // bottom: 'bottom',
                 },
                 series: [
@@ -1280,8 +1280,8 @@
                 },
                 visualMap: {
                     orient: 'horizontal',
-                    top: 192,
-                    right: 28,
+                    top: 147,
+                    right: 0,
                     color: ['red', 'white'],
                     calculable: true,
                     min: 60,
@@ -1290,7 +1290,7 @@
                 },
                 radar: {
                     center: ['50%', '39%'],
-                    radius: '62%',
+                    radius: '56%',
                     name: {
                         textStyle: {
                             color: '#fff',
@@ -1356,7 +1356,7 @@
                     data: data[0],
                     type: 'scatter',
                     symbolSize: function (data) {
-                        return Math.sqrt(data[2]) * 200;
+                        return Math.sqrt(data[2]) * 180;
                     },
                     emphasis: {
                         label: {
@@ -1384,7 +1384,7 @@
                     data: data[1],
                     type: 'scatter',
                     symbolSize: function (data) {
-                        return Math.sqrt(data[2]) * 110;
+                        return Math.sqrt(data[2]) * 90;
                     },
                     emphasis: {
                         label: {

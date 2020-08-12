@@ -40,3 +40,6 @@ __pycache__/
 apps/overview/data/*.json
 apps/overview/data/cache*
 apps/overview/data/preprocess/*.json
+
+
+uwsgi.ini
