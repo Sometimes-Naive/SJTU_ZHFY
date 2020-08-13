@@ -8,20 +8,77 @@
 {% block column1 %}
 
 <div class="ui centered grid" style="height:150%" >
-    <div class="row" style="height: 50%; margin-top: 15px">
+    <div class="row" style="height: 49%; margin-top: 15px">
         <div class="ui segment container row" style="height: 10.5%; width:100%">
                 <h3 class="ui center header" style="font-size: 21px">
                     审判质效宏观评估
                 </h3>
             </div>
 
-        <div class="column" style="width:58%;height:100%;background-color: #ffffff">
+        <div class="column" style="width:21%;height:100%;background-color: #ffffff">
+            <div class="ui segment container row" style="width: 100%;height:100%" id="">
+                <div class="ui selection dropdown" style="margin-left: 14%;margin-top: 12%;height:9.5%">时间
+                <input type="hidden" name="时间">
+                <i class="dropdown icon"></i>
+                <div class="default text"><i class="time icon"></i></div>
+                <div class="menu">
+<!--                    <script>-->
+<!--                        for (i = 0; i < 40; i++){-->
+<!--                            <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.i | safe}}); chart_paint_his('chart1', {{ zzx_data.i | safe}})"><i class="time icon"></i>{{ time_data.i | safe}}</a>-->
+<!--                        }-->
+<!--                    </script>-->
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.0 | safe}}); chart_paint_his('chart1', {{ zzx_data.0 | safe}})"><i class="time icon"></i>{{ time_data.0 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.1 | safe}}); chart_paint_his('chart1', {{ zzx_data.1 | safe}})"><i class="time icon"></i>{{ time_data.1 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.2 | safe}}); chart_paint_his('chart1', {{ zzx_data.2 | safe}})"><i class="time icon"></i>{{ time_data.2 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.3 | safe}}); chart_paint_his('chart1', {{ zzx_data.3 | safe}})"><i class="time icon"></i>{{ time_data.3 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.4 | safe}}); chart_paint_his('chart1', {{ zzx_data.4 | safe}})"><i class="time icon"></i>{{ time_data.4 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.5 | safe}}); chart_paint_his('chart1', {{ zzx_data.5 | safe}})"><i class="time icon"></i>{{ time_data.5 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.6 | safe}}); chart_paint_his('chart1', {{ zzx_data.6 | safe}})"><i class="time icon"></i>{{ time_data.6 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.7 | safe}}); chart_paint_his('chart1', {{ zzx_data.7 | safe}})"><i class="time icon"></i>{{ time_data.7 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.8 | safe}}); chart_paint_his('chart1', {{ zzx_data.8 | safe}})"><i class="time icon"></i>{{ time_data.8 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.9 | safe}}); chart_paint_his('chart1', {{ zzx_data.9 | safe}})"><i class="time icon"></i>{{ time_data.9 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.10 | safe}}); chart_paint_his('chart1', {{ zzx_data.10 | safe}})"><i class="time icon"></i>{{ time_data.10 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.11 | safe}}); chart_paint_his('chart1', {{ zzx_data.11 | safe}})"><i class="time icon"></i>{{ time_data.11 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.12 | safe}}); chart_paint_his('chart1', {{ zzx_data.12 | safe}})"><i class="time icon"></i>{{ time_data.12 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.13 | safe}}); chart_paint_his('chart1', {{ zzx_data.13 | safe}})"><i class="time icon"></i>{{ time_data.13 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.14 | safe}}); chart_paint_his('chart1', {{ zzx_data.14 | safe}})"><i class="time icon"></i>{{ time_data.14 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.15 | safe}}); chart_paint_his('chart1', {{ zzx_data.15 | safe}})"><i class="time icon"></i>{{ time_data.15 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.16 | safe}}); chart_paint_his('chart1', {{ zzx_data.16 | safe}})"><i class="time icon"></i>{{ time_data.16 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.17 | safe}}); chart_paint_his('chart1', {{ zzx_data.17 | safe}})"><i class="time icon"></i>{{ time_data.17 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.18 | safe}}); chart_paint_his('chart1', {{ zzx_data.18 | safe}})"><i class="time icon"></i>{{ time_data.18 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.19 | safe}}); chart_paint_his('chart1', {{ zzx_data.19 | safe}})"><i class="time icon"></i>{{ time_data.19 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.20 | safe}}); chart_paint_his('chart1', {{ zzx_data.20 | safe}})"><i class="time icon"></i>{{ time_data.20 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.21 | safe}}); chart_paint_his('chart1', {{ zzx_data.21 | safe}})"><i class="time icon"></i>{{ time_data.21 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.22 | safe}}); chart_paint_his('chart1', {{ zzx_data.22 | safe}})"><i class="time icon"></i>{{ time_data.22 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.23 | safe}}); chart_paint_his('chart1', {{ zzx_data.23 | safe}})"><i class="time icon"></i>{{ time_data.23 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.24 | safe}}); chart_paint_his('chart1', {{ zzx_data.24 | safe}})"><i class="time icon"></i>{{ time_data.24 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.25 | safe}}); chart_paint_his('chart1', {{ zzx_data.25 | safe}})"><i class="time icon"></i>{{ time_data.25 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.26 | safe}}); chart_paint_his('chart1', {{ zzx_data.26 | safe}})"><i class="time icon"></i>{{ time_data.26 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.27 | safe}}); chart_paint_his('chart1', {{ zzx_data.27 | safe}})"><i class="time icon"></i>{{ time_data.27 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.28 | safe}}); chart_paint_his('chart1', {{ zzx_data.28 | safe}})"><i class="time icon"></i>{{ time_data.28 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.29 | safe}}); chart_paint_his('chart1', {{ zzx_data.29 | safe}})"><i class="time icon"></i>{{ time_data.29 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.30 | safe}}); chart_paint_his('chart1', {{ zzx_data.30 | safe}})"><i class="time icon"></i>{{ time_data.30 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.31 | safe}}); chart_paint_his('chart1', {{ zzx_data.31 | safe}})"><i class="time icon"></i>{{ time_data.31 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.32 | safe}}); chart_paint_his('chart1', {{ zzx_data.32 | safe}})"><i class="time icon"></i>{{ time_data.32 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.33 | safe}}); chart_paint_his('chart1', {{ zzx_data.33 | safe}})"><i class="time icon"></i>{{ time_data.33 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.34 | safe}}); chart_paint_his('chart1', {{ zzx_data.34 | safe}})"><i class="time icon"></i>{{ time_data.34 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.35 | safe}}); chart_paint_his('chart1', {{ zzx_data.35 | safe}})"><i class="time icon"></i>{{ time_data.35 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.36 | safe}}); chart_paint_his('chart1', {{ zzx_data.36 | safe}})"><i class="time icon"></i>{{ time_data.36 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.37 | safe}}); chart_paint_his('chart1', {{ zzx_data.37 | safe}})"><i class="time icon"></i>{{ time_data.37 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.38 | safe}}); chart_paint_his('chart1', {{ zzx_data.38 | safe}})"><i class="time icon"></i>{{ time_data.38 | safe}}</a>
+                    <a class="item" href="javascript:void(0);" onclick="heat_paint('chart2',{{ heat_data.39 | safe}}); chart_paint_his('chart1', {{ zzx_data.39 | safe}})"><i class="time icon"></i>{{ time_data.39 | safe}}</a>
+                </div>
+            </div>
+             </div>>
+        </div>
+
+        <div class="column" style="width:46%;height:100%;background-color: #ffffff">
                 <div class="ui segment container row" style="height: 100%;background-color: #ffffff">
                     <div class="column" style="height:95%;width:100%;margin-top: 10px" id="chart2"></div>
                 </div>
             </div>
 
-        <div class="column" style="width:42%;height:100%;background-color: #ffffff">
+        <div class="column" style="width:33%;height:100%;background-color: #ffffff">
                 <div class="ui segment container row" style="height: 100%;background-color: #ffffff">
                     <div class="column" style="height:90%;width:100%;margin-top: 10px" id="chart1"></div>
                 </div>
@@ -567,6 +624,7 @@ function chart_paint_his(chart_name, chart_data) {
         },
         yAxis: {
             min: 0,
+            max: 100,
             title: {
                 text: '得分',
                 align: 'high'
@@ -667,42 +725,45 @@ function pie_paint1(chart_name, chart_data){
 }
 
 //热力图函数
-$.getJSON('https://data.jianshukeji.com/jsonp?filename=geochina/chongqing.json&callback=?', function(mapdata) {
-    var data = {{ map | safe }};
-    map1 = new Highcharts.Map('chart2', {
-        title: {
-            text: '重庆地区法院质效得分'
-        },
-        mapNavigation: {
-            enabled: true,
-            buttonOptions: {
-                verticalAlign: 'bottom'
-            }
-        },
-        credits:{
-            enabled:false,
-        },
-        exporting:{
-            enabled:false,
-        },
-        colorAxis: {
-            min: 70,
-            minColor: '#fff',
-            maxColor: '#0087ee',
-            labels:{
-                style:{
-                    "color":"red","fontWeight":"bold"
+function heat_paint(chart_name, chart_data) {
+    $.getJSON('https://data.jianshukeji.com/jsonp?filename=geochina/chongqing.json&callback=?', function (mapdata) {
+        var data = chart_data;
+        map1 = new Highcharts.Map(chart_name, {
+            title: {
+                text: '重庆地区法院质效得分'
+            },
+            mapNavigation: {
+                enabled: true,
+                buttonOptions: {
+                    verticalAlign: 'bottom'
                 }
-            }
-        },
-        series: [{
-            data: data,
-            mapData: mapdata,
-            joinBy: 'name',
-            name: '重庆市地图'
-        }]
+            },
+            credits: {
+                enabled: false,
+            },
+            exporting: {
+                enabled: false,
+            },
+            colorAxis: {
+                min: 60,
+                max: 100,
+                minColor: '#fff',
+                maxColor: '#0087ee',
+                labels: {
+                    style: {
+                        "color": "red", "fontWeight": "bold"
+                    }
+                }
+            },
+            series: [{
+                data: data,
+                mapData: mapdata,
+                joinBy: 'name',
+                name: '重庆市地图'
+            }]
+        });
     });
-});
+}
 //柱状图函数，输入id和柱状图数据
 function histogram_paint(chart_name, chart_data){
     var chart = Highcharts.chart(chart_name, {
@@ -873,6 +934,7 @@ pie_paint('chart11',{{ pie_data.2 | safe }});
 histogram_paint('chart10', {{ histogram_data.0 | safe }});
 histogram_paint('chart12', {{ histogram_data.1 | safe }});
 bar_markpoint_chart('chart13');
+heat_paint('chart2', {{ heat_data.0 | safe }});
 //折线图函数
 //////////////////////////////////////营商环境\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
 

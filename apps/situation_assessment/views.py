@@ -120,14 +120,19 @@ def index_app(request):
             },
         ],
         'histogram_data': [ysxg_hdata, jazx_hdata],
-        'rank_data': overall_rank,
-        'line_data': overall_trend,
-        'heatmap_data': heatmap_data,
-        'hist_data': indicator_trend,
-        'pccl_data': pccl_score,
-        'htzx_data': htzx_score,
-        'spider_data': spidermap_data,
-        'diff_data': diff_data,
+        'heat_data': heat_data,
+        'zzx_data':  bar_data,
+        'time_data': time_data,
+
+        ##### 营商环境部分
+        # 'rank_data': overall_rank,
+        # 'line_data': overall_trend,
+        # 'heatmap_data': heatmap_data,
+        # 'hist_data': indicator_trend,
+        # 'pccl_data': pccl_score,
+        # 'htzx_data': htzx_score,
+        # 'spider_data': spidermap_data,
+        # 'diff_data': diff_data,
     }
     return render(request, 'situation-assessment/index_app.html', context)
 
@@ -151,6 +156,17 @@ def yshj1(request):
         # 'diff_data': diff_data,
     }
     return render(request, 'situation-assessment/yshj1.html', context)
+
+
+# 关联关系
+def yshj2(request):
+    context = {
+        'pccl_data': pccl_score,
+        'htzx_data': htzx_score,
+        'spider_data': spidermap_data,
+        'diff_data': diff_data,
+    }
+    return render(request, 'situation-assessment/yshj2.html', context)
 
 from django.template.defaulttags import register
 @register.filter
