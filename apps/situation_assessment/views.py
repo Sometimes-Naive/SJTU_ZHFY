@@ -73,7 +73,7 @@ import json
 #         'details': managers.compose_case_details(case_id)
 #     })
 
-def index_app(request):
+def get_indicator_application_scope(request):
 
     context = {
         'range_data': [
@@ -134,17 +134,17 @@ def index_app(request):
         # 'spider_data': spidermap_data,
         # 'diff_data': diff_data,
     }
-    return render(request, 'situation-assessment/index_app.html', context)
+    return render(request, 'situation-assessment/indicator_application.html', context)
 
 def get_index_system_tree(request):
     return JsonResponse(json_data_r(DATA_PATH + 'tree.json.active'))
 
-def index_pre(request):
+def get_indicator_description_scope(request):
 
     context = {}
-    return render(request, 'situation-assessment/index_pre.html', context)
+    return render(request, 'situation-assessment/indicator_description.html', context)
 
-def yshj1(request):
+def get_bussiness_environment_scope(request):
     context = {
         'rank_data': overall_rank,
         'line_data': overall_trend,
@@ -155,18 +155,18 @@ def yshj1(request):
         # 'spider_data': spidermap_data,
         # 'diff_data': diff_data,
     }
-    return render(request, 'situation-assessment/yshj1.html', context)
+    return render(request, 'situation-assessment/bussiness_environment.html', context)
 
 
 # 关联关系
-def yshj2(request):
+def get_indicator_relationship_scope(request):
     context = {
         'pccl_data': pccl_score,
         'htzx_data': htzx_score,
         'spider_data': spidermap_data,
         'diff_data': diff_data,
     }
-    return render(request, 'situation-assessment/yshj2.html', context)
+    return render(request, 'situation-assessment/indicator_relationship.html', context)
 
 from django.template.defaulttags import register
 @register.filter

@@ -1,6 +1,5 @@
 {% extends 'layout.html' %}
 {% load static %}
-
 {% block head %}
     <div class="item header">态势研判——营商环境</div>
 {% endblock %}
@@ -89,7 +88,7 @@
                     </div>
                     <div class="ui container" style="height:75%; margin-top:30px" id="chart08"></div>
                     <div class="ui column" style="height:5%;width: 100%;margin-top: -10px; margin-left: 9px">
-                        <a href="../situation-assessment/yshj2">
+                        <a href="{% url 'situation_assessment.relationship' %}">
                             <i class="small info circle icon"></i>
                             <span style="font-size: xx-small">查看指标关联关系</span>
                         </a>
@@ -416,18 +415,7 @@
 {% endblock %}
 
 {% block jschart %}
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/highcharts.js' %}"></script>
-    <script src="{% static 'js/highcharts-more.js' %}"></script>
-    <script src="{% static 'js/semantic.js' %}"></script>
-    <script src="{% static 'js/exporting.js' %}"></script>
-    <script src="{% static 'js/drilldown.js' %}"></script>
-    <script src="{% static 'js/map.js' %}"></script>
-    <script src="{% static 'js/grid-light.js' %}"></script>
     <script src="{% static 'js/solid-gauge.js' %}"></script>
-    <script src="{% static 'js/echarts.min.js' %}"></script>
-    <script src="{% static 'js/sankey.js' %}"></script>
-    <script src="{% static 'js/oldie.js' %}"></script>
     <script>
         // 条状图函数，输入为id和作图数据
         function bar_chart(chart_name, chart_data) {

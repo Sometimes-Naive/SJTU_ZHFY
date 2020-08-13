@@ -510,48 +510,6 @@
 {% block jschart %}
 <script src="{% static 'js/solid-gauge.js' %}"></script>
 <script>
-//指标体系树状图
-function drawTree(chart_name){
-    let myChart = echarts.init(document.getElementById("index-system"));
-    myChart.showLoading(); //显示Loading标志； 
-    $.get('{% url 'tree' %}', function (data) {
-        myChart.hideLoading();//得到数据后隐藏Loading标志
-        echarts.util.each(data.children, function (datum, index) {
-            index % 2 === 0 && (datum.collapsed = true);
-        });//间隔展开子数据
-        myChart.setOption(option = {
-            tooltip: {
-                trigger: 'item',
-                triggerOn: 'mousemove'//提示框触发的条件，默认mousemove|click（鼠标点击和移动时触发）。可选mousemove：鼠标移动时，click：鼠标点击时，none：
-            },
-            series: [{ //系列列表
-                type: 'tree', //树形结构
-                data: [data],
-                top: '1%',
-                left: '7%',
-                bottom: '1%',
-                right: '20%',
-                symbolSize: 7,
-                label: {
-                    position: 'left',
-                    verticalAlign: 'middle',
-                    align: 'right',
-                    fontSize: 9
-                },
-                leaves: {//叶子节点的特殊配置，如上面的树图示例中，叶子节点和非叶子节点的标签位置不同
-                    label: {
-                        position: 'right',
-                        verticalAlign: 'middle',
-                        align: 'left'
-                    }
-                },
-                expandAndCollapse: true,
-                animationDuration: 550,
-                animationDurationUpdate: 750
-            }]
-        });
-    });
-}
 //排名图函数，输入为div的id和作图数据
 function chart_paint(chart_name, chart_data) {
     {#console.log(chart_name);#}

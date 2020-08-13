@@ -19,7 +19,7 @@
             <div class="ui segment container row" style="height: 100%;background-color: #ffffff" id="chart0">指标体系</div>
         </div>
         <div class="ui column" style="height:10%;width: 100%;margin-top: -90px; margin-left: 80px">
-            <a href="https://pan.baidu.com/s/11G0xGi5wdPvY0y-nMEUi_A">
+            <a href="/static/docs/indicator_system.pdf">
                 <i class="normal info circle icon"></i>
                 <span style="font-size: small">查看说明文档</span>
             </a>
@@ -43,7 +43,7 @@
 function drawTree(chart_name){
     let myChart = echarts.init(document.getElementById("index-system"));
     myChart.showLoading(); //显示Loading标志； 
-    $.get('{% url 'tree' %}', function (data) {
+    $.get('{% url 'situation_assessment.tree' %}', function (data) {
         myChart.hideLoading();//得到数据后隐藏Loading标志
         echarts.util.each(data.children, function (datum, index) {
             index % 2 === 0 && (datum.collapsed = true);
