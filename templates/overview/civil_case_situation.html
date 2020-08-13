@@ -273,6 +273,7 @@ function person_pie_line(data){
 function cal_percentage(id, data1, data2){
     {#alert(data1)#}
     {#alert(data2)#}
+    console.log(data1,data2)
     var per = (data2-data1)/data1 * 100
     var output = toString(per) + '%'
     document.getElementById(id).innerText = data2

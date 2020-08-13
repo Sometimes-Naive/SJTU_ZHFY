@@ -45,7 +45,7 @@ index = 0
 error_id = []
 data = AllData.objects(案件类别='刑事案件')
 
-# print(data.count())
+print(data.count())
 judge_dict = {}
 count = 0
 steal_info_list = []
