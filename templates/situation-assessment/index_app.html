@@ -71,19 +71,25 @@
         </div>
     </div>
 
-    <div class="row" style="height: 45%; margin-top: 12px">
-        <div class="ui segment container row" style="height: 12%; width:100%">
+    <div class="row" style="height: 50%; margin-top: 10px">
+        <div class="ui segment container row" style="height: 11%; width:100%">
                 <h3 class="ui center header" style="font-size: 21px">
                     审判质效与经济社会关联分析
                 </h3>
         </div>
 
-        <div class="ui segment container column" style="width: 100%;height: 88%"  id="" >
-            <div class="ui container" style="height: 100%;width:100%;margin-top: 2em" id=""></div>
+        <div class="ui segment container column" style="width: 60%;height: 88%"  id="" >
+            <div class="ui container" style="height: 100%;width:100%;margin: 3px" id="chart13"></div>
+        </div>
+        <div class="ui segment container column" style="width: 40%;height: 88%">
+            <h3 class="ui centered header" style="height: 20%;width:100%;margin-top: 5px;font-size: 19px">审判质效与经济社会关联分析说明</h3>
+            <div class="ui container" style="height: 80%;width:80%;margin-top: 19px;" id="">
+            <p> 从左图可以看出，人均GDP处于第一档的地区，处于中等发达国家水平，经济发展水平高，人们生活水平较好，相应的法治建设水平属于前列，人们的法治意识相应的有所提升，但是由于经济环境好，人口相对密集，人均案件数量较高，给法院的审判工作带来了一定的压力，立案和审理过程相对复杂，困难度提高，因此这一档的审判质效综合评分为79.06，虽然处于较高的水平，但是仍有进步的空间。人均GDP处于第四档的地区，处于世界平均人均水平，这一区域的经济水平平稳，基本达到了小康，人口密集程度低，城镇规模小，人均案件数量较低，法院工作压力小，因此审判质效的综合评分处于很高的水平。人均GDP处于第六档的地区，处于中低收入水平，经济发展滞后，人民生活水平不高，以山区和乡村为主，因此产生的案件数量不多，但是由于经济落后，居民法治意识不强，法院的预算经费较少，因此审判质效的综合评分处于最低的水平。</p>
+            </div>
         </div>
     </div>
 
-    <div class="ui container row" style="height:40%;margin-top: 12px">
+    <div class="ui container row" style="height:40%;margin-top: 25px">
         <div class="ui segment container row" style="height: 13.5%; width:100%">
                 <h3 class="ui center header" style="font-size: 21px">
                     审判质效末端指标分析
@@ -762,6 +768,102 @@ function histogram_paint(chart_name, chart_data){
         series: chart_data['data']
     });
 }
+
+// 审判质效与经济社会关联分析图
+function bar_markpoint_chart(chart_name) {
+    var myChart = echarts.init(document.getElementById(chart_name));
+    var option = {
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross',
+                crossStyle: {
+                    color: '#999'
+                }
+            }
+        },
+        toolbox: {
+            feature: {
+                dataView: {show: true, readOnly: false},
+                magicType: {show: true, type: ['line', 'bar']},
+                restore: {show: true},
+                saveAsImage: {show: true}
+            }
+        },
+        title: {
+            left: 'center',
+            text: '质效得分与人均GDP关联分析',
+        },
+        legend: {
+            data: ['人均GDP', '质效得分'],
+            top: 'bottom'
+        },
+        xAxis: [
+            {
+                type: 'category',
+                data: ['涪陵', '九龙坡区', '渝北区', '', '永川区', '璧山区', '长寿区', '荣昌区', '江津区',
+                    '', '大足区', '大渡口区', '合川区', '梁平区', '', '潼南区', '垫江县', '南川县', '丰都县', '忠县',
+                    '秀山县', '', '开州区', '城口县', '巫溪县', '酉阳县', 'C11', 'C13', '', 'C14', 'C20'],
+                axisPointer: {
+                    type: 'shadow'
+                }
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                name: '人均GDP / 万元',
+                min: 0,
+                max: 10,
+                interval: 1,
+                axisLabel: {
+                    formatter: '{value} '
+                }
+            },
+            {
+                type: 'value',
+                name: '质效得分',
+                min: 75,
+                max: 82,
+                interval: 0.5,
+                axisLabel: {
+                    formatter: '{value} '
+                }
+            }
+        ],
+        series: [
+            {
+                name: '人均GDP',
+                type: 'bar',
+                data: [7.775, 7.7061, 7.6613, 0, 6.2398, 5.98, 5.8769, 5.8464, 5.8254, 0,
+                    5.4911, 5.3215, 5.2295, 5.1679, 0, 4.1267, 4.1189, 3.8906, 3.8069, 3.7127, 3.7031,
+                    0, 3.2497, 3.2004, 3.0275, 2.9874, 2.9742, 2.1248, 0, 2.0527, 1.9942]
+            },
+            {
+                name: '质效得分',
+                type: 'line',
+                yAxisIndex: 1,
+                show: 'false',
+                data: ['', 79.06, '', 0, '', '', 78.33, '', '', 0,
+                    '', 78.23, '', '', 0, '', '', 79.93, '', '', '', 0,
+                    '', '', 79.09, '', '', '', 0, '', 77.58],
+
+                markPoint: {
+                    data: [
+                        {name: '第一档', value: 79.06, xAxis: 1, yAxis: 79.06},
+                        {name: '第二档', value: 78.33, xAxis: 6, yAxis: 78.33},
+                        {name: '第三档', value: 78.23, xAxis: 11, yAxis: 78.23},
+                        {name: '第四档', value: 79.93, xAxis: 17, yAxis: 79.93},
+                        {name: '第五档', value: 79.09, xAxis: 24, yAxis: 79.13},
+                        {name: '第六档', value: 77.58, xAxis: 30, yAxis: 77.58}
+                    ]
+                },
+            }
+        ]
+    };
+    myChart.setOption(option);
+}
+
 // drawTree('chart0');
 chart_paint_his('chart1', {{ range_data.0 | safe}});
 chart_paint('chart5', {{ range_data.1 | safe}});
@@ -770,6 +872,7 @@ pie_paint('chart9',{{ pie_data.1 | safe }});
 pie_paint('chart11',{{ pie_data.2 | safe }});
 histogram_paint('chart10', {{ histogram_data.0 | safe }});
 histogram_paint('chart12', {{ histogram_data.1 | safe }});
+bar_markpoint_chart('chart13');
 //折线图函数
 //////////////////////////////////////营商环境\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
 
@@ -1424,14 +1527,14 @@ function spider_map(chart_name, chart_data){
         series: chart_data['series']
     });
 }
-bar_chart('chart21', {{ rank_data | safe}});
-bar_chart('chart33', {{ diff_data | safe }});
-line_chart('chart23', {{ line_data | safe }});
-heat_chart('chart22', {{ heatmap_data | safe }});
-hist_chart('chart24', {{ hist_data | safe }});
-gauge_chart_pccl('chart27', 'chart28');
-gauge_chart_htzx('chart29', 'chart30', 'chart31');
-spider_map('chart32', {{ spider_data | safe }});
+// bar_chart('chart21', {{ rank_data | safe}});
+// bar_chart('chart33', {{ diff_data | safe }});
+// line_chart('chart23', {{ line_data | safe }});
+// heat_chart('chart22', {{ heatmap_data | safe }});
+// hist_chart('chart24', {{ hist_data | safe }});
+// gauge_chart_pccl('chart27', 'chart28');
+// gauge_chart_htzx('chart29', 'chart30', 'chart31');
+// spider_map('chart32', {{ spider_data | safe }});
 
 </script>
 {% endblock %}
