@@ -1,9 +1,7 @@
 {% extends 'layout.html' %}
 {% load static %}
 {% block head %}
-<div class="item header">收结案预测</div>
-
-
+精细化管理预测
 {% endblock %}
 {% block column1 %}
 <div class="ui  centered grid" style="height: 90%;background-color: #ffffff"  >
@@ -83,7 +81,7 @@
                 <a class="item" href="javascript:void(0);" onclick="line_chart_dynamic({{ test.line_data.1|safe }});prediction('#chart6-2',{{ test.line_data.1 }});$('#chart6-3').text('具体建议:'+'{{ advice.1 |safe }}')"><i class="world icon"></i>{{ test.region.1 }}</a>
                 <a class="item" href="javascript:void(0);" onclick="line_chart_dynamic({{ test.line_data.2|safe }});prediction('#chart6-2',{{ test.line_data.2 }});$('#chart6-3').text('具体建议:'+'{{ advice.2 |safe }}')"><i class="world icon"></i>{{ test.region.2 }}</a>
                 <a class="item" href="javascript:void(0);" onclick="line_chart_dynamic({{ test.line_data.3|safe }});prediction('#chart6-2',{{ test.line_data.3 }});$('#chart6-3').text('具体建议:'+'{{ advice.3 |safe }}')"><i class="world icon"></i>{{ test.region.3 }}</a>
-                   <a class="item" href="javascript:void(0);" onclick="line_chart_dynamic({{ test.line_data.4|safe }});prediction('#chart6-2',{{ test.line_data.4 }});$('#chart6-3').text('具体建议:'+'{{ advice.4 |safe }}')"><i class="world icon"></i>{{ test.region.4 }}</a>
+                <a class="item" href="javascript:void(0);" onclick="line_chart_dynamic({{ test.line_data.4|safe }});prediction('#chart6-2',{{ test.line_data.4 }});$('#chart6-3').text('具体建议:'+'{{ advice.4 |safe }}')"><i class="world icon"></i>{{ test.region.4 }}</a>
                 <a class="item" href="javascript:void(0);" onclick="line_chart_dynamic({{ test.line_data.5|safe }});prediction('#chart6-2',{{ test.line_data.5 }});$('#chart6-3').text('具体建议:'+'{{ advice.5 |safe }}')"><i class="world icon"></i>{{ test.region.5 }}</a>
                 <a class="item" href="javascript:void(0);" onclick="line_chart_dynamic({{ test.line_data.6|safe }});prediction('#chart6-2',{{ test.line_data.6 }});$('#chart6-3').text('具体建议:'+'{{ advice.6 |safe }}')"><i class="world icon"></i>{{ test.region.6 }}</a>
             </div>

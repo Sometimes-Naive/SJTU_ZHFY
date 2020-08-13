@@ -169,6 +169,12 @@ function region_case_number(chart_name,chart_data){
 }
 function court_class(chart_name,chart_data){
     var chart = Highcharts.chart(chart_name, {
+        credits:{
+                enabled:false,
+                },
+                exporting:{
+                enabled:false,
+                },
 	chart: {
 		type: 'column'
 	},
@@ -411,7 +417,7 @@ function sjc_case_number(chart_name,chart_data){
 		// head + 每个 point + footer 拼接成完整的 table
 		headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
 		pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-		'<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+		'<td style="padding:0"><b>{point.y:.1f} 件</b></td></tr>',
 		footerFormat: '</table>',
 		shared: true,
 		useHTML: true
@@ -480,11 +486,15 @@ function line_chart(chart_name, chart_title, chart_data){
 	subtitle: {
 		text: ''
 	},
+        xAxis: {
+		categories: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+	},
 	yAxis: {
 		title: {
 			text: '数量'
 		}
 	},
+
 	legend: {
 		layout: 'vertical',
 		align: 'right',
@@ -495,7 +505,7 @@ function line_chart(chart_name, chart_title, chart_data){
 			label: {
 				connectorAllowed: false
 			},
-			pointStart: 1
+
 		}
 	},
 	series: chart_data,
@@ -515,5 +525,532 @@ function line_chart(chart_name, chart_title, chart_data){
 	}
 });
 }
+function line1_chart(chart_name){
+    var chart = Highcharts.chart(chart_name, {
+        credits:{
+                enabled:false,
+                },
+                exporting:{
+                enabled:false,
+                },
+	title: {
+		text: '审级分布'
+	},
+	subtitle: {
+		text: ''
+	},
+	yAxis: {
+		title: {
+			text: '案件数'
+		}
+	},
+	legend: {
+		layout: 'vertical',
+		align: 'right',
+		verticalAlign: 'middle'
+	},
+	plotOptions: {
+		series: {
+			label: {
+				connectorAllowed: false
+			},
+			pointStart: 1
+		}
+	},
+	series: [{
+		name: '案件总数',
+		data: [
+            38417,
+            35066,
+            18819,
+            44545,
+            42428,
+            35689,
+            44797,
+            45070,
+            32583,
+            51364,
+            43319,
+            35935,
 
+
+        ],
+	}, {
+		name: '一审案件',
+		data: [33423,
+            30507,
+            16373,
+            38754 ,
+            36912 ,
+            31049 ,
+            38973 ,
+            39211 ,
+            28347 ,
+            44687 ,
+            37688 ,
+            31263 ,
+]
+	}, {
+		name: '二审案件',
+		data: [3842 ,
+                3507 ,
+                1882 ,
+                4455 ,
+                4243 ,
+                3569 ,
+                4480 ,
+                4507 ,
+                3258 ,
+                5136 ,
+                4332 ,
+                3594 ,]
+	}, {
+		name: '再审案件',
+		data: [1076 ,
+                982 ,
+                527 ,
+                1247 ,
+                1188 ,
+                999 ,
+                1254 ,
+                1262 ,
+                912 ,
+                1438 ,
+                1213 ,
+                1006 ,
+]
+	}, {
+		name: '终审案件',
+		data: [77 ,
+                70 ,
+                38 ,
+                89 ,
+                85 ,
+                71 ,
+                90 ,
+                90 ,
+                65 ,
+                103 ,
+                87 ,
+                72 ,
+                ]
+	}],
+	responsive: {
+		rules: [{
+			condition: {
+				maxWidth: 500
+			},
+			chartOptions: {
+				legend: {
+					layout: 'horizontal',
+					align: 'center',
+					verticalAlign: 'bottom'
+				}
+			}
+		}]
+	}
+});
+}
+function line2_chart(chart_name){
+    var chart = Highcharts.chart(chart_name, {
+        credits:{
+                enabled:false,
+                },
+                exporting:{
+                enabled:false,
+                },
+	title: {
+		text: '审级分布'
+	},
+	subtitle: {
+		text: ''
+	},
+	yAxis: {
+		title: {
+			text: '案件数'
+		}
+	},
+	legend: {
+		layout: 'vertical',
+		align: 'right',
+		verticalAlign: 'middle'
+	},
+	plotOptions: {
+		series: {
+			label: {
+				connectorAllowed: false
+			},
+			pointStart: 1
+		}
+	},
+	series: [{
+		name: '案件总数',
+		data: [
+            34367.0,
+            30044.0,
+            16540.0,
+            41164.0,
+            38537.0,
+            30722.0,
+            39408.0,
+            40096.0,
+            27565.0,
+            46056.0,
+            38019.0,
+            31295
+
+
+
+        ],
+	}, {
+		name: '一审案件',
+		data: [29899 ,
+26138 ,
+14390 ,
+35813 ,
+33527 ,
+26728 ,
+34285 ,
+34884 ,
+23982 ,
+40069 ,
+33077 ,
+27227 ,
+
+
+]
+	}, {
+		name: '二审案件',
+		data: [3437 ,
+3004 ,
+1654 ,
+4116 ,
+3854 ,
+3072 ,
+3941 ,
+4010 ,
+2757 ,
+4606 ,
+3802 ,
+3130 ,
+]
+	}, {
+		name: '再审案件',
+		data: [962 ,
+841 ,
+463 ,
+1153 ,
+1079 ,
+860 ,
+1103 ,
+1123 ,
+772 ,
+1290 ,
+1065 ,
+876 ,
+
+]
+	}, {
+		name: '终审案件',
+		data: [69 ,
+60 ,
+33 ,
+82 ,
+77 ,
+61 ,
+79 ,
+80 ,
+55 ,
+92 ,
+76 ,
+63 ,
+
+                ]
+	}],
+	responsive: {
+		rules: [{
+			condition: {
+				maxWidth: 500
+			},
+			chartOptions: {
+				legend: {
+					layout: 'horizontal',
+					align: 'center',
+					verticalAlign: 'bottom'
+				}
+			}
+		}]
+	}
+});
+}
+function line3_chart(chart_name){
+    var chart = Highcharts.chart(chart_name, {
+        credits:{
+                enabled:false,
+                },
+                exporting:{
+                enabled:false,
+                },
+	title: {
+		text: '审级分布'
+	},
+	subtitle: {
+		text: ''
+	},
+	yAxis: {
+		title: {
+			text: '案件数'
+		}
+	},
+	legend: {
+		layout: 'vertical',
+		align: 'right',
+		verticalAlign: 'middle'
+	},
+	plotOptions: {
+		series: {
+			label: {
+				connectorAllowed: false
+			},
+			pointStart: 1
+		}
+	},
+	series: [{
+		name: '案件总数',
+		data: [
+            2941.0,
+            3116.0,
+            1626.0,
+            2078.0,
+            2710.0,
+            3547.0,
+            4183.0,
+            3581.0,
+            3902.0,
+            3753.0,
+            3551.0,
+            3131.0
+
+
+
+        ],
+	}, {
+		name: '一审案件',
+		data: [2559 ,
+2711 ,
+1415 ,
+1808 ,
+2358 ,
+3086 ,
+3639 ,
+3115 ,
+3395 ,
+3265 ,
+3089 ,
+2724 ,
+
+
+
+]
+	}, {
+		name: '二审案件',
+		data: [294 ,
+312 ,
+163 ,
+208 ,
+271 ,
+355 ,
+418 ,
+358 ,
+390 ,
+375 ,
+355 ,
+313 ,
+
+]
+	}, {
+		name: '再审案件',
+		data: [82 ,
+87 ,
+46 ,
+58 ,
+76 ,
+99 ,
+117 ,
+100 ,
+109 ,
+105 ,
+99 ,
+88 ,
+
+]
+	}, {
+		name: '终审案件',
+		data: [6 ,
+6 ,
+3 ,
+4 ,
+5 ,
+7 ,
+8 ,
+7 ,
+8 ,
+8 ,
+7 ,
+6 ,
+
+
+                ]
+	}],
+	responsive: {
+		rules: [{
+			condition: {
+				maxWidth: 500
+			},
+			chartOptions: {
+				legend: {
+					layout: 'horizontal',
+					align: 'center',
+					verticalAlign: 'bottom'
+				}
+			}
+		}]
+	}
+});
+}
+function line4_chart(chart_name){
+    var chart = Highcharts.chart(chart_name, {
+        credits:{
+                enabled:false,
+                },
+                exporting:{
+                enabled:false,
+                },
+	title: {
+		text: '审级分布'
+	},
+	subtitle: {
+		text: ''
+	},
+	yAxis: {
+		title: {
+			text: '案件数'
+		}
+	},
+	legend: {
+		layout: 'vertical',
+		align: 'right',
+		verticalAlign: 'middle'
+	},
+	plotOptions: {
+		series: {
+			label: {
+				connectorAllowed: false
+			},
+			pointStart: 1
+		}
+	},
+	series: [{
+		name: '案件总数',
+		data: [
+            1109.0,
+            1906.0,
+            653.0,
+            1303.0,
+            1181.0,
+            1420.0,
+            1206.0,
+            1393.0,
+            1116.0,
+            1555.0,
+            1749.0,
+            1509.0
+
+
+
+        ],
+	}, {
+		name: '一审案件',
+		data: [965 ,
+1658 ,
+568 ,
+1134 ,
+1027 ,
+1235 ,
+1049 ,
+1212 ,
+971 ,
+1353 ,
+1522 ,
+1313 ,
+
+
+]
+	}, {
+		name: '二审案件',
+		data: [111,
+191 ,
+65 ,
+130 ,
+118 ,
+142 ,
+121 ,
+139 ,
+112 ,
+156 ,
+175 ,
+151 ,
+
+]
+	}, {
+		name: '再审案件',
+		data: [31 ,
+53 ,
+18 ,
+36 ,
+33 ,
+40 ,
+34 ,
+39 ,
+31 ,
+44 ,
+49 ,
+42 ,
+
+
+]
+	}, {
+		name: '终审案件',
+		data: [2 ,
+4 ,
+1 ,
+3 ,
+2 ,
+3 ,
+2 ,
+3 ,
+2 ,
+3 ,
+3 ,
+3 ,
+
+
+                ]
+	}],
+	responsive: {
+		rules: [{
+			condition: {
+				maxWidth: 500
+			},
+			chartOptions: {
+				legend: {
+					layout: 'horizontal',
+					align: 'center',
+					verticalAlign: 'bottom'
+				}
+			}
+		}]
+	}
+});
+}
 </script>

@@ -1,10 +1,8 @@
 {% extends 'layout.html' %}
 {% block head %}
-<div class="item header">刑事案件</div>
-
-
+案件宏观态势研判——刑事案件态势
+<button class="ui   right floated black basic button" style="font-weight: bold;margin-left: 15px">2017年1月~2017年12月</button>
 {% endblock %}
-
 {% block column1 %}
 
 <div class="ui centered grid" style="height:100%">
@@ -125,22 +123,7 @@ cal_percentage('d',{{ case_outline.sjc_case_data.2.3 | safe }},{{ case_outline.s
 detail_his_chart('chart2','刑事案件',{{ case_outline.judge_his_data | safe }});
 percent_chart('chart2-1',{{ case_outline.judge_his_data | safe }});
 region_case_number('chart4',{{ case_outline.region_season_his_data | safe }});
-line_chart('chart6', '审级分布', [{
-		name: '案件总数',
-		data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
-	}, {
-		name: '一审案件',
-		data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
-	}, {
-		name: '二审案件',
-		data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
-	}, {
-		name: '再审案件',
-		data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
-	}, {
-		name: '终审案件',
-		data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
-	}]);
+line3_chart('chart6');
 court_class('chart7',{{ case_outline.court_season_his_data | safe }});
 
 

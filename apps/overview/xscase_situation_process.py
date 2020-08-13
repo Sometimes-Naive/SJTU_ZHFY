@@ -44,8 +44,8 @@ def check_date(data):
 #展示2018年数据
 #刑事案件罪名数据分析
 #'drive危险驾驶罪''drug走私、贩卖、运输、制造毒品罪''fraud诈骗罪''larceny盗窃罪''taccident交通肇事罪'
-path = 'larceny'
-name = '盗窃罪'
+path = 'taccident'
+name = '交通肇事罪'
 data = json_data_r('./data/criminal_case_'+path+'_chartinfo_1.json')
 print(data[0].keys())
 
@@ -243,7 +243,7 @@ data_dict = {
 }
 #数据存储
 # print(data_dict)
-# json_data_w(data_dict, './data/criminal_case_'+path+'_chartinfo.json')
-# print(data_dict['age_data_dis'])
+json_data_w(data_dict, './data/criminal_case_'+path+'_chartinfo.json')
+print(data_dict['process_season_data'])
 
 

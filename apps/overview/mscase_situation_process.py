@@ -45,8 +45,8 @@ def check_date(data):
 #民事案件案由数据分析
 #'TrafficAccidentDispute机动车事故责任纠纷'‘ContractDispute合同纠纷’‘CreditCardDispute信用卡纠纷’‘LaborDispute劳动争议’
 # ‘LoanContractDispute借贷合同纠纷’‘’PrivateLendingDispute民间借贷纠纷‘’ServiceContractDispute服务合同纠纷‘’TradeContractDispute买卖合同纠纷‘
-path = 'ServiceContractDispute'
-name = '服务合同纠纷'
+path = 'TradeContractDispute'
+name = '买卖合同纠纷'
 data = json_data_r('./data/civil_case_'+path+'_info.json')
 # print(data[0].keys())
 
@@ -124,7 +124,15 @@ class_data = {
 gender_data = pie_line_data_extract(data, 'gender')
 
 process_data = pie_line_data_extract(data, 'judge_process')
-
+process_list = []
+for i in process_data['line_data']:
+    process_list.append(i['name'])
+if '再审' not in process_list:
+    process_data['line_data'].append({'name':'再审','data':[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]})
+    process_data['pie_data'].append({'name':'再审','y':0})
+if '终审' not in process_list:
+    process_data['line_data'].append({'name': '终审', 'data': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]})
+    process_data['pie_data'].append({'name': '终审', 'y': 0})
 pclass_data = pie_line_data_extract(data, 'people_class')
 
 age_data_dis = pie_line_data_extract(data, 'age')

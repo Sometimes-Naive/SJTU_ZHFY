@@ -1,0 +1,86 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block head %}
+审判质效评估优化
+{% endblock %}
+{% block column1 %}
+
+<div class="ui centered grid" style="height:90%" >
+
+    <div class="row" style="height: 82%">
+        <div class="ui segment container row" style="height: 11%; width:100%;margin-top: 5px">
+            <h3 class="ui center header" style="font-size: 21px">
+                审判质效指标体系展示
+            </h3>
+        </div>
+        <div id="index-system" class="column" style="width:100%;height:100%;margin-left: 60px;margin-top: -8px;background-color: #ffffff">
+            <div class="ui segment container row" style="height: 100%;background-color: #ffffff" id="chart0">指标体系</div>
+        </div>
+        <div class="ui column" style="height:10%;width: 100%;margin-top: -90px; margin-left: 80px">
+            <a href="/static/docs/indicator_system.pdf">
+                <i class="normal info circle icon"></i>
+                <span style="font-size: small">查看说明文档</span>
+            </a>
+        </div>
+
+
+    </div>
+
+
+<!--**********************************营商环境****************************-->
+
+</div>
+
+{% endblock %}
+
+{% block jschart %}
+<script src="{% static 'js/solid-gauge.js' %}"></script>
+
+<script>
+//指标体系树状图
+function drawTree(chart_name){
+    let myChart = echarts.init(document.getElementById("index-system"));
+    myChart.showLoading(); //显示Loading标志； 
+    $.get('{% url 'situation_assessment.tree' %}', function (data) {
+        myChart.hideLoading();//得到数据后隐藏Loading标志
+        echarts.util.each(data.children, function (datum, index) {
+            index % 2 === 0 && (datum.collapsed = true);
+        });//间隔展开子数据
+        myChart.setOption(option = {
+            tooltip: {
+                trigger: 'item',
+                triggerOn: 'mousemove'//提示框触发的条件，默认mousemove|click（鼠标点击和移动时触发）。可选mousemove：鼠标移动时，click：鼠标点击时，none：
+            },
+            series: [{ //系列列表
+                type: 'tree', //树形结构
+                data: [data],
+                top: '1%',
+                left: '7%',
+                bottom: '1%',
+                right: '20%',
+                symbolSize: 7,
+                label: {
+                    position: 'left',
+                    verticalAlign: 'middle',
+                    align: 'right',
+                    fontSize: 9
+                },
+                leaves: {//叶子节点的特殊配置，如上面的树图示例中，叶子节点和非叶子节点的标签位置不同
+                    label: {
+                        position: 'right',
+                        verticalAlign: 'middle',
+                        align: 'left'
+                    }
+                },
+                expandAndCollapse: true,
+                animationDuration: 550,
+                animationDurationUpdate: 750
+            }]
+        });
+    });
+}
+drawTree('chart0');
+
+
+</script>
+{% endblock %}
