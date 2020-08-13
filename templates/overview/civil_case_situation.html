@@ -3,8 +3,8 @@
 
 
 {% block head %}
-<div class="item header">民事类案态势</div>
 
+案件宏观态势研判——民事类案态势
 
 {% endblock %}
 {% block column1 %}
@@ -25,6 +25,7 @@
               <a class="item" href="javascript:void(0);" onclick="case_list_click({{ case_outline.7 | safe }})"><i class="world icon"></i>{{ case_outline.7.name | safe }}</a>
           </div>
         </div>
+        <button class="ui  floated black basic button" style="font-weight: bold">2017年1月~2017年12月</button>
     </div>
     <div class="row">
 
@@ -65,7 +66,7 @@
 
     </div>
     <div class="row" style="margin-top: 14px">
-        <h3>案件审判特征分析</h3>
+        <h3>案件审判特征态势</h3>
 
 
 
@@ -73,7 +74,7 @@
 {#    <div class="ui divider"></div>#}
     <div class="ui row segment container" id="case_cha" style="height:40%">
         <div class="ui segment" style="height: 50%;width:50%;float: left;margin-top: 14px">
-            <h3>收结存案数据分析</h3>
+            <h3>收结存案数据态势</h3>
             <table class="ui striped table" style="text-align: center;margin-top: 4%">
                     <thead>
                         <tr>
@@ -117,7 +118,7 @@
 </table>
         </div>
         <div class="ui segment" style="height: 50%;width:50%;float: left">
-            <h3>法院层级案件数据分析</h3>
+            <h3>法院层级案件数据态势</h3>
             <table class="ui striped table" style="text-align: center;margin-top: 4%">
                     <thead>
                         <tr>
@@ -155,7 +156,7 @@
 </table>
         </div>
         <div class="ui segment" style="height: 50%;width:50%;float: left">
-            <h3>一审二审案件数据分析</h3>
+            <h3>一审二审案件数据态势</h3>
             <table class="ui striped table" style="text-align: center;margin-top: 4%">
                     <thead>
                         <tr>
@@ -189,7 +190,7 @@
 </table>
         </div>
         <div class="ui segment" style="height: 50%;width:50%;float: left">
-            <h3>再审终审案件数据分析</h3>
+            <h3>再审终审案件数据态势</h3>
             <table class="ui striped table" style="text-align: center;margin-top: 4%">
                     <thead>
                         <tr>
@@ -252,21 +253,21 @@
 <script type="text/javascript">
 
 function case_pie_line(data){
-    pie_chart('court_level_pie','法院层级案件统计', data['class_data']['pie_data']);
+    pie_chart('court_level_pie','法院层级案件占比', data['class_data']['pie_data']);
     line_chart('court_level_line', '法院层级案件数量时间趋势', data['class_data']['line_data'].slice(1));
-    pie_chart('process_12_pie', '一审二审案件统计',data['process_data']['pie_data'].slice(0,2));
+    pie_chart('process_12_pie', '一审二审案件占比',data['process_data']['pie_data'].slice(0,2));
     line_chart('process_12_line', '一审二审案件数量时间趋势',data['process_data']['line_data'].slice(1,3));
-    pie_chart('process_final_pie','再审终审案件统计',data['process_data']['pie_data'].slice(2));
+    pie_chart('process_final_pie','再审终审案件占比',data['process_data']['pie_data'].slice(2));
     line_chart('process_final_line', '再审终审案件数量时间趋势',data['process_data']['line_data'].slice(3));
 }
 function person_pie_line(data){
     pie_chart('person_1','法人性质', data['people_class']['pie_data']);
     line_chart('person_2','法人性质时间变化趋势', data['people_class']['line_data'].slice(1));
-    pie_chart('person_3','当事人性别统计', data['gender_data']['pie_data']);
+    pie_chart('person_3','当事人性别占比', data['gender_data']['pie_data']);
     line_chart('person_4','当事人性别时间变化趋势', data['gender_data']['line_data'].slice(1));
-    pie_chart('person_5','当事人年龄统计', data['age_data']['pie_data']);
+    pie_chart('person_5','当事人年龄占比', data['age_data']['pie_data']);
     line_chart('person_6','当事人年龄时间变化趋势', data['age_data']['line_data'].slice(1));
-    pie_chart('person_7','当事人民族统计', data['nation_data']['pie_data']);
+    pie_chart('person_7','当事人民族占比', data['nation_data']['pie_data']);
     line_chart('person_8','当事人民族时间变化趋势', data['nation_data']['line_data'].slice(1));
 
 }

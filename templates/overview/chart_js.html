@@ -169,6 +169,12 @@ function region_case_number(chart_name,chart_data){
 }
 function court_class(chart_name,chart_data){
     var chart = Highcharts.chart(chart_name, {
+        credits:{
+                enabled:false,
+                },
+                exporting:{
+                enabled:false,
+                },
 	chart: {
 		type: 'column'
 	},
@@ -480,11 +486,15 @@ function line_chart(chart_name, chart_title, chart_data){
 	subtitle: {
 		text: ''
 	},
+        xAxis: {
+		categories: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+	},
 	yAxis: {
 		title: {
 			text: '数量'
 		}
 	},
+
 	legend: {
 		layout: 'vertical',
 		align: 'right',
@@ -495,7 +505,7 @@ function line_chart(chart_name, chart_title, chart_data){
 			label: {
 				connectorAllowed: false
 			},
-			pointStart: 1
+
 		}
 	},
 	series: chart_data,

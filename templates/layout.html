@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>法院审判态势研判与决策分析平台</title>
+    <title>重庆法院审判态势研判与决策分析平台</title>
     <link rel="stylesheet" href="{% static 'css/semantic.css' %}">
     {% block style %} {% endblock %}
 </head>
@@ -19,21 +19,23 @@
 <script src="{% static 'js/map.js' %}"></script>
 <script src="{% static 'js/grid-light.js' %}"> </script>
 <body>
-    <div class="ui menu" style="height: 8%;" >
+
+
+            <div class="ui menu" style="height: 8%;" >
         <div class="header item center " style="margin: 0 auto;font-size: 4vh; padding: 0 0">
             <div class="container center" style="padding: 0 0; margin: 0 0; line-height: 12px">
                 <img src="{% static 'images/FY.jpg' %}" alt="法院" height="100%" width="100%"/>
             </div>
-            法院审判态势研判与决策分析平台
+            重庆法院审判态势研判与决策分析平台
         </div>
-        {% block head %}{% endblock %}
+
     </div>
-    <div class="ui menu" style="height: 60px;">
+        <div class="ui menu" style="height: 60px;">
         <div class="ui basic dropdown button" id="aa" style="background-color:#ffffff" >
             <div class="item" style="font-weight: bold;font-size: 20px;height: 100%;"  >
                 <i class="world icon"></i>案件宏观态势研判
             </div>
-            <div class="menu">
+            <div class="ui  menu">
                 <div class="item">
 
                     <i class="dropdown icon"></i>
@@ -113,10 +115,25 @@
             <a class="item" style="font-weight: bold;font-size: 20px;height: 100%;" href="{% url 'receive_close_prediction' %}" >
             <i class="bar chart icon"></i>精细化管理预测</a>
         </div>
-    </div>
-    {% block column1 %}
+        <div class="item right aligned header" style="font-weight: bold;font-size: larger;color:#bd081c"> {% block head %}{% endblock %}</div>
 
-    {% endblock %}
+    </div>
+
+
+
+
+
+
+        {% block column1 %}
+
+        {% endblock %}
+
+
+
+
+
+
+
     {#        {% block column2 %}#}
     {##}
     {#        {% endblock %}#}
@@ -135,7 +152,9 @@ $('#menu').click(function () {
 $('.ui.dropdown').dropdown({
 
 });
-
+$('.ui.sticky')
+  .sticky()
+;
 </script>
 {% block jschart %}
 {% endblock %}
