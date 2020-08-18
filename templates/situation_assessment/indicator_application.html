@@ -7,15 +7,15 @@
 
 <div class="ui centered grid" style="height:150%" >
     <div class="row" style="height: 49%; margin-top: 15px">
-        <div class="ui segment container row" style="height: 10.5%; width:100%">
-                <h3 class="ui center header" style="font-size: 21px">
+        <div class="ui segment container row" style="height: 8%; width:100%">
+                <h3 class="ui center header" style="font-size: 2.2vh">
                     审判质效宏观评估
                 </h3>
             </div>
 
         <div class="column" style="width:21%;height:100%;background-color: #ffffff">
             <div class="ui segment container row" style="width: 100%;height:100%" id="">
-                <div class="ui selection dropdown" style="margin-left: 14%;margin-top: 12%;height:9.5%">时间
+                <div class="ui selection dropdown" style="margin-left: 25%;margin-top: 10%;height:auto">时间
                 <input type="hidden" name="时间">
                 <i class="dropdown icon"></i>
                 <div class="default text"><i class="time icon"></i></div>
@@ -95,13 +95,14 @@
         </div>
     </div>-->
 
-    <div class="row" style="height: 45%; margin-top: 75px">
-        <div class="ui segment container row" style="height: 12%; width:100%">
-                <h3 class="ui center header" style="font-size: 21px">
+    <div class="row" style="height: 40%; margin-top: 75px">
+        <div class="ui segment container row" style="height: 11%; width:100%">
+                <h3 class="ui center header" style="font-size: 2.2vh">
                     审判质效微观评估
                 </h3>
             </div>
-        <div class="ui segment container column" style="width: 26%;" id="">
+
+            <div class="ui segment container column" style="width: 26%;height: 88%" id="">
             <div class="ui selection dropdown" style="margin-left: 30%;">地区
                 <input type="hidden" name="地区">
                 <i class="dropdown icon"></i>
@@ -121,14 +122,15 @@
     {#            案后监督排名#}
             </div>
         </div>
-        <div class="ui segment container column" style="width: 72%;"  id="" >
+            <div class="ui segment container column" style="width: 72%;height: 88%"  id="" >
             <div class="ui container" style="height: 100%;width:80%;margin-top: 2em" id="chart5"></div>
         </div>
+
     </div>
 
     <div class="row" style="height: 50%; margin-top: 10px">
-        <div class="ui segment container row" style="height: 11%; width:100%">
-                <h3 class="ui center header" style="font-size: 21px">
+        <div class="ui segment container row" style="height: 8%; width:100%">
+                <h3 class="ui center header" style="font-size: 2.2vh">
                     审判质效与经济社会关联分析
                 </h3>
         </div>
@@ -145,8 +147,8 @@
     </div>
 
     <div class="ui container row" style="height:40%;margin-top: 25px">
-        <div class="ui segment container row" style="height: 13.5%; width:100%">
-                <h3 class="ui center header" style="font-size: 21px">
+        <div class="ui segment container row" style="height: 11%; width:100%">
+                <h3 class="ui center header" style="font-size: 2.2vh">
                     审判质效末端指标分析
                 </h3>
             </div>
@@ -506,6 +508,7 @@
 {% endblock %}
 
 {% block jschart %}
+{% include 'overview/chart_js.html' %}
 <script src="{% static 'js/solid-gauge.js' %}"></script>
 <script>
 //排名图函数，输入为div的id和作图数据
@@ -682,7 +685,7 @@ function pie_paint1(chart_name, chart_data){
 
 //热力图函数
 function heat_paint(chart_name, chart_data) {
-    $.getJSON('https://data.jianshukeji.com/jsonp?filename=geochina/chongqing.json&callback=?', function (mapdata) {
+   $.getJSON('../static/js/chongqing.json', function(mapdata) {
         var data = chart_data;
         map1 = new Highcharts.Map(chart_name, {
             title: {

@@ -114,7 +114,7 @@
     function functiondate(map_data){
             //function1(date_data);
             //function2(date_data);
-            $.getJSON('https://data.jianshukeji.com/jsonp?filename=geochina/chongqing.json&callback=?', map_data, function(mapdata) {
+            $.getJSON('../static/js/chongqing.json', function(mapdata) {
                     var data = map_data;
                     map1 = new Highcharts.Map('chart3', {
                         title: {
